@@ -90,11 +90,11 @@ xtensa-lx60_musl = 0
 .PHONY: all
 all:
 
-.PHONY: commit
-commit:
-
 .PHONY: makepkg
 makepkg:
+
+.PHONY: commit
+commit:
 
 .PHONY: clean
 clean:
@@ -103,6 +103,12 @@ define PKGBUILD_in
 ifneq ($($(1)),0)
 ifneq ($($(1)_$(2)),0)
 ifneq ($($(1)_$(2)_$(3)),0)
+makepkg: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+
+.PRECIOUS: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/PKGBUILD
+	( cd $(1)-$(2)-$(3)-toolchain && makepkg --force --cleanbuild )
+
 commit: commit-$(1)-$(2)-$(3)
 
 .PHONY: commit-$(1)-$(2)-$(3)
@@ -131,12 +137,6 @@ PKGBUILD-$(1)-$(2)-$(3)-toolchain: PKGBUILD.in
 	       PKGBUILD.in >$$@.tmp
 	updpkgsums $$@.tmp
 	mv $$@.tmp $$@
-
-makepkg: makepkg-$(1)-$(2)-$(3)
-
-.PHONY: makepkg-$(1)-$(2)-$(3)
-makepkg-$(1)-$(2)-$(3): PKGBUILD-$(1)-$(2)-$(3)-toolchain
-	( cd $(1)-$(2)-$(3)-toolchain && makepkg )
 
 clean: clean-$(1)-$(2)-$(3)
 
