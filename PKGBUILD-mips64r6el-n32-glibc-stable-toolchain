@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=mips64r6el-n32-glibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64r6el-n32/tarballs/mips64r6el-n32--glibc--stable-2023.08-1.tar.bz2")
+sha256sums=('ef65c7717cd1560c08097f669244515b8261e5f4df4cda1780c507f43b98ada7')
+
+build() {
+	cd "mips64r6el-n32--glibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/mips64r6el-n32-glibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "mips64r6el-n32--glibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/mips64r6el-n32-glibc-stable/"
+	cp -a * "$pkgdir/opt/mips64r6el-n32-glibc-stable/"
+	rm -f "$pkgdir/opt/mips64r6el-n32-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

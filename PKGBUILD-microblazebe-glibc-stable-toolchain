@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=microblazebe-glibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazebe/tarballs/microblazebe--glibc--stable-2023.08-1.tar.bz2")
+sha256sums=('f83fe1e9788c43c502322d7b1dff57030718fd461b9df06d27ce69653b234489')
+
+build() {
+	cd "microblazebe--glibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/microblazebe-glibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "microblazebe--glibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/microblazebe-glibc-stable/"
+	cp -a * "$pkgdir/opt/microblazebe-glibc-stable/"
+	rm -f "$pkgdir/opt/microblazebe-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

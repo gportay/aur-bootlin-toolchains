@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=armv7-eabihf-musl-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--musl--stable-2023.08-1.tar.bz2")
+sha256sums=('4f06ed760d3b2e779f0d8aec73becd21edce9d04560d2fba53549ca8c12f51ba')
+
+build() {
+	cd "armv7-eabihf--musl--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/armv7-eabihf-musl-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "armv7-eabihf--musl--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/armv7-eabihf-musl-stable/"
+	cp -a * "$pkgdir/opt/armv7-eabihf-musl-stable/"
+	rm -f "$pkgdir/opt/armv7-eabihf-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

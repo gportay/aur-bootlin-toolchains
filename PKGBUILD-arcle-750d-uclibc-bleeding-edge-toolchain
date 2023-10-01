@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=arcle-750d-uclibc-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('7129cef2a9c3c511c6c7f025cfe526be9d30150707e1e400780c611369b5ed02')
+
+build() {
+	cd "arcle-750d--uclibc--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/arcle-750d-uclibc-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "arcle-750d--uclibc--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/"
+	cp -a * "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/"
+	rm -f "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

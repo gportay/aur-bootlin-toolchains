@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=powerpc-e500mc-uclibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--stable-2023.08-1.tar.bz2")
+sha256sums=('4a37d3dd4eee82fcc5d2d0fcf71831d8efca601abfee236c49a5a7bd064d27f4')
+
+build() {
+	cd "powerpc-e500mc--uclibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/powerpc-e500mc-uclibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "powerpc-e500mc--uclibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/powerpc-e500mc-uclibc-stable/"
+	cp -a * "$pkgdir/opt/powerpc-e500mc-uclibc-stable/"
+	rm -f "$pkgdir/opt/powerpc-e500mc-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

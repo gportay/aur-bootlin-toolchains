@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=aarch64-uclibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--uclibc--stable-2023.08-1.tar.bz2")
+sha256sums=('4c05602d75bc97a9acdcba3e94ed14d6452f176970a1e446bdb5a672fe2b77fb')
+
+build() {
+	cd "aarch64--uclibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/aarch64-uclibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "aarch64--uclibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/aarch64-uclibc-stable/"
+	cp -a * "$pkgdir/opt/aarch64-uclibc-stable/"
+	rm -f "$pkgdir/opt/aarch64-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

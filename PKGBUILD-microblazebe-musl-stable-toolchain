@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=microblazebe-musl-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazebe/tarballs/microblazebe--musl--stable-2023.08-1.tar.bz2")
+sha256sums=('0605fcdc0b8be08a1737b73f090782b16c5f905996a14a2a587c99d3bf6a76b2')
+
+build() {
+	cd "microblazebe--musl--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/microblazebe-musl-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "microblazebe--musl--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/microblazebe-musl-stable/"
+	cp -a * "$pkgdir/opt/microblazebe-musl-stable/"
+	rm -f "$pkgdir/opt/microblazebe-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

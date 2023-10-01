@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=m68k-68xxx-uclibc-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--uclibc--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('61c7953c741113f30ff643fa846713c8b88bd2c4a91de26349e504d553e8ca9c')
+
+build() {
+	cd "m68k-68xxx--uclibc--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/m68k-68xxx-uclibc-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "m68k-68xxx--uclibc--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/m68k-68xxx-uclibc-bleeding-edge/"
+	cp -a * "$pkgdir/opt/m68k-68xxx-uclibc-bleeding-edge/"
+	rm -f "$pkgdir/opt/m68k-68xxx-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

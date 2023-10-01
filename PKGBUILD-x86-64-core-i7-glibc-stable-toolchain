@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=x86-64-core-i7-glibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--glibc--stable-2023.08-1.tar.bz2")
+sha256sums=('78360790108be258bd5f9d4a0dfbc7fc51159cff9943d25b2bf40db0b6530593')
+
+build() {
+	cd "x86-64-core-i7--glibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/x86-64-core-i7-glibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "x86-64-core-i7--glibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/x86-64-core-i7-glibc-stable/"
+	cp -a * "$pkgdir/opt/x86-64-core-i7-glibc-stable/"
+	rm -f "$pkgdir/opt/x86-64-core-i7-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

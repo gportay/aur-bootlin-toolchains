@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=powerpc-e500mc-uclibc-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('4281a38e79f2a32dcb9b51f379c78ca98cd982d4272449a9c7a4890d8402f7c2')
+
+build() {
+	cd "powerpc-e500mc--uclibc--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/powerpc-e500mc-uclibc-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "powerpc-e500mc--uclibc--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/"
+	cp -a * "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/"
+	rm -f "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

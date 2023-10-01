@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=sh-sh4aeb-glibc-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--glibc--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('32efc818e2a09ae5af5756c3fac89832743b6f03ad7414c5f6c6abb238cbcc64')
+
+build() {
+	cd "sh-sh4aeb--glibc--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/sh-sh4aeb-glibc-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "sh-sh4aeb--glibc--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/sh-sh4aeb-glibc-bleeding-edge/"
+	cp -a * "$pkgdir/opt/sh-sh4aeb-glibc-bleeding-edge/"
+	rm -f "$pkgdir/opt/sh-sh4aeb-glibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

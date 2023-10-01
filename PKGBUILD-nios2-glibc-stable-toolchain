@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=nios2-glibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/nios2/tarballs/nios2--glibc--stable-2023.08-1.tar.bz2")
+sha256sums=('427c9c52209927883865b74d0c1310b47148013832069359da6d9fd23654b2be')
+
+build() {
+	cd "nios2--glibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/nios2-glibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "nios2--glibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/nios2-glibc-stable/"
+	cp -a * "$pkgdir/opt/nios2-glibc-stable/"
+	rm -f "$pkgdir/opt/nios2-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

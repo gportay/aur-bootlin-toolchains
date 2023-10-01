@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=arcle-750d-uclibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--stable-2023.08-1.tar.bz2")
+sha256sums=('1e1ce3fb4eda609dc73df731a7192cf1fcaabade8ea65f9bce6d9e9be41633b9')
+
+build() {
+	cd "arcle-750d--uclibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/arcle-750d-uclibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "arcle-750d--uclibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/arcle-750d-uclibc-stable/"
+	cp -a * "$pkgdir/opt/arcle-750d-uclibc-stable/"
+	rm -f "$pkgdir/opt/arcle-750d-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=mips64el-n32-musl-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64el-n32/tarballs/mips64el-n32--musl--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('f1d63dfa8615d6ffec4d66751e483623de0ccdf1fdb70d1981104457ba5cf4ff')
+
+build() {
+	cd "mips64el-n32--musl--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/mips64el-n32-musl-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "mips64el-n32--musl--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/mips64el-n32-musl-bleeding-edge/"
+	cp -a * "$pkgdir/opt/mips64el-n32-musl-bleeding-edge/"
+	rm -f "$pkgdir/opt/mips64el-n32-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

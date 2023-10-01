@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=microblazeel-musl-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--musl--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('923616f2c14a571cc9257f81b9373a49b86997c6cbe8ecf5cd816527d04dd321')
+
+build() {
+	cd "microblazeel--musl--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/microblazeel-musl-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "microblazeel--musl--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/microblazeel-musl-bleeding-edge/"
+	cp -a * "$pkgdir/opt/microblazeel-musl-bleeding-edge/"
+	rm -f "$pkgdir/opt/microblazeel-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

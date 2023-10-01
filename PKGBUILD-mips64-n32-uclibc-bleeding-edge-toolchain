@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=mips64-n32-uclibc-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64-n32/tarballs/mips64-n32--uclibc--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('6d3825d31c0f91f0d319517ebbf67bb9c44d779224ebd8e90e88c9a7d75bc07b')
+
+build() {
+	cd "mips64-n32--uclibc--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/mips64-n32-uclibc-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "mips64-n32--uclibc--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/mips64-n32-uclibc-bleeding-edge/"
+	cp -a * "$pkgdir/opt/mips64-n32-uclibc-bleeding-edge/"
+	rm -f "$pkgdir/opt/mips64-n32-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

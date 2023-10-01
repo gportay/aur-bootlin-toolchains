@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=mips32r6el-uclibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--uclibc--stable-2023.08-1.tar.bz2")
+sha256sums=('901d78b12dcab01006616ccc8797d593c53d361752b4cd04791495a3470dfe12')
+
+build() {
+	cd "mips32r6el--uclibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/mips32r6el-uclibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "mips32r6el--uclibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/mips32r6el-uclibc-stable/"
+	cp -a * "$pkgdir/opt/mips32r6el-uclibc-stable/"
+	rm -f "$pkgdir/opt/mips32r6el-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

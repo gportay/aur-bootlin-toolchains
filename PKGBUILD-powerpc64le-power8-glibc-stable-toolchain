@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=powerpc64le-power8-glibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64le-power8/tarballs/powerpc64le-power8--glibc--stable-2023.08-1.tar.bz2")
+sha256sums=('b9ed7a538472df2c727f8133ccd8166f5ea26fbd09ec0729b577c89ced0a87c4')
+
+build() {
+	cd "powerpc64le-power8--glibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/powerpc64le-power8-glibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "powerpc64le-power8--glibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/powerpc64le-power8-glibc-stable/"
+	cp -a * "$pkgdir/opt/powerpc64le-power8-glibc-stable/"
+	rm -f "$pkgdir/opt/powerpc64le-power8-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

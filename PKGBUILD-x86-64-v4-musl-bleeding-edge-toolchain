@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=x86-64-v4-musl-bleeding-edge-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--musl--bleeding-edge-2023.08-1.tar.bz2")
+sha256sums=('03ad7a76121551bce3645835286c43d75e73d397f715fb41e60635f9139711f2')
+
+build() {
+	cd "x86-64-v4--musl--bleeding-edge-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/x86-64-v4-musl-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "x86-64-v4--musl--bleeding-edge-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/x86-64-v4-musl-bleeding-edge/"
+	cp -a * "$pkgdir/opt/x86-64-v4-musl-bleeding-edge/"
+	rm -f "$pkgdir/opt/x86-64-v4-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

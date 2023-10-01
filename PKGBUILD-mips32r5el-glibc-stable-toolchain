@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=mips32r5el-glibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r5el/tarballs/mips32r5el--glibc--stable-2023.08-1.tar.bz2")
+sha256sums=('18127d0728f1200483ec6739357e4d19cc2df9de33f76bf70598b78b43ff2496')
+
+build() {
+	cd "mips32r5el--glibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/mips32r5el-glibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "mips32r5el--glibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/mips32r5el-glibc-stable/"
+	cp -a * "$pkgdir/opt/mips32r5el-glibc-stable/"
+	rm -f "$pkgdir/opt/mips32r5el-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}

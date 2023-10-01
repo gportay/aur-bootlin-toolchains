@@ -1,0 +1,27 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=powerpc-440fp-glibc-stable-toolchain
+pkgver=2023.08
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--glibc--stable-2023.08-1.tar.bz2")
+sha256sums=('e8b0ecf725c48794f8fa33b05725cbb8f988b364c66a371c414c6cf0118669f4')
+
+build() {
+	cd "powerpc-440fp--glibc--stable-2023.08-1"
+
+	sh relocate-sdk.sh "/opt/powerpc-440fp-glibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "powerpc-440fp--glibc--stable-2023.08-1"
+
+	mkdir -p "$pkgdir/opt/powerpc-440fp-glibc-stable/"
+	cp -a * "$pkgdir/opt/powerpc-440fp-glibc-stable/"
+	rm -f "$pkgdir/opt/powerpc-440fp-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+}
