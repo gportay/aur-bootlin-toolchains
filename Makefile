@@ -99,6 +99,9 @@ commit:
 .PHONY: clean
 clean:
 
+.PHONY: rm-work
+rm-work:
+
 define PKGBUILD_in
 ifneq ($($(1)),0)
 ifneq ($($(1)_$(2)),0)
@@ -143,6 +146,12 @@ clean: clean-$(1)-$(2)-$(3)
 .PHONY: clean-$(1)-$(2)-$(3)
 clean-$(1)-$(2)-$(3):
 	rm -f PKGBUILD-$(1)-$(2)-$(3)-toolchain
+
+rm-work: rm-work-$(1)-$(2)-$(3)
+
+.PHONY: rm-work-$(1)-$(2)-$(3)
+rm-work-$(1)-$(2)-$(3):
+	rm -Rf $(1)-$(2)-$(3)-toolchain/src $(1)-$(2)-$(3)-toolchain/pkg
 endif
 endif
 endif
