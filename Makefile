@@ -90,6 +90,13 @@ xtensa-lx60_musl = 0
 .PHONY: all
 all:
 
+.PHONY: repo
+repo: bootlin-toolchains.db.tar.gz
+
+.PRECIOUS: bootlin-toolchains.db.tar.gz
+bootlin-toolchains.db.tar.gz:
+	repo-add $@ $^
+
 .PHONY: makepkg
 makepkg:
 
@@ -112,6 +119,12 @@ define PKGBUILD_in
 ifneq ($($(1)),0)
 ifneq ($($(1)_$(2)),0)
 ifneq ($($(1)_$(2)_$(3)),0)
+bootlin-toolchains.db.tar.gz: $(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+
+.PRECIOUS: $(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+	cp -al $$< $$@
+
 makepkg: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
