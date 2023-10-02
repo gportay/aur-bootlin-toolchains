@@ -156,7 +156,7 @@ PKGBUILD-$(1)-$(2)-$(3)-toolchain: PKGBUILD.in
 	    -e 's,@@LIBC@@,$(2),g' \
 	    -e 's,@@VERSION@@,$(3),g' \
 	    -e 's,@@RELEASE@@,$$(RELEASE),g' \
-	       PKGBUILD.in >$$@.tmp
+	       $$< >$$@.tmp
 	updpkgsums $$@.tmp
 	mv $$@.tmp $$@
 
