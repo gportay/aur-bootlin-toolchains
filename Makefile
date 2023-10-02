@@ -110,7 +110,7 @@ makepkg: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
 $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/PKGBUILD
-	( cd $(1)-$(2)-$(3)-toolchain && makepkg --force --cleanbuild )
+	( cd $(1)-$(2)-$(3)-toolchain && makepkg --force --clean --cleanbuild )
 
 commit: commit-$(1)-$(2)-$(3)
 
