@@ -99,6 +99,9 @@ commit:
 .PHONY: clean
 clean:
 
+.PHONY: cleanall
+cleanall:
+
 .PHONY: rm-work
 rm-work:
 
@@ -146,6 +149,12 @@ clean: clean-$(1)-$(2)-$(3)
 .PHONY: clean-$(1)-$(2)-$(3)
 clean-$(1)-$(2)-$(3):
 	rm -f PKGBUILD-$(1)-$(2)-$(3)-toolchain
+
+cleanall: cleanall-$(1)-$(2)-$(3)
+
+.PHONY: cleanall-$(1)-$(2)-$(3)
+cleanall-$(1)-$(2)-$(3):
+	rm -f $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
 
 rm-work: rm-work-$(1)-$(2)-$(3)
 
