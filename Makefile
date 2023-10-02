@@ -127,7 +127,7 @@ $(1)-$(2)-$(3)-toolchain/.SRCINFO: $(1)-$(2)-$(3)-toolchain/PKGBUILD | $(1)-$(2)
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/PKGBUILD
 $(1)-$(2)-$(3)-toolchain/PKGBUILD: PKGBUILD-$(1)-$(2)-$(3)-toolchain | $(1)-$(2)-$(3)-toolchain
-	cp $$< $$@
+	cp -al $$< $$@
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain
 $(1)-$(2)-$(3)-toolchain:
