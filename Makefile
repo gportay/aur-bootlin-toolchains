@@ -102,6 +102,9 @@ clean:
 .PHONY: cleanall
 cleanall:
 
+.PHONY: copy-source
+copy-source:
+
 .PHONY: rm-work
 rm-work:
 
@@ -155,6 +158,12 @@ cleanall: cleanall-$(1)-$(2)-$(3)
 .PHONY: cleanall-$(1)-$(2)-$(3)
 cleanall-$(1)-$(2)-$(3):
 	rm -f $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+
+copy-source: copy-source-$(1)-$(2)-$(3)
+
+.PHONY: copy-source-$(1)-$(2)-$(3)
+copy-source-$(1)-$(2)-$(3):
+	cp -al $(1)--$(2)--$(3)-$$(RELEASE)-1.tar.bz2 $(1)-$(2)-$(3)-toolchain/
 
 rm-work: rm-work-$(1)-$(2)-$(3)
 
