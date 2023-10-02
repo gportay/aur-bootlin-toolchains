@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('88fd3eb838a2527980aba33403c7654b156665aafe825a4f86f1af2007277e15')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-openrisc-musl-stable-toolchain")
+install="hooks.install-openrisc-musl-stable-toolchain"
+sha256sums=('88fd3eb838a2527980aba33403c7654b156665aafe825a4f86f1af2007277e15'
+            '5173f8bf8884396b4f0c49e4a531bf2db9642d6e6dc2be6d468dc352c12ccfbd')
 
 build() {
 	cd "openrisc--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/openrisc-musl-stable/"
 	cp -a * "$pkgdir/opt/openrisc-musl-stable/"
 	rm -f "$pkgdir/opt/openrisc-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-openrisc-musl-stable-toolchain" "$pkgdir/etc/profile.d/openrisc-musl-stable-toolchain.sh"
 }

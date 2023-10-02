@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--musl--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('923616f2c14a571cc9257f81b9373a49b86997c6cbe8ecf5cd816527d04dd321')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--musl--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-microblazeel-musl-bleeding-edge-toolchain")
+install="hooks.install-microblazeel-musl-bleeding-edge-toolchain"
+sha256sums=('923616f2c14a571cc9257f81b9373a49b86997c6cbe8ecf5cd816527d04dd321'
+            '83160a8942e640661d642fcd79fcd307e81fee6e823098bf927376c53f0b8716')
 
 build() {
 	cd "microblazeel--musl--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/microblazeel-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/microblazeel-musl-bleeding-edge/"
 	rm -f "$pkgdir/opt/microblazeel-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-microblazeel-musl-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/microblazeel-musl-bleeding-edge-toolchain.sh"
 }

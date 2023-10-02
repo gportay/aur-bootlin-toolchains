@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('8223fd5853298060e253b595615bedaa0c43a957d630133e99cd63c0d600e402')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-armebv7-eabihf-uclibc-stable-toolchain")
+install="hooks.install-armebv7-eabihf-uclibc-stable-toolchain"
+sha256sums=('8223fd5853298060e253b595615bedaa0c43a957d630133e99cd63c0d600e402'
+            'b693a2fbe7e9db1213e9570fd6bb4f9ebde2f4df547f376a08bd23d48b3a6f44')
 
 build() {
 	cd "armebv7-eabihf--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/armebv7-eabihf-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armebv7-eabihf-uclibc-stable/"
 	rm -f "$pkgdir/opt/armebv7-eabihf-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-armebv7-eabihf-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/armebv7-eabihf-uclibc-stable-toolchain.sh"
 }

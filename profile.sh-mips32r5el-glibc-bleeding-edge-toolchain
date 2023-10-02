@@ -1,0 +1,3 @@
+#!/bin/sh
+
+export PATH="$PATH:/opt/mips32r5el-glibc-bleeding-edge/bin"

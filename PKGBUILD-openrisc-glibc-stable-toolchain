@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('bae2a29dcff4606c40766da9cae88be0846b5bdc870e83e282ffde1f93be1c1b')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-openrisc-glibc-stable-toolchain")
+install="hooks.install-openrisc-glibc-stable-toolchain"
+sha256sums=('bae2a29dcff4606c40766da9cae88be0846b5bdc870e83e282ffde1f93be1c1b'
+            '68f940b1bd41a6cd7c5df64f0373c77f9c66a37270059bd7dc49c54671235ca3')
 
 build() {
 	cd "openrisc--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/openrisc-glibc-stable/"
 	cp -a * "$pkgdir/opt/openrisc-glibc-stable/"
 	rm -f "$pkgdir/opt/openrisc-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-openrisc-glibc-stable-toolchain" "$pkgdir/etc/profile.d/openrisc-glibc-stable-toolchain.sh"
 }

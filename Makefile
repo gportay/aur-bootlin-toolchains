@@ -128,22 +128,38 @@ $(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolch
 makepkg: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
 $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/PKGBUILD
 	( cd $(1)-$(2)-$(3)-toolchain && makepkg --force --clean --cleanbuild )
 
 commit: commit-$(1)-$(2)-$(3)
 
 .PHONY: commit-$(1)-$(2)-$(3)
-commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/.SRCINFO $(1)-$(2)-$(3)-toolchain/PKGBUILD
+commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/.SRCINFO
+commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/PKGBUILD 
+commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
+commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
 	( cd $(1)-$(2)-$(3)-toolchain && git add $$(^F) && git commit -m "Initial commit" )
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/.SRCINFO
-$(1)-$(2)-$(3)-toolchain/.SRCINFO: $(1)-$(2)-$(3)-toolchain/PKGBUILD | $(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/.SRCINFO: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/.SRCINFO: $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/.SRCINFO: $(1)-$(2)-$(3)-toolchain/PKGBUILD
+$(1)-$(2)-$(3)-toolchain/.SRCINFO: | $(1)-$(2)-$(3)-toolchain
 	( cd $(1)-$(2)-$(3)-toolchain && makepkg --printsrcinfo >$$(@F) )
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/PKGBUILD
 $(1)-$(2)-$(3)-toolchain/PKGBUILD: PKGBUILD-$(1)-$(2)-$(3)-toolchain | $(1)-$(2)-$(3)-toolchain
-	cp -al $$< $$@
+	cp -alf $$< $$@
+
+.PRECIOUS: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain: hooks.install-$(1)-$(2)-$(3)-toolchain | $(1)-$(2)-$(3)-toolchain
+	cp -alf $$< $$@
+
+.PRECIOUS: $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain: profile.sh-$(1)-$(2)-$(3)-toolchain | $(1)-$(2)-$(3)-toolchain
+	cp -alf $$< $$@
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain
 $(1)-$(2)-$(3)-toolchain:
@@ -151,6 +167,8 @@ $(1)-$(2)-$(3)-toolchain:
 
 all: PKGBUILD-$(1)-$(2)-$(3)-toolchain
 
+PKGBUILD-$(1)-$(2)-$(3)-toolchain: hooks.install-$(1)-$(2)-$(3)-toolchain
+PKGBUILD-$(1)-$(2)-$(3)-toolchain: profile.sh-$(1)-$(2)-$(3)-toolchain
 PKGBUILD-$(1)-$(2)-$(3)-toolchain: PKGBUILD.in
 	sed -e 's,@@ARCH@@,$(1),g' \
 	    -e 's,@@LIBC@@,$(2),g' \
@@ -159,6 +177,24 @@ PKGBUILD-$(1)-$(2)-$(3)-toolchain: PKGBUILD.in
 	       $$< >$$@.tmp
 	updpkgsums $$@.tmp
 	mv $$@.tmp $$@
+
+all: hooks.install-$(1)-$(2)-$(3)-toolchain
+
+hooks.install-$(1)-$(2)-$(3)-toolchain: hooks.install.in
+	sed -e 's,@@ARCH@@,$(1),g' \
+	    -e 's,@@LIBC@@,$(2),g' \
+	    -e 's,@@VERSION@@,$(3),g' \
+	    -e 's,@@RELEASE@@,$$(RELEASE),g' \
+	       $$< >$$@
+
+all: profile.sh-$(1)-$(2)-$(3)-toolchain
+
+profile.sh-$(1)-$(2)-$(3)-toolchain: profile.sh.in
+	sed -e 's,@@ARCH@@,$(1),g' \
+	    -e 's,@@LIBC@@,$(2),g' \
+	    -e 's,@@VERSION@@,$(3),g' \
+	    -e 's,@@RELEASE@@,$$(RELEASE),g' \
+	       $$< >$$@
 
 clean: clean-$(1)-$(2)-$(3)
 

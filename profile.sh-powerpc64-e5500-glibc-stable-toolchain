@@ -1,0 +1,3 @@
+#!/bin/sh
+
+export PATH="$PATH:/opt/powerpc64-e5500-glibc-stable/bin"

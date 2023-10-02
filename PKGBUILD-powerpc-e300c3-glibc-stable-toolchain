@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('c997956cb53d65491557aeca2fcff951348b12d07764057d4942d58accad4925')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-powerpc-e300c3-glibc-stable-toolchain")
+install="hooks.install-powerpc-e300c3-glibc-stable-toolchain"
+sha256sums=('c997956cb53d65491557aeca2fcff951348b12d07764057d4942d58accad4925'
+            '2fd7103b3fd3a3a4669edcb5d77ee0e53d6495b78648e824f497e5d709f94455')
 
 build() {
 	cd "powerpc-e300c3--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/powerpc-e300c3-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-e300c3-glibc-stable/"
 	rm -f "$pkgdir/opt/powerpc-e300c3-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-powerpc-e300c3-glibc-stable-toolchain" "$pkgdir/etc/profile.d/powerpc-e300c3-glibc-stable-toolchain.sh"
 }

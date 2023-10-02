@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('79b002a8d1d6dee72c75a336e0fb3b07cdf4cd373de842e5f3f6c67e502f9c94')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-xtensa-lx60-uclibc-bleeding-edge-toolchain")
+install="hooks.install-xtensa-lx60-uclibc-bleeding-edge-toolchain"
+sha256sums=('79b002a8d1d6dee72c75a336e0fb3b07cdf4cd373de842e5f3f6c67e502f9c94'
+            '442cf753adae6ad10cd9c871daf8c098c9450bd23e659a43f40aeb33666d512a')
 
 build() {
 	cd "xtensa-lx60--uclibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/xtensa-lx60-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/xtensa-lx60-uclibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/xtensa-lx60-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-xtensa-lx60-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/xtensa-lx60-uclibc-bleeding-edge-toolchain.sh"
 }

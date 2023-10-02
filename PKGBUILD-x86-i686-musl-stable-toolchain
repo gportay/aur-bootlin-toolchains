@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('5109b0d57432800a34a402cea789993f0670cfeda5f174b61e0bc19c69e98078')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-x86-i686-musl-stable-toolchain")
+install="hooks.install-x86-i686-musl-stable-toolchain"
+sha256sums=('5109b0d57432800a34a402cea789993f0670cfeda5f174b61e0bc19c69e98078'
+            '500b228c50385d13e218e115cb093cbe9ed40e0610470cfe2107ee3f33fbd36b')
 
 build() {
 	cd "x86-i686--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-i686-musl-stable/"
 	cp -a * "$pkgdir/opt/x86-i686-musl-stable/"
 	rm -f "$pkgdir/opt/x86-i686-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-i686-musl-stable-toolchain" "$pkgdir/etc/profile.d/x86-i686-musl-stable-toolchain.sh"
 }

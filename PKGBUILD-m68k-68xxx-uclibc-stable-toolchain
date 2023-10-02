@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('e631e9fea5fad6db056e9028c17e41abca9f7bb6463950045756d040dfb34a6f')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-m68k-68xxx-uclibc-stable-toolchain")
+install="hooks.install-m68k-68xxx-uclibc-stable-toolchain"
+sha256sums=('e631e9fea5fad6db056e9028c17e41abca9f7bb6463950045756d040dfb34a6f'
+            '277d49a9e3795534f5ecaf7a3c9cb70768242a733311913046987c4ac9ea4145')
 
 build() {
 	cd "m68k-68xxx--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/m68k-68xxx-uclibc-stable/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-uclibc-stable/"
 	rm -f "$pkgdir/opt/m68k-68xxx-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-m68k-68xxx-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/m68k-68xxx-uclibc-stable-toolchain.sh"
 }

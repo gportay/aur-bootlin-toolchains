@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64el-n32/tarballs/mips64el-n32--musl--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('f1d63dfa8615d6ffec4d66751e483623de0ccdf1fdb70d1981104457ba5cf4ff')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64el-n32/tarballs/mips64el-n32--musl--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-mips64el-n32-musl-bleeding-edge-toolchain")
+install="hooks.install-mips64el-n32-musl-bleeding-edge-toolchain"
+sha256sums=('f1d63dfa8615d6ffec4d66751e483623de0ccdf1fdb70d1981104457ba5cf4ff'
+            '840d76481c0fecf9552cb1f1f0058a1ff8fbdb1037853be3e701cbb9b302df7c')
 
 build() {
 	cd "mips64el-n32--musl--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/mips64el-n32-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/mips64el-n32-musl-bleeding-edge/"
 	rm -f "$pkgdir/opt/mips64el-n32-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-mips64el-n32-musl-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/mips64el-n32-musl-bleeding-edge-toolchain.sh"
 }

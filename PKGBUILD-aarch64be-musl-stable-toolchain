@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64be/tarballs/aarch64be--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('d24322115bffa3bde073a39149527cb212a9d07b2bc8cfad57145c13ec60ece5')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64be/tarballs/aarch64be--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-aarch64be-musl-stable-toolchain")
+install="hooks.install-aarch64be-musl-stable-toolchain"
+sha256sums=('d24322115bffa3bde073a39149527cb212a9d07b2bc8cfad57145c13ec60ece5'
+            'a8a52676ac5967b5ad9eae55554612405c8d06bcff38494a7e21168f54a294a9')
 
 build() {
 	cd "aarch64be--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/aarch64be-musl-stable/"
 	cp -a * "$pkgdir/opt/aarch64be-musl-stable/"
 	rm -f "$pkgdir/opt/aarch64be-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-aarch64be-musl-stable-toolchain" "$pkgdir/etc/profile.d/aarch64be-musl-stable-toolchain.sh"
 }

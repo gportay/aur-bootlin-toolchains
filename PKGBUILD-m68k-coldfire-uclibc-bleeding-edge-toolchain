@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-coldfire/tarballs/m68k-coldfire--uclibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('59dc6c063a9e982042bbfde36b5cbe263b3130e6ee04df8b8503cfde0cbcc43d')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-coldfire/tarballs/m68k-coldfire--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-m68k-coldfire-uclibc-bleeding-edge-toolchain")
+install="hooks.install-m68k-coldfire-uclibc-bleeding-edge-toolchain"
+sha256sums=('59dc6c063a9e982042bbfde36b5cbe263b3130e6ee04df8b8503cfde0cbcc43d'
+            '2ae76031eaa615c6adf339a0bd1c881dc188e81b20d470f89f06f473f7a0c935')
 
 build() {
 	cd "m68k-coldfire--uclibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/m68k-coldfire-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/m68k-coldfire-uclibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/m68k-coldfire-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-m68k-coldfire-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/m68k-coldfire-uclibc-bleeding-edge-toolchain.sh"
 }

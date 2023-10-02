@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('cccb9cd740adb524d144967d5bd2382a88b5f1c737c6dd38981c462dc86ea162')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-microblazeel-uclibc-stable-toolchain")
+install="hooks.install-microblazeel-uclibc-stable-toolchain"
+sha256sums=('cccb9cd740adb524d144967d5bd2382a88b5f1c737c6dd38981c462dc86ea162'
+            'ddcaeb171b8c190cc57cf099c2e6bcff04755d753de4ac3dfbfff4909a54c8f9')
 
 build() {
 	cd "microblazeel--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/microblazeel-uclibc-stable/"
 	cp -a * "$pkgdir/opt/microblazeel-uclibc-stable/"
 	rm -f "$pkgdir/opt/microblazeel-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-microblazeel-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/microblazeel-uclibc-stable-toolchain.sh"
 }

@@ -1,0 +1,7 @@
+post_install() {
+	echo "bootlin toolchain installed to /opt/powerpc-e300c3-musl-stable"
+	echo "The PATH variable will be updated on re-login. To immediately load it:"
+	echo ""
+	echo "	source /etc/profile.d/powerpc-e300c3-musl-stable.sh"
+	echo ""
+}

@@ -1,0 +1,7 @@
+post_install() {
+	echo "bootlin toolchain installed to /opt/armebv7-eabihf-musl-stable"
+	echo "The PATH variable will be updated on re-login. To immediately load it:"
+	echo ""
+	echo "	source /etc/profile.d/armebv7-eabihf-musl-stable.sh"
+	echo ""
+}

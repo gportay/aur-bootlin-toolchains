@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('f9f8d55ef6c29c69174084f05310cd69a1cb3626831e5c806f30d9b5a842a35a')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-xtensa-lx60-uclibc-stable-toolchain")
+install="hooks.install-xtensa-lx60-uclibc-stable-toolchain"
+sha256sums=('f9f8d55ef6c29c69174084f05310cd69a1cb3626831e5c806f30d9b5a842a35a'
+            '56cdf3c16ed0ccdf7a7ce5fc4cfbd1521bcabfba6a9b585cd1851584357fc287')
 
 build() {
 	cd "xtensa-lx60--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/xtensa-lx60-uclibc-stable/"
 	cp -a * "$pkgdir/opt/xtensa-lx60-uclibc-stable/"
 	rm -f "$pkgdir/opt/xtensa-lx60-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-xtensa-lx60-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/xtensa-lx60-uclibc-stable-toolchain.sh"
 }

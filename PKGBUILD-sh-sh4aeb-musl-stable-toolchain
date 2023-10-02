@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('2f4af8a25bd24888149f5772413c3f8ce1ee40a16b2a4aec5fc4b4382d021d4f')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-sh-sh4aeb-musl-stable-toolchain")
+install="hooks.install-sh-sh4aeb-musl-stable-toolchain"
+sha256sums=('2f4af8a25bd24888149f5772413c3f8ce1ee40a16b2a4aec5fc4b4382d021d4f'
+            'c4c32b019d8a0df793ec1aab578cd5076c3df27e593b8741dd88618de6197330')
 
 build() {
 	cd "sh-sh4aeb--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/sh-sh4aeb-musl-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4aeb-musl-stable/"
 	rm -f "$pkgdir/opt/sh-sh4aeb-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-sh-sh4aeb-musl-stable-toolchain" "$pkgdir/etc/profile.d/sh-sh4aeb-musl-stable-toolchain.sh"
 }

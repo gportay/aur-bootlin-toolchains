@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--uclibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('2222e4ef0e26185c4c6f39d08eacb4ce3a1dab3e0dbc09d37708d72d5df39417')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-x86-i686-uclibc-bleeding-edge-toolchain")
+install="hooks.install-x86-i686-uclibc-bleeding-edge-toolchain"
+sha256sums=('2222e4ef0e26185c4c6f39d08eacb4ce3a1dab3e0dbc09d37708d72d5df39417'
+            '8676611243aaabb6ffbc4c39fdb15edcfdbe2627372c2cf20b2d3380d5e161a4')
 
 build() {
 	cd "x86-i686--uclibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-i686-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-i686-uclibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/x86-i686-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-i686-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/x86-i686-uclibc-bleeding-edge-toolchain.sh"
 }

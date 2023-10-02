@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64-n32/tarballs/mips64-n32--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('49fb59b0ce83ce0f60fda437c43f107519f538aadaf0c029f65c32f279852a6e')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64-n32/tarballs/mips64-n32--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-mips64-n32-musl-stable-toolchain")
+install="hooks.install-mips64-n32-musl-stable-toolchain"
+sha256sums=('49fb59b0ce83ce0f60fda437c43f107519f538aadaf0c029f65c32f279852a6e'
+            '506c66aa9993d9646d0e978d54137523bed6fa723697c1ea07e10b3fff6b59a1')
 
 build() {
 	cd "mips64-n32--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/mips64-n32-musl-stable/"
 	cp -a * "$pkgdir/opt/mips64-n32-musl-stable/"
 	rm -f "$pkgdir/opt/mips64-n32-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-mips64-n32-musl-stable-toolchain" "$pkgdir/etc/profile.d/mips64-n32-musl-stable-toolchain.sh"
 }

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+export PATH="$PATH:/opt/arcle-750d-uclibc-bleeding-edge/bin"

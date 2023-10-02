@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64le-power8/tarballs/powerpc64le-power8--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('f01de6d7ea263e1343b771b95a9b8848c767be45d43e10550c3d23a15e749d83')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64le-power8/tarballs/powerpc64le-power8--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-powerpc64le-power8-musl-stable-toolchain")
+install="hooks.install-powerpc64le-power8-musl-stable-toolchain"
+sha256sums=('f01de6d7ea263e1343b771b95a9b8848c767be45d43e10550c3d23a15e749d83'
+            '0996f76a7b8725ea1d9d7f9a729bbbb6869a2095e1268eb8957a392ac6d4a05c')
 
 build() {
 	cd "powerpc64le-power8--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/powerpc64le-power8-musl-stable/"
 	cp -a * "$pkgdir/opt/powerpc64le-power8-musl-stable/"
 	rm -f "$pkgdir/opt/powerpc64le-power8-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-powerpc64le-power8-musl-stable-toolchain" "$pkgdir/etc/profile.d/powerpc64le-power8-musl-stable-toolchain.sh"
 }

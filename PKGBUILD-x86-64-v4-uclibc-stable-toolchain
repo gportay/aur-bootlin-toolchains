@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('1cddc357e6af9f10814e628b92acdb3142a305f5050541eeb82463060295bc63')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-x86-64-v4-uclibc-stable-toolchain")
+install="hooks.install-x86-64-v4-uclibc-stable-toolchain"
+sha256sums=('1cddc357e6af9f10814e628b92acdb3142a305f5050541eeb82463060295bc63'
+            '8f685827ad79bb266f65eafd0d7d50f1773974222afe628f2f77fbd8c695d8ce')
 
 build() {
 	cd "x86-64-v4--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-64-v4-uclibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-v4-uclibc-stable/"
 	rm -f "$pkgdir/opt/x86-64-v4-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-64-v4-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/x86-64-v4-uclibc-stable-toolchain.sh"
 }

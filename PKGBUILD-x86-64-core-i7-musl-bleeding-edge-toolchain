@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--musl--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('4c49c759c7371330df3e83a28f9428a832455c9efab8450b30d124e766815ebc')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--musl--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-x86-64-core-i7-musl-bleeding-edge-toolchain")
+install="hooks.install-x86-64-core-i7-musl-bleeding-edge-toolchain"
+sha256sums=('4c49c759c7371330df3e83a28f9428a832455c9efab8450b30d124e766815ebc'
+            '92d945946e642bebcf056964a2b1664ea481aa1c049321d55d3785361b5454dd')
 
 build() {
 	cd "x86-64-core-i7--musl--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-64-core-i7-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-core-i7-musl-bleeding-edge/"
 	rm -f "$pkgdir/opt/x86-64-core-i7-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-64-core-i7-musl-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/x86-64-core-i7-musl-bleeding-edge-toolchain.sh"
 }

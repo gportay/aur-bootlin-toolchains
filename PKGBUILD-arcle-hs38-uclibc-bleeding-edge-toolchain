@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--uclibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('ce56ea212cad7d23fd9544d60916808762c21a32b2492ca96e94b07d1762bbcd')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-arcle-hs38-uclibc-bleeding-edge-toolchain")
+install="hooks.install-arcle-hs38-uclibc-bleeding-edge-toolchain"
+sha256sums=('ce56ea212cad7d23fd9544d60916808762c21a32b2492ca96e94b07d1762bbcd'
+            '58b22b164db13e3905ab5c7a26cceede1c4b556445eeb74c685397a572949887')
 
 build() {
 	cd "arcle-hs38--uclibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/arcle-hs38-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/arcle-hs38-uclibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/arcle-hs38-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-arcle-hs38-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/arcle-hs38-uclibc-bleeding-edge-toolchain.sh"
 }

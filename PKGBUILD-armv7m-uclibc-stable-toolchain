@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7m/tarballs/armv7m--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('e903697238d4c75595bf9ca112e2b09c3a1457f0142d39c5bab523650a327994')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7m/tarballs/armv7m--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-armv7m-uclibc-stable-toolchain")
+install="hooks.install-armv7m-uclibc-stable-toolchain"
+sha256sums=('e903697238d4c75595bf9ca112e2b09c3a1457f0142d39c5bab523650a327994'
+            '9137998e52e8851529ed6a8f96e8bf576919b3cb8d57b0665e30fda65234ba12')
 
 build() {
 	cd "armv7m--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/armv7m-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armv7m-uclibc-stable/"
 	rm -f "$pkgdir/opt/armv7m-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-armv7m-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/armv7m-uclibc-stable-toolchain.sh"
 }

@@ -1,0 +1,7 @@
+post_install() {
+	echo "bootlin toolchain installed to /opt/@@ARCH@@-@@LIBC@@-@@VERSION@@"
+	echo "The PATH variable will be updated on re-login. To immediately load it:"
+	echo ""
+	echo "	source /etc/profile.d/@@ARCH@@-@@LIBC@@-@@VERSION@@.sh"
+	echo ""
+}

@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('7129cef2a9c3c511c6c7f025cfe526be9d30150707e1e400780c611369b5ed02')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-arcle-750d-uclibc-bleeding-edge-toolchain")
+install="hooks.install-arcle-750d-uclibc-bleeding-edge-toolchain"
+sha256sums=('7129cef2a9c3c511c6c7f025cfe526be9d30150707e1e400780c611369b5ed02'
+            '90e1ae610d411c392f9dcd395688c9033b7b79599eae1ef11e5ed807325182c5')
 
 build() {
 	cd "arcle-750d--uclibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-arcle-750d-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/arcle-750d-uclibc-bleeding-edge-toolchain.sh"
 }

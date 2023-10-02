@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('4281a38e79f2a32dcb9b51f379c78ca98cd982d4272449a9c7a4890d8402f7c2')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-powerpc-e500mc-uclibc-bleeding-edge-toolchain")
+install="hooks.install-powerpc-e500mc-uclibc-bleeding-edge-toolchain"
+sha256sums=('4281a38e79f2a32dcb9b51f379c78ca98cd982d4272449a9c7a4890d8402f7c2'
+            'fc6ceeee1a6b2b21c54f947394f871984d97677bc61910dcb6a5d96567004d26')
 
 build() {
 	cd "powerpc-e500mc--uclibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-powerpc-e500mc-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/powerpc-e500mc-uclibc-bleeding-edge-toolchain.sh"
 }

@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64r6el-n32/tarballs/mips64r6el-n32--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('ef65c7717cd1560c08097f669244515b8261e5f4df4cda1780c507f43b98ada7')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64r6el-n32/tarballs/mips64r6el-n32--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-mips64r6el-n32-glibc-stable-toolchain")
+install="hooks.install-mips64r6el-n32-glibc-stable-toolchain"
+sha256sums=('ef65c7717cd1560c08097f669244515b8261e5f4df4cda1780c507f43b98ada7'
+            '149987ac3d7c49217b5e813a111b3a2c8c104b62a91ea426e23f11c7012d4d90')
 
 build() {
 	cd "mips64r6el-n32--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/mips64r6el-n32-glibc-stable/"
 	cp -a * "$pkgdir/opt/mips64r6el-n32-glibc-stable/"
 	rm -f "$pkgdir/opt/mips64r6el-n32-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-mips64r6el-n32-glibc-stable-toolchain" "$pkgdir/etc/profile.d/mips64r6el-n32-glibc-stable-toolchain.sh"
 }

@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('4f06ed760d3b2e779f0d8aec73becd21edce9d04560d2fba53549ca8c12f51ba')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-armv7-eabihf-musl-stable-toolchain")
+install="hooks.install-armv7-eabihf-musl-stable-toolchain"
+sha256sums=('4f06ed760d3b2e779f0d8aec73becd21edce9d04560d2fba53549ca8c12f51ba'
+            '6d8afef21efce87cc24ecb00399a74b1e441c1903700aafccc3d14b21d2f108d')
 
 build() {
 	cd "armv7-eabihf--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/armv7-eabihf-musl-stable/"
 	cp -a * "$pkgdir/opt/armv7-eabihf-musl-stable/"
 	rm -f "$pkgdir/opt/armv7-eabihf-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-armv7-eabihf-musl-stable-toolchain" "$pkgdir/etc/profile.d/armv7-eabihf-musl-stable-toolchain.sh"
 }

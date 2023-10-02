@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('fc2bc606081754dbfb8fbb955d66a9d07bce844777ba6501d2c31763a17cc86f')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-armv6-eabihf-glibc-stable-toolchain")
+install="hooks.install-armv6-eabihf-glibc-stable-toolchain"
+sha256sums=('fc2bc606081754dbfb8fbb955d66a9d07bce844777ba6501d2c31763a17cc86f'
+            'bb89290d24039bee695c9f246c568921b7ce8a0ee710681e3840dddcb4fc8e11')
 
 build() {
 	cd "armv6-eabihf--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/armv6-eabihf-glibc-stable/"
 	cp -a * "$pkgdir/opt/armv6-eabihf-glibc-stable/"
 	rm -f "$pkgdir/opt/armv6-eabihf-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-armv6-eabihf-glibc-stable-toolchain" "$pkgdir/etc/profile.d/armv6-eabihf-glibc-stable-toolchain.sh"
 }

@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e5500/tarballs/powerpc64-e5500--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('f3094cb9cc065c36ae6407c80002dc22b996c895ce74261902e5a3e5bca12579')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e5500/tarballs/powerpc64-e5500--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-powerpc64-e5500-glibc-stable-toolchain")
+install="hooks.install-powerpc64-e5500-glibc-stable-toolchain"
+sha256sums=('f3094cb9cc065c36ae6407c80002dc22b996c895ce74261902e5a3e5bca12579'
+            '8e5a0456e2377f869325c05ada163954a9e03b93c32aa150e5d8da9caed0a903')
 
 build() {
 	cd "powerpc64-e5500--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/powerpc64-e5500-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc64-e5500-glibc-stable/"
 	rm -f "$pkgdir/opt/powerpc64-e5500-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-powerpc64-e5500-glibc-stable-toolchain" "$pkgdir/etc/profile.d/powerpc64-e5500-glibc-stable-toolchain.sh"
 }

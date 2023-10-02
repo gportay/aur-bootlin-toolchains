@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v2/tarballs/x86-64-v2--glibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('dbb470879dff87a6a99f6736959f5b38f6cce665b1f9c56c1c6450663c0f07de')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v2/tarballs/x86-64-v2--glibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-x86-64-v2-glibc-bleeding-edge-toolchain")
+install="hooks.install-x86-64-v2-glibc-bleeding-edge-toolchain"
+sha256sums=('dbb470879dff87a6a99f6736959f5b38f6cce665b1f9c56c1c6450663c0f07de'
+            'd376e1522d5e987187358ea247a6451689ecb0c01d2d1d1f8e06948cab37d960')
 
 build() {
 	cd "x86-64-v2--glibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-64-v2-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-v2-glibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/x86-64-v2-glibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-64-v2-glibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/x86-64-v2-glibc-bleeding-edge-toolchain.sh"
 }

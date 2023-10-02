@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--uclibc--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('bf69352181139d7c206841e5a3d6d671b75db42c6311e5ec6825d574317c637f')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-armebv7-eabihf-uclibc-bleeding-edge-toolchain")
+install="hooks.install-armebv7-eabihf-uclibc-bleeding-edge-toolchain"
+sha256sums=('bf69352181139d7c206841e5a3d6d671b75db42c6311e5ec6825d574317c637f'
+            '7c1a10478cd3dc62101a1fc26e9d7c97508bac79649d4871f613964d5018d10f')
 
 build() {
 	cd "armebv7-eabihf--uclibc--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/armebv7-eabihf-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/armebv7-eabihf-uclibc-bleeding-edge/"
 	rm -f "$pkgdir/opt/armebv7-eabihf-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-armebv7-eabihf-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/armebv7-eabihf-uclibc-bleeding-edge-toolchain.sh"
 }

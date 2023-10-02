@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('901d78b12dcab01006616ccc8797d593c53d361752b4cd04791495a3470dfe12')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-mips32r6el-uclibc-stable-toolchain")
+install="hooks.install-mips32r6el-uclibc-stable-toolchain"
+sha256sums=('901d78b12dcab01006616ccc8797d593c53d361752b4cd04791495a3470dfe12'
+            '4f8a1aa86b008182cc874759b1e36827c382fbbaffd0e268b9182a96b5ae3bd1')
 
 build() {
 	cd "mips32r6el--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/mips32r6el-uclibc-stable/"
 	cp -a * "$pkgdir/opt/mips32r6el-uclibc-stable/"
 	rm -f "$pkgdir/opt/mips32r6el-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-mips32r6el-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/mips32r6el-uclibc-stable-toolchain.sh"
 }

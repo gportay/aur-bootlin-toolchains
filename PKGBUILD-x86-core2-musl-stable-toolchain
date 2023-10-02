@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-core2/tarballs/x86-core2--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('74a544e52bebd8bd1aeb30838bc59c86dc220648f324a7a7b61d2cdea8fdae50')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-core2/tarballs/x86-core2--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-x86-core2-musl-stable-toolchain")
+install="hooks.install-x86-core2-musl-stable-toolchain"
+sha256sums=('74a544e52bebd8bd1aeb30838bc59c86dc220648f324a7a7b61d2cdea8fdae50'
+            '5592780ac4bc837287a81618a62228a44b7108c40d80c137954baaa134780e68')
 
 build() {
 	cd "x86-core2--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-core2-musl-stable/"
 	cp -a * "$pkgdir/opt/x86-core2-musl-stable/"
 	rm -f "$pkgdir/opt/x86-core2-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-core2-musl-stable-toolchain" "$pkgdir/etc/profile.d/x86-core2-musl-stable-toolchain.sh"
 }

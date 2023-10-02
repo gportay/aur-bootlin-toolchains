@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64-lp64d/tarballs/riscv64-lp64d--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('97d7f95ced5852e3fa0119fd5370356df0b652844a76ad9a1c88caa8dd09f367')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64-lp64d/tarballs/riscv64-lp64d--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-riscv64-lp64d-glibc-stable-toolchain")
+install="hooks.install-riscv64-lp64d-glibc-stable-toolchain"
+sha256sums=('97d7f95ced5852e3fa0119fd5370356df0b652844a76ad9a1c88caa8dd09f367'
+            '29f7ce7fc0cc0724ba2b77558867a4b94ae56ba959b59f370ccb25fcc629aff1')
 
 build() {
 	cd "riscv64-lp64d--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/riscv64-lp64d-glibc-stable/"
 	cp -a * "$pkgdir/opt/riscv64-lp64d-glibc-stable/"
 	rm -f "$pkgdir/opt/riscv64-lp64d-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-riscv64-lp64d-glibc-stable-toolchain" "$pkgdir/etc/profile.d/riscv64-lp64d-glibc-stable-toolchain.sh"
 }

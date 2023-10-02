@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv5-eabi/tarballs/armv5-eabi--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('b8e4a8426819eb226d30facf93288855b7710165b5aecc2224b65936b64bc3ad')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv5-eabi/tarballs/armv5-eabi--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-armv5-eabi-uclibc-stable-toolchain")
+install="hooks.install-armv5-eabi-uclibc-stable-toolchain"
+sha256sums=('b8e4a8426819eb226d30facf93288855b7710165b5aecc2224b65936b64bc3ad'
+            'ca71730da92d25c4b49a730f33b7daa2ecea00629b69d04b095ec67216327388')
 
 build() {
 	cd "armv5-eabi--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/armv5-eabi-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armv5-eabi-uclibc-stable/"
 	rm -f "$pkgdir/opt/armv5-eabi-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-armv5-eabi-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/armv5-eabi-uclibc-stable-toolchain.sh"
 }

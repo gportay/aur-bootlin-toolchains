@@ -1,0 +1,3 @@
+#!/bin/sh
+
+export PATH="$PATH:/opt/x86-64-v3-musl-stable/bin"

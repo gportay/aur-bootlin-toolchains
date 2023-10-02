@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64/tarballs/x86-64--musl--bleeding-edge-2023.08-1.tar.bz2")
-sha256sums=('cdef47dd21b099c0b3d97e89ce2a2eb3939e6021ca8f77b8adb0f7ae36f01dc4')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64/tarballs/x86-64--musl--bleeding-edge-2023.08-1.tar.bz2"
+        "profile.sh-x86-64-musl-bleeding-edge-toolchain")
+install="hooks.install-x86-64-musl-bleeding-edge-toolchain"
+sha256sums=('cdef47dd21b099c0b3d97e89ce2a2eb3939e6021ca8f77b8adb0f7ae36f01dc4'
+            '366ed42107000675fc9909ba72c103b0b727a33b1f9f897bca148a8cdd3175c1')
 
 build() {
 	cd "x86-64--musl--bleeding-edge-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-64-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-musl-bleeding-edge/"
 	rm -f "$pkgdir/opt/x86-64-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-64-musl-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/x86-64-musl-bleeding-edge-toolchain.sh"
 }

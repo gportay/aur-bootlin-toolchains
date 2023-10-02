@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--musl--stable-2023.08-1.tar.bz2")
-sha256sums=('e8c74dfe36a4e6c79808d7fe10ddcee546fdbdcb2994bd60bfbf8e6a14ab7abd')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--musl--stable-2023.08-1.tar.bz2"
+        "profile.sh-x86-64-v4-musl-stable-toolchain")
+install="hooks.install-x86-64-v4-musl-stable-toolchain"
+sha256sums=('e8c74dfe36a4e6c79808d7fe10ddcee546fdbdcb2994bd60bfbf8e6a14ab7abd'
+            'e1cd3d27551e3324a7a6fd214174784cb32b0bd1596a647aaa3f3599d749b571')
 
 build() {
 	cd "x86-64-v4--musl--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-64-v4-musl-stable/"
 	cp -a * "$pkgdir/opt/x86-64-v4-musl-stable/"
 	rm -f "$pkgdir/opt/x86-64-v4-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-64-v4-musl-stable-toolchain" "$pkgdir/etc/profile.d/x86-64-v4-musl-stable-toolchain.sh"
 }

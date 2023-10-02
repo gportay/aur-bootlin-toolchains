@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64/tarballs/x86-64--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('d6eca7f1ea736ef6f868a027a9d0baa875f9513755026aed2badc04a2b9cd7bd')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64/tarballs/x86-64--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-x86-64-glibc-stable-toolchain")
+install="hooks.install-x86-64-glibc-stable-toolchain"
+sha256sums=('d6eca7f1ea736ef6f868a027a9d0baa875f9513755026aed2badc04a2b9cd7bd'
+            '432f9fe3b388d4947b0c88b82dd894c0809e59b25025ee1e703d44c3ef77ad19')
 
 build() {
 	cd "x86-64--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/x86-64-glibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-glibc-stable/"
 	rm -f "$pkgdir/opt/x86-64-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-x86-64-glibc-stable-toolchain" "$pkgdir/etc/profile.d/x86-64-glibc-stable-toolchain.sh"
 }

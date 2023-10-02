@@ -1,0 +1,3 @@
+#!/bin/sh
+
+export PATH="$PATH:/opt/sh-sh4-uclibc-stable/bin"

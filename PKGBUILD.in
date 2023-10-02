@@ -7,7 +7,9 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/@@ARCH@@/tarballs/@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@-1.tar.bz2")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/@@ARCH@@/tarballs/@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@-1.tar.bz2"
+        "profile.sh-@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain")
+install="hooks.install-@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain"
 sha256sums=("SHA256SUM")
 
 build() {
@@ -24,4 +26,7 @@ package() {
 	mkdir -p "$pkgdir/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@/"
 	cp -a * "$pkgdir/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@/"
 	rm -f "$pkgdir/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain" "$pkgdir/etc/profile.d/@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain.sh"
 }

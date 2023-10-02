@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--glibc--stable-2023.08-1.tar.bz2")
-sha256sums=('e8b0ecf725c48794f8fa33b05725cbb8f988b364c66a371c414c6cf0118669f4')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--glibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-powerpc-440fp-glibc-stable-toolchain")
+install="hooks.install-powerpc-440fp-glibc-stable-toolchain"
+sha256sums=('e8b0ecf725c48794f8fa33b05725cbb8f988b364c66a371c414c6cf0118669f4'
+            '874fa573c28ccc79fed49ba6ef976fd894a3b388b5ad8036cc8d802fe31e5dc1')
 
 build() {
 	cd "powerpc-440fp--glibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/powerpc-440fp-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-440fp-glibc-stable/"
 	rm -f "$pkgdir/opt/powerpc-440fp-glibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-powerpc-440fp-glibc-stable-toolchain" "$pkgdir/etc/profile.d/powerpc-440fp-glibc-stable-toolchain.sh"
 }

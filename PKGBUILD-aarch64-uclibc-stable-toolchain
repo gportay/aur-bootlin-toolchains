@@ -7,8 +7,11 @@ pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--uclibc--stable-2023.08-1.tar.bz2")
-sha256sums=('4c05602d75bc97a9acdcba3e94ed14d6452f176970a1e446bdb5a672fe2b77fb')
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--uclibc--stable-2023.08-1.tar.bz2"
+        "profile.sh-aarch64-uclibc-stable-toolchain")
+install="hooks.install-aarch64-uclibc-stable-toolchain"
+sha256sums=('4c05602d75bc97a9acdcba3e94ed14d6452f176970a1e446bdb5a672fe2b77fb'
+            '2d4eb9bc5446f3d9d73c2e7b4f98db7ee8c450e71cdc1213005fadf3dbdec694')
 
 build() {
 	cd "aarch64--uclibc--stable-2023.08-1"
@@ -24,4 +27,7 @@ package() {
 	mkdir -p "$pkgdir/opt/aarch64-uclibc-stable/"
 	cp -a * "$pkgdir/opt/aarch64-uclibc-stable/"
 	rm -f "$pkgdir/opt/aarch64-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-aarch64-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/aarch64-uclibc-stable-toolchain.sh"
 }
