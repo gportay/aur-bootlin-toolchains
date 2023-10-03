@@ -6,6 +6,7 @@
 
 RELEASE ?= 2023.08-1
 EXTRA_RELEASE ?= .1
+PREFIX ?= /srv/ftp
 
 # All built architectures
 # See https://toolchains.bootlin.com/toolchains.html
@@ -97,6 +98,12 @@ repo: bootlin-toolchains.db.tar.gz
 .PRECIOUS: bootlin-toolchains.db.tar.gz
 bootlin-toolchains.db.tar.gz:
 	repo-add $@ $^
+
+.PHONY: install
+install:
+	mkdir -p $(DESTDIR)$(PREFIX)/archlinux/bootlin-toolchains/os/x86_64/
+	cp -v *-x86_64.pkg.tar.zst $(DESTDIR)$(PREFIX)/archlinux/bootlin-toolchains/os/x86_64/
+	cp -v bootlin-toolchains* $(DESTDIR)$(PREFIX)/archlinux/bootlin-toolchains/os/x86_64/
 
 .PHONY: makepkg
 makepkg:
