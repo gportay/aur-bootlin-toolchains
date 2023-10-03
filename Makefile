@@ -108,6 +108,12 @@ install:
 .PHONY: makepkg
 makepkg:
 
+.PHONY: log
+log:
+
+.PHONY: status
+status:
+
 .PHONY: commit
 commit:
 
@@ -140,6 +146,18 @@ $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x
 $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
 $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/PKGBUILD
 	( cd $(1)-$(2)-$(3)-toolchain && makepkg --force --clean --cleanbuild )
+
+log: log-$(1)-$(2)-$(3)
+
+.PHONY: log-$(1)-$(2)-$(3)
+log-$(1)-$(2)-$(3):
+	( cd $(1)-$(2)-$(3)-toolchain && git log --patch -1 )
+
+status: status-$(1)-$(2)-$(3)
+
+.PHONY: status-$(1)-$(2)-$(3)
+status-$(1)-$(2)-$(3):
+	( cd $(1)-$(2)-$(3)-toolchain && git status --short )
 
 commit: commit-$(1)-$(2)-$(3)
 
