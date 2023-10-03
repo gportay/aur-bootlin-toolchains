@@ -1,19 +1,19 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain
-pkgver=@@RELEASE@@
-pkgrel=1
+pkgver=@@PACKAGE_VERSION@@
+pkgrel=@@PACKAGE_RELEASE@@
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/@@ARCH@@/tarballs/@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/@@ARCH@@/tarballs/@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@.tar.bz2"
         "profile.sh-@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain")
 install="hooks.install-@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain"
 sha256sums=("SHA256SUM")
 
 build() {
-	cd "@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@-1"
+	cd "@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@"
 
 	sh relocate-sdk.sh "/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@"
 }
@@ -21,7 +21,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@-1"
+	cd "@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@"
 
 	mkdir -p "$pkgdir/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@/"
 	cp -a * "$pkgdir/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@/"

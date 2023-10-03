@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 #
 
-RELEASE ?= 2023.08
+RELEASE ?= 2023.08-1
 
 # All built architectures
 # See https://toolchains.bootlin.com/toolchains.html
@@ -119,18 +119,18 @@ define PKGBUILD_in
 ifneq ($($(1)),0)
 ifneq ($($(1)_$(2)),0)
 ifneq ($($(1)_$(2)_$(3)),0)
-bootlin-toolchains.db.tar.gz: $(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+bootlin-toolchains.db.tar.gz: $(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 
-.PRECIOUS: $(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
-$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+.PRECIOUS: $(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
+$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 	cp -al $$< $$@
 
-makepkg: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+makepkg: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 
-.PRECIOUS: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
-$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
-$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
-$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/PKGBUILD
+.PRECIOUS: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
+$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
+$(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/PKGBUILD
 	( cd $(1)-$(2)-$(3)-toolchain && makepkg --force --clean --cleanbuild )
 
 commit: commit-$(1)-$(2)-$(3)
@@ -140,7 +140,7 @@ commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/.SRCINFO
 commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/PKGBUILD 
 commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
 commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
-	( cd $(1)-$(2)-$(3)-toolchain && git add $$(^F) && git commit -m "$$$${GIT_COMMIT_MESSAGE:-v$$(RELEASE)-1}" )
+	( cd $(1)-$(2)-$(3)-toolchain && git add $$(^F) && git commit -m "$$$${GIT_COMMIT_MESSAGE:-v$$(RELEASE)$$(EXTRA_RELEASE)}" )
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/.SRCINFO
 $(1)-$(2)-$(3)-toolchain/.SRCINFO: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
@@ -174,6 +174,8 @@ PKGBUILD-$(1)-$(2)-$(3)-toolchain: PKGBUILD.in
 	    -e 's,@@LIBC@@,$(2),g' \
 	    -e 's,@@VERSION@@,$(3),g' \
 	    -e 's,@@RELEASE@@,$$(RELEASE),g' \
+	    -e 's,@@PACKAGE_VERSION@@,$$(word 1,$$(subst -, ,$$(RELEASE))),g' \
+	    -e 's,@@PACKAGE_RELEASE@@,$$(word 2,$$(subst -, ,$$(RELEASE)))$$(EXTRA_RELEASE),g' \
 	       $$< >$$@.tmp
 	updpkgsums $$@.tmp
 	mv $$@.tmp $$@
@@ -185,6 +187,8 @@ hooks.install-$(1)-$(2)-$(3)-toolchain: hooks.install.in
 	    -e 's,@@LIBC@@,$(2),g' \
 	    -e 's,@@VERSION@@,$(3),g' \
 	    -e 's,@@RELEASE@@,$$(RELEASE),g' \
+	    -e 's,@@PACKAGE_VERSION@@,$$(word 1,$$(subst -, ,$$(RELEASE))),g' \
+	    -e 's,@@PACKAGE_RELEASE@@,$$(word 2,$$(subst -, ,$$(RELEASE)))$$(EXTRA_RELEASE),g' \
 	       $$< >$$@
 
 all: profile.sh-$(1)-$(2)-$(3)-toolchain
@@ -194,6 +198,8 @@ profile.sh-$(1)-$(2)-$(3)-toolchain: profile.sh.in
 	    -e 's,@@LIBC@@,$(2),g' \
 	    -e 's,@@VERSION@@,$(3),g' \
 	    -e 's,@@RELEASE@@,$$(RELEASE),g' \
+	    -e 's,@@PACKAGE_VERSION@@,$$(word 1,$$(subst -, ,$$(RELEASE))),g' \
+	    -e 's,@@PACKAGE_RELEASE@@,$$(word 2,$$(subst -, ,$$(RELEASE)))$$(EXTRA_RELEASE),g' \
 	       $$< >$$@
 
 clean: clean-$(1)-$(2)-$(3)
@@ -206,13 +212,13 @@ cleanall: cleanall-$(1)-$(2)-$(3)
 
 .PHONY: cleanall-$(1)-$(2)-$(3)
 cleanall-$(1)-$(2)-$(3):
-	rm -f $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)-1-x86_64.pkg.tar.zst
+	rm -f $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 
 copy-source: copy-source-$(1)-$(2)-$(3)
 
 .PHONY: copy-source-$(1)-$(2)-$(3)
 copy-source-$(1)-$(2)-$(3):
-	cp -al $(1)--$(2)--$(3)-$$(RELEASE)-1.tar.bz2 $(1)-$(2)-$(3)-toolchain/
+	cp -al $(1)--$(2)--$(3)-$$(RELEASE).tar.bz2 $(1)-$(2)-$(3)-toolchain/
 
 rm-work: rm-work-$(1)-$(2)-$(3)
 
