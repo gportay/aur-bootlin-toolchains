@@ -87,7 +87,7 @@ Finally, install the toolchain:
 	bootlin toolchain installed to /opt/aarch64-glibc-stable
 	The PATH variable will be updated on re-login. To immediately load it:
 	
-		source /etc/profile.d/aarch64-glibc-stable.sh
+		source /etc/profile.d/aarch64-glibc-stable-toolchain.sh
 
 _Important_: Re-login to your user session, or source the profile script in
 every terminal to run the toolchain binaries without its absolute path:

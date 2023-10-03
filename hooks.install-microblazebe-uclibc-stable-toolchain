@@ -2,6 +2,6 @@ post_install() {
 	echo "bootlin toolchain installed to /opt/microblazebe-uclibc-stable"
 	echo "The PATH variable will be updated on re-login. To immediately load it:"
 	echo ""
-	echo "	source /etc/profile.d/microblazebe-uclibc-stable.sh"
+	echo "	source /etc/profile.d/microblazebe-uclibc-stable-toolchain.sh"
 	echo ""
 }

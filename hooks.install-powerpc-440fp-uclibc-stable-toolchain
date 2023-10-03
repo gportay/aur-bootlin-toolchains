@@ -2,6 +2,6 @@ post_install() {
 	echo "bootlin toolchain installed to /opt/powerpc-440fp-uclibc-stable"
 	echo "The PATH variable will be updated on re-login. To immediately load it:"
 	echo ""
-	echo "	source /etc/profile.d/powerpc-440fp-uclibc-stable.sh"
+	echo "	source /etc/profile.d/powerpc-440fp-uclibc-stable-toolchain.sh"
 	echo ""
 }

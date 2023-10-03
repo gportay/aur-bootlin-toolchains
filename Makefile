@@ -5,6 +5,7 @@
 #
 
 RELEASE ?= 2023.08-1
+EXTRA_RELEASE ?= .1
 
 # All built architectures
 # See https://toolchains.bootlin.com/toolchains.html
@@ -207,6 +208,8 @@ clean: clean-$(1)-$(2)-$(3)
 .PHONY: clean-$(1)-$(2)-$(3)
 clean-$(1)-$(2)-$(3):
 	rm -f PKGBUILD-$(1)-$(2)-$(3)-toolchain
+	rm -f hooks.install-$(1)-$(2)-$(3)-toolchain
+	rm -f profile.sh-$(1)-$(2)-$(3)-toolchain
 
 cleanall: cleanall-$(1)-$(2)-$(3)
 
