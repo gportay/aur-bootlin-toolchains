@@ -140,7 +140,7 @@ commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/.SRCINFO
 commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/PKGBUILD 
 commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
 commit-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
-	( cd $(1)-$(2)-$(3)-toolchain && git add $$(^F) && git commit -m "Initial commit" )
+	( cd $(1)-$(2)-$(3)-toolchain && git add $$(^F) && git commit -m "$$$${GIT_COMMIT_MESSAGE:-v$$(RELEASE)-1}" )
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/.SRCINFO
 $(1)-$(2)-$(3)-toolchain/.SRCINFO: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
