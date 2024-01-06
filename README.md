@@ -115,12 +115,33 @@ commit them `git commit -m "Bump 2023.11"` and tag it `git tag "v2023.11-1"`.
 
 ## CREATE AND MAINTAIN AUR
 
+Before doing anything else, the existing [AUR] repositories are submodules and
+they **SHOULD** be cloned:
+
+	$ git submodule update --init
+
 After a bump, run:
 
 	$ make commit
 
-Note: The git repository is created locally if it does not exist yet. The [AUR]
-repositories **SHOULD** be cloned instead if it exist.
+Note: The git repository is created locally if it does not exist yet and it is
+not an existing [AUR] repository.
+
+Eventually, make the packages:
+
+	$ make makepkg
+
+Or, for [AUR] packages only:
+
+	$ git submodule foreach makepkg --force --clean --cleanbuild
+
+In the very end, push the changes to [AUR]:
+
+	$ git submodule foreach git push
+
+And commit the submodules changes:
+
+	$ git commit -m "Update submodules"
 
 ## BUGS
 

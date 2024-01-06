@@ -1,0 +1,24 @@
+[submodule "aarch64-glibc-bleeding-edge-toolchain"]
+	path = aarch64-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/aarch64-glibc-bleeding-edge-toolchain.git
+[submodule "aarch64-musl-bleeding-edge-toolchain"]
+	path = aarch64-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/aarch64-musl-bleeding-edge-toolchain.git
+[submodule "armv5-eabi-glibc-bleeding-edge-toolchain"]
+	path = armv5-eabi-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/armv5-eabi-glibc-bleeding-edge-toolchain.git
+[submodule "armv5-eabi-musl-bleeding-edge-toolchain"]
+	path = armv5-eabi-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/armv5-eabi-musl-bleeding-edge-toolchain.git
+[submodule "armv7-eabihf-glibc-bleeding-edge-toolchain"]
+	path = armv7-eabihf-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/armv7-eabihf-glibc-bleeding-edge-toolchain.git
+[submodule "armv7-eabihf-musl-bleeding-edge-toolchain"]
+	path = armv7-eabihf-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/armv7-eabihf-musl-bleeding-edge-toolchain.git
+[submodule "riscv64-lp64d-glibc-bleeding-edge-toolchain"]
+	path = riscv64-lp64d-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/riscv64-lp64d-glibc-bleeding-edge-toolchain.git
+[submodule "riscv64-lp64d-musl-bleeding-edge-toolchain"]
+	path = riscv64-lp64d-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/riscv64-lp64d-musl-bleeding-edge-toolchain.git
