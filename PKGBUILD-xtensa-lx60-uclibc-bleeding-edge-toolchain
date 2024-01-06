@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=xtensa-lx60-uclibc-bleeding-edge-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--bleeding-edge-2023.11-1.tar.bz2"
         "profile.sh-xtensa-lx60-uclibc-bleeding-edge-toolchain")
 install="hooks.install-xtensa-lx60-uclibc-bleeding-edge-toolchain"
-sha256sums=('79b002a8d1d6dee72c75a336e0fb3b07cdf4cd373de842e5f3f6c67e502f9c94'
+sha256sums=('9434e3522601c9b494bd223fa04376b9b489db47e823266b124f5b7a3b97486c'
             '442cf753adae6ad10cd9c871daf8c098c9450bd23e659a43f40aeb33666d512a')
 
 build() {
-	cd "xtensa-lx60--uclibc--bleeding-edge-2023.08-1"
+	cd "xtensa-lx60--uclibc--bleeding-edge-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/xtensa-lx60-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "xtensa-lx60--uclibc--bleeding-edge-2023.08-1"
+	cd "xtensa-lx60--uclibc--bleeding-edge-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/xtensa-lx60-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/xtensa-lx60-uclibc-bleeding-edge/"

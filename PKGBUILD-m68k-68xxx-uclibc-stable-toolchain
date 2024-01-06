@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=m68k-68xxx-uclibc-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--uclibc--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--uclibc--stable-2023.11-1.tar.bz2"
         "profile.sh-m68k-68xxx-uclibc-stable-toolchain")
 install="hooks.install-m68k-68xxx-uclibc-stable-toolchain"
-sha256sums=('e631e9fea5fad6db056e9028c17e41abca9f7bb6463950045756d040dfb34a6f'
+sha256sums=('17bec666be6c4d7d796055fa04c180dd41dc8f85898e1177c36585642fbb1496'
             '277d49a9e3795534f5ecaf7a3c9cb70768242a733311913046987c4ac9ea4145')
 
 build() {
-	cd "m68k-68xxx--uclibc--stable-2023.08-1"
+	cd "m68k-68xxx--uclibc--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/m68k-68xxx-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-68xxx--uclibc--stable-2023.08-1"
+	cd "m68k-68xxx--uclibc--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/m68k-68xxx-uclibc-stable/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-uclibc-stable/"

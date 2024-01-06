@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-i686-uclibc-bleeding-edge-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--uclibc--bleeding-edge-2023.11-1.tar.bz2"
         "profile.sh-x86-i686-uclibc-bleeding-edge-toolchain")
 install="hooks.install-x86-i686-uclibc-bleeding-edge-toolchain"
-sha256sums=('2222e4ef0e26185c4c6f39d08eacb4ce3a1dab3e0dbc09d37708d72d5df39417'
+sha256sums=('6a40f5bb22f1fb1de6cc6986f31afdfbef5c5c866f3a3a387e1dfc567ed98b8e'
             '8676611243aaabb6ffbc4c39fdb15edcfdbe2627372c2cf20b2d3380d5e161a4')
 
 build() {
-	cd "x86-i686--uclibc--bleeding-edge-2023.08-1"
+	cd "x86-i686--uclibc--bleeding-edge-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/x86-i686-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-i686--uclibc--bleeding-edge-2023.08-1"
+	cd "x86-i686--uclibc--bleeding-edge-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/x86-i686-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-i686-uclibc-bleeding-edge/"

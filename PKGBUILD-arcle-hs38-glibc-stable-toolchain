@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=arcle-hs38-glibc-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--glibc--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--glibc--stable-2023.11-1.tar.bz2"
         "profile.sh-arcle-hs38-glibc-stable-toolchain")
 install="hooks.install-arcle-hs38-glibc-stable-toolchain"
-sha256sums=('71a078574d1ab044a04b1e79d10af46a6334ad43d82ff4b76b5547d70b9ef4b7'
+sha256sums=('91c048fb79152969253a3bb96a9cd77c79c2ba5a3081d2da7cf103069661e303'
             'eced5b44564de98799078b77f59b08ee084ecb3588f8114d7f4a9322293ae037')
 
 build() {
-	cd "arcle-hs38--glibc--stable-2023.08-1"
+	cd "arcle-hs38--glibc--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/arcle-hs38-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-hs38--glibc--stable-2023.08-1"
+	cd "arcle-hs38--glibc--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/arcle-hs38-glibc-stable/"
 	cp -a * "$pkgdir/opt/arcle-hs38-glibc-stable/"

@@ -1,0 +1,7 @@
+post_install() {
+	echo "bootlin toolchain installed to /opt/m68k-68xxx-musl-bleeding-edge"
+	echo "The PATH variable will be updated on re-login. To immediately load it:"
+	echo ""
+	echo "	source /etc/profile.d/m68k-68xxx-musl-bleeding-edge-toolchain.sh"
+	echo ""
+}

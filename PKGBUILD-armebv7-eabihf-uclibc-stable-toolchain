@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armebv7-eabihf-uclibc-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--uclibc--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--uclibc--stable-2023.11-1.tar.bz2"
         "profile.sh-armebv7-eabihf-uclibc-stable-toolchain")
 install="hooks.install-armebv7-eabihf-uclibc-stable-toolchain"
-sha256sums=('8223fd5853298060e253b595615bedaa0c43a957d630133e99cd63c0d600e402'
+sha256sums=('fc20f9c0e9551b2d5e0ffd1154aa8d282589503c8e239b049fc719974f338e76'
             'b693a2fbe7e9db1213e9570fd6bb4f9ebde2f4df547f376a08bd23d48b3a6f44')
 
 build() {
-	cd "armebv7-eabihf--uclibc--stable-2023.08-1"
+	cd "armebv7-eabihf--uclibc--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/armebv7-eabihf-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armebv7-eabihf--uclibc--stable-2023.08-1"
+	cd "armebv7-eabihf--uclibc--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/armebv7-eabihf-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armebv7-eabihf-uclibc-stable/"

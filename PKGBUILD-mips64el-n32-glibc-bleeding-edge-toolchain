@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips64el-n32-glibc-bleeding-edge-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64el-n32/tarballs/mips64el-n32--glibc--bleeding-edge-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64el-n32/tarballs/mips64el-n32--glibc--bleeding-edge-2023.11-1.tar.bz2"
         "profile.sh-mips64el-n32-glibc-bleeding-edge-toolchain")
 install="hooks.install-mips64el-n32-glibc-bleeding-edge-toolchain"
-sha256sums=('d7ed3131fc1eab9dde7a242652043756caa09848f7c63cb283f79f42e38ffdab'
+sha256sums=('d3f022b9a550a4c132b7b569ffee1450ba9aa3821b937df9acb4a5a50e9c0404'
             '9200c32664bfd9ca708111dfcc623fbfd730e6c4d0ac95624989e75c3f292ea3')
 
 build() {
-	cd "mips64el-n32--glibc--bleeding-edge-2023.08-1"
+	cd "mips64el-n32--glibc--bleeding-edge-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/mips64el-n32-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips64el-n32--glibc--bleeding-edge-2023.08-1"
+	cd "mips64el-n32--glibc--bleeding-edge-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/mips64el-n32-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/mips64el-n32-glibc-bleeding-edge/"

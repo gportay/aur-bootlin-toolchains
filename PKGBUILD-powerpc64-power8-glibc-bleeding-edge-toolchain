@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc64-power8-glibc-bleeding-edge-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-power8/tarballs/powerpc64-power8--glibc--bleeding-edge-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-power8/tarballs/powerpc64-power8--glibc--bleeding-edge-2023.11-1.tar.bz2"
         "profile.sh-powerpc64-power8-glibc-bleeding-edge-toolchain")
 install="hooks.install-powerpc64-power8-glibc-bleeding-edge-toolchain"
-sha256sums=('7af62a63e0e9ebec8d020f017e8053c44e9c3bbdb418de5b1a7a6bf6b6ebb958'
+sha256sums=('d8c135613d6d75d9974c3da437628bea05d93c7db3a86bc092979621621cb773'
             'b4302225091ad3cb000c1d1ca060d6990ed53cc746f9007cd2832fd580287164')
 
 build() {
-	cd "powerpc64-power8--glibc--bleeding-edge-2023.08-1"
+	cd "powerpc64-power8--glibc--bleeding-edge-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/powerpc64-power8-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc64-power8--glibc--bleeding-edge-2023.08-1"
+	cd "powerpc64-power8--glibc--bleeding-edge-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/powerpc64-power8-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc64-power8-glibc-bleeding-edge/"

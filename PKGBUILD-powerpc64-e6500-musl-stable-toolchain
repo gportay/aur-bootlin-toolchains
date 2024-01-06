@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc64-e6500-musl-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e6500/tarballs/powerpc64-e6500--musl--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e6500/tarballs/powerpc64-e6500--musl--stable-2023.11-1.tar.bz2"
         "profile.sh-powerpc64-e6500-musl-stable-toolchain")
 install="hooks.install-powerpc64-e6500-musl-stable-toolchain"
-sha256sums=('596b2369457e6155420d97c3d67646eb94e5cace277aa943010cd1bc29191322'
+sha256sums=('fff880e6fc09efe3d5aaaa6a561fb6af3885dbeae8a73b1981c072196c3abc4a'
             '6125f88cd1714178db36abfa3674498780d02c631daae8488164e329d714e5e6')
 
 build() {
-	cd "powerpc64-e6500--musl--stable-2023.08-1"
+	cd "powerpc64-e6500--musl--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/powerpc64-e6500-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc64-e6500--musl--stable-2023.08-1"
+	cd "powerpc64-e6500--musl--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/powerpc64-e6500-musl-stable/"
 	cp -a * "$pkgdir/opt/powerpc64-e6500-musl-stable/"

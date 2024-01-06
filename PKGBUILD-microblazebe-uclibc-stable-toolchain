@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=microblazebe-uclibc-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazebe/tarballs/microblazebe--uclibc--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazebe/tarballs/microblazebe--uclibc--stable-2023.11-1.tar.bz2"
         "profile.sh-microblazebe-uclibc-stable-toolchain")
 install="hooks.install-microblazebe-uclibc-stable-toolchain"
-sha256sums=('8e432dd0fbc4c4ea0e64bd8bfa37c17cdcc4f6b1ccb6a78a68dc21bfc00590f1'
+sha256sums=('cee44f3c1f87dfaac941df61a27ab854e1e0898978d484214782369b5a324029'
             'bb07ff2e652c769447f57c84ca1e9c2eeb1c8712f8d8866ba84fdd38d9dcf2ab')
 
 build() {
-	cd "microblazebe--uclibc--stable-2023.08-1"
+	cd "microblazebe--uclibc--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/microblazebe-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazebe--uclibc--stable-2023.08-1"
+	cd "microblazebe--uclibc--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/microblazebe-uclibc-stable/"
 	cp -a * "$pkgdir/opt/microblazebe-uclibc-stable/"

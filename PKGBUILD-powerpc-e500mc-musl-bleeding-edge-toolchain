@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-e500mc-musl-bleeding-edge-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--musl--bleeding-edge-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--musl--bleeding-edge-2023.11-1.tar.bz2"
         "profile.sh-powerpc-e500mc-musl-bleeding-edge-toolchain")
 install="hooks.install-powerpc-e500mc-musl-bleeding-edge-toolchain"
-sha256sums=('a47518b65c9d866b7d61b1382149b7c63da1a5166e3291096b34cb6407f5382d'
+sha256sums=('89302d5660e58e68fdf75d238ead582c586d26c0aa717bb5cd3d1f024420c400'
             '06ff062be4b632109c33e7f7966e6e99a050bda95f91903fad3a1ed868ae82a4')
 
 build() {
-	cd "powerpc-e500mc--musl--bleeding-edge-2023.08-1"
+	cd "powerpc-e500mc--musl--bleeding-edge-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-e500mc-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e500mc--musl--bleeding-edge-2023.08-1"
+	cd "powerpc-e500mc--musl--bleeding-edge-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-e500mc-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc-e500mc-musl-bleeding-edge/"

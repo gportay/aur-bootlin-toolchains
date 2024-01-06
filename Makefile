@@ -1,11 +1,11 @@
 #
-# Copyright 2023 Gaël PORTAY
+# Copyright 2023-2024 Gaël PORTAY
 #
 # SPDX-License-Identifier: LGPL-2.1-or-later
 #
 
-RELEASE ?= 2023.08-1
-EXTRA_RELEASE ?= .1
+RELEASE ?= 2023.11-1
+EXTRA_RELEASE ?=
 PREFIX ?= /srv/ftp
 
 # All built architectures
@@ -65,8 +65,6 @@ arcle-hs38_musl = 0
 armv7m_glibc = 0
 armv7m_musl = 0
 bfin = 0
-m68k-68xxx_glibc = 0
-m68k-68xxx_musl = 0
 m68k-coldfire_glibc = 0
 m68k-coldfire_musl = 0
 nios2_musl = 0

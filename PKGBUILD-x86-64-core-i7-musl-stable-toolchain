@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-core-i7-musl-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--musl--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--musl--stable-2023.11-1.tar.bz2"
         "profile.sh-x86-64-core-i7-musl-stable-toolchain")
 install="hooks.install-x86-64-core-i7-musl-stable-toolchain"
-sha256sums=('7e16c0e6f2924e0c57c3c7f7ebe48af42f97bab77978fbe72dbee49eddbbdc73'
+sha256sums=('38a7be51cdeb738f7d724ba3efe207fddab523c8b128bbbb33f9b7a56d0e70f1'
             '72b88949d210c151431bca77f97305ea6b9c182b333da1bfcb47b086279b867e')
 
 build() {
-	cd "x86-64-core-i7--musl--stable-2023.08-1"
+	cd "x86-64-core-i7--musl--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-core-i7-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-core-i7--musl--stable-2023.08-1"
+	cd "x86-64-core-i7--musl--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-core-i7-musl-stable/"
 	cp -a * "$pkgdir/opt/x86-64-core-i7-musl-stable/"

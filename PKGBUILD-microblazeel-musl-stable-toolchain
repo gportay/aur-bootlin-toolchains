@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=microblazeel-musl-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--musl--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--musl--stable-2023.11-1.tar.bz2"
         "profile.sh-microblazeel-musl-stable-toolchain")
 install="hooks.install-microblazeel-musl-stable-toolchain"
-sha256sums=('69cef52cf75cb9c1b127a3c7a657aef98d0c419188b3cbb1a3a79b61a7327b30'
+sha256sums=('2f2018e378a0f6c7075766239217b268fd45a0103ac5af5143869ca49db3cb56'
             'cd487b6a745bb003d1c835c28dbc4e7465f59c840650f4b6f54f4fb76e333ece')
 
 build() {
-	cd "microblazeel--musl--stable-2023.08-1"
+	cd "microblazeel--musl--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/microblazeel-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--musl--stable-2023.08-1"
+	cd "microblazeel--musl--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/microblazeel-musl-stable/"
 	cp -a * "$pkgdir/opt/microblazeel-musl-stable/"

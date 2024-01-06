@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-e500mc-uclibc-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--stable-2023.11-1.tar.bz2"
         "profile.sh-powerpc-e500mc-uclibc-stable-toolchain")
 install="hooks.install-powerpc-e500mc-uclibc-stable-toolchain"
-sha256sums=('4a37d3dd4eee82fcc5d2d0fcf71831d8efca601abfee236c49a5a7bd064d27f4'
+sha256sums=('7b6921f004698556681aa26ea0091931b5bd71bf0a785ff947d5b02c86d77f37'
             'fa8f6a9c5791ccae3683fa8262aca347c59268d2104e4088337c5c3dc0ffa627')
 
 build() {
-	cd "powerpc-e500mc--uclibc--stable-2023.08-1"
+	cd "powerpc-e500mc--uclibc--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-e500mc-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e500mc--uclibc--stable-2023.08-1"
+	cd "powerpc-e500mc--uclibc--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-e500mc-uclibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-e500mc-uclibc-stable/"

@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-v4-uclibc-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--uclibc--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--uclibc--stable-2023.11-1.tar.bz2"
         "profile.sh-x86-64-v4-uclibc-stable-toolchain")
 install="hooks.install-x86-64-v4-uclibc-stable-toolchain"
-sha256sums=('1cddc357e6af9f10814e628b92acdb3142a305f5050541eeb82463060295bc63'
+sha256sums=('a35e650c422e64939c8d4578b39fce5c73995688420e51aa6c0f553ba97ba838'
             '8f685827ad79bb266f65eafd0d7d50f1773974222afe628f2f77fbd8c695d8ce')
 
 build() {
-	cd "x86-64-v4--uclibc--stable-2023.08-1"
+	cd "x86-64-v4--uclibc--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-v4-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v4--uclibc--stable-2023.08-1"
+	cd "x86-64-v4--uclibc--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-v4-uclibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-v4-uclibc-stable/"

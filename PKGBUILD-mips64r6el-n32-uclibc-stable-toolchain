@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips64r6el-n32-uclibc-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64r6el-n32/tarballs/mips64r6el-n32--uclibc--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64r6el-n32/tarballs/mips64r6el-n32--uclibc--stable-2023.11-1.tar.bz2"
         "profile.sh-mips64r6el-n32-uclibc-stable-toolchain")
 install="hooks.install-mips64r6el-n32-uclibc-stable-toolchain"
-sha256sums=('c6525bb93fcac16a354e039abd47ebdd33c379a364c812bab3b8dd69ab27dcb2'
+sha256sums=('f55e95fb54c7d71274f5050941925c11d180fe7e98c0f0d1b91e8b36672e235e'
             'cd92ada36fd0c188ed093d57c93b8b61f60e23a4c50055f6ee228f9de1cc0925')
 
 build() {
-	cd "mips64r6el-n32--uclibc--stable-2023.08-1"
+	cd "mips64r6el-n32--uclibc--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/mips64r6el-n32-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips64r6el-n32--uclibc--stable-2023.08-1"
+	cd "mips64r6el-n32--uclibc--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/mips64r6el-n32-uclibc-stable/"
 	cp -a * "$pkgdir/opt/mips64r6el-n32-uclibc-stable/"

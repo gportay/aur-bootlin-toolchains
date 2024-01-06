@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sh-sh4aeb-musl-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--musl--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--musl--stable-2023.11-1.tar.bz2"
         "profile.sh-sh-sh4aeb-musl-stable-toolchain")
 install="hooks.install-sh-sh4aeb-musl-stable-toolchain"
-sha256sums=('2f4af8a25bd24888149f5772413c3f8ce1ee40a16b2a4aec5fc4b4382d021d4f'
+sha256sums=('3e48605bbf9407f9625cc367b55ab35f20a308cb44c69e85583b2fe10c9c604d'
             'c4c32b019d8a0df793ec1aab578cd5076c3df27e593b8741dd88618de6197330')
 
 build() {
-	cd "sh-sh4aeb--musl--stable-2023.08-1"
+	cd "sh-sh4aeb--musl--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/sh-sh4aeb-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4aeb--musl--stable-2023.08-1"
+	cd "sh-sh4aeb--musl--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/sh-sh4aeb-musl-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4aeb-musl-stable/"

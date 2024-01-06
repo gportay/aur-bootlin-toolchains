@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-core-i7-uclibc-bleeding-edge-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--uclibc--bleeding-edge-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--uclibc--bleeding-edge-2023.11-1.tar.bz2"
         "profile.sh-x86-64-core-i7-uclibc-bleeding-edge-toolchain")
 install="hooks.install-x86-64-core-i7-uclibc-bleeding-edge-toolchain"
-sha256sums=('3a2aabaf3287f2c2149809cd4bfa335730edfaed13a93dcc3a3550d7a00e09d1'
+sha256sums=('4f08c426b0ebb88a1e66831db780168c5716e319e905b8d41c5f5dba1e98d543'
             '6ea9443df7a4f7775e841dea08659b29a154876b74b4e74311363a704d4dc546')
 
 build() {
-	cd "x86-64-core-i7--uclibc--bleeding-edge-2023.08-1"
+	cd "x86-64-core-i7--uclibc--bleeding-edge-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-core-i7-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-core-i7--uclibc--bleeding-edge-2023.08-1"
+	cd "x86-64-core-i7--uclibc--bleeding-edge-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-core-i7-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-core-i7-uclibc-bleeding-edge/"

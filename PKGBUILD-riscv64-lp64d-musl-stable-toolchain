@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=riscv64-lp64d-musl-stable-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64-lp64d/tarballs/riscv64-lp64d--musl--stable-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64-lp64d/tarballs/riscv64-lp64d--musl--stable-2023.11-1.tar.bz2"
         "profile.sh-riscv64-lp64d-musl-stable-toolchain")
 install="hooks.install-riscv64-lp64d-musl-stable-toolchain"
-sha256sums=('09e2fa682043c4ac6378887468085a333d07734edac2b784ade2aacc0a815bb3'
+sha256sums=('09522ec60b13766090acaa715402cb11edaa39217642fbd7315fbe37b6032275'
             '12db8b47446ef8efbdb633d2bfa0ed1a32b654249f4a0498b6061e2a77a8681f')
 
 build() {
-	cd "riscv64-lp64d--musl--stable-2023.08-1"
+	cd "riscv64-lp64d--musl--stable-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/riscv64-lp64d-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv64-lp64d--musl--stable-2023.08-1"
+	cd "riscv64-lp64d--musl--stable-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/riscv64-lp64d-musl-stable/"
 	cp -a * "$pkgdir/opt/riscv64-lp64d-musl-stable/"

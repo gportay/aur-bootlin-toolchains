@@ -1,0 +1,33 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=m68k-68xxx-glibc-bleeding-edge-toolchain
+pkgver=2023.11
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--glibc--bleeding-edge-2023.11-1.tar.bz2"
+        "profile.sh-m68k-68xxx-glibc-bleeding-edge-toolchain")
+install="hooks.install-m68k-68xxx-glibc-bleeding-edge-toolchain"
+sha256sums=('f7a41da2a2765d67ee3184df876741a459c6f85024dcc7434bd10f27451f6ecd'
+            'dcb909f36568f1b955f51453a2e2017ec5935daef0072e7fd4d843b648fa19cb')
+
+build() {
+	cd "m68k-68xxx--glibc--bleeding-edge-2023.11-1"
+
+	sh relocate-sdk.sh "/opt/m68k-68xxx-glibc-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "m68k-68xxx--glibc--bleeding-edge-2023.11-1"
+
+	mkdir -p "$pkgdir/opt/m68k-68xxx-glibc-bleeding-edge/"
+	cp -a * "$pkgdir/opt/m68k-68xxx-glibc-bleeding-edge/"
+	rm -f "$pkgdir/opt/m68k-68xxx-glibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-m68k-68xxx-glibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/m68k-68xxx-glibc-bleeding-edge-toolchain.sh"
+}

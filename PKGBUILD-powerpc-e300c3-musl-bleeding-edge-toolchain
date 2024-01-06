@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-e300c3-musl-bleeding-edge-toolchain
-pkgver=2023.08
-pkgrel=1.1
+pkgver=2023.11
+pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--musl--bleeding-edge-2023.08-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--musl--bleeding-edge-2023.11-1.tar.bz2"
         "profile.sh-powerpc-e300c3-musl-bleeding-edge-toolchain")
 install="hooks.install-powerpc-e300c3-musl-bleeding-edge-toolchain"
-sha256sums=('f158d1d49b1578ce36261a26d82e221937e2c11575bb25133e69fd3dfc43a8d9'
+sha256sums=('9ddec25bccd33ccbabdfa3140a7f1b7283ff2443e83ef5f3be12e95b9a256d7f'
             '2fdd447755885829d33d457d2c7fa924933f20810572ef6bc091c91b738ed282')
 
 build() {
-	cd "powerpc-e300c3--musl--bleeding-edge-2023.08-1"
+	cd "powerpc-e300c3--musl--bleeding-edge-2023.11-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-e300c3-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e300c3--musl--bleeding-edge-2023.08-1"
+	cd "powerpc-e300c3--musl--bleeding-edge-2023.11-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-e300c3-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc-e300c3-musl-bleeding-edge/"
