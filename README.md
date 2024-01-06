@@ -102,6 +102,26 @@ Run the compiler:
 	This is free software; see the source for copying conditions.  There is NO
 	warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+## BUMP
+
+First, update `RELEASE` to the new release and reset `EXTRA_RELEASE` to empty.
+
+Then, update `ARCH` list of architecture to add (or remove) new toolchains, and
+eventually set `<arch>_<libc>` or `<arch>_<libc>_<version>` to `0` to disable
+variant if it is part of the new release.
+
+Finally, add the changes `git add PKGBUILD-* hooks.install-* profile.sh-*`,
+commit them `git commit -m "Bump 2023.11"` and tag it `git tag "v2023.11-1"`.
+
+## CREATE AND MAINTAIN AUR
+
+After a bump, run:
+
+	$ make commit
+
+Note: The git repository is created locally if it does not exist yet. The [AUR]
+repositories **SHOULD** be cloned instead if it exist.
+
 ## BUGS
 
 Report bugs at *https://github.com/gportay/aur-bootlin-toolchains/issues*
@@ -112,7 +132,7 @@ Written by Gaël PORTAY *gael.portay@gmail.com*
 
 ## COPYRIGHT
 
-Copyright (c) 2023 Gaël PORTAY
+Copyright (c) 2023-2024 Gaël PORTAY
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the Free
