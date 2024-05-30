@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=arcle-750d-uclibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-arcle-750d-uclibc-bleeding-edge-toolchain")
 install="hooks.install-arcle-750d-uclibc-bleeding-edge-toolchain"
-sha256sums=('b2a39fc18a3c2b3e10c61ce862fb1c90d53e38ccb21323a7f808ed4004c89d0c'
+sha256sums=('a3a59cb25854ccb052035636e6d65c6ef3158182b69d23d2bd6c8a6e4284a052'
             '90e1ae610d411c392f9dcd395688c9033b7b79599eae1ef11e5ed807325182c5')
 
 build() {
-	cd "arcle-750d--uclibc--bleeding-edge-2023.11-1"
+	cd "arcle-750d--uclibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/arcle-750d-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-750d--uclibc--bleeding-edge-2023.11-1"
+	cd "arcle-750d--uclibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/arcle-750d-uclibc-bleeding-edge/"

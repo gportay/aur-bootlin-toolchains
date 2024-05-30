@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc64-e6500-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e6500/tarballs/powerpc64-e6500--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e6500/tarballs/powerpc64-e6500--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-powerpc64-e6500-glibc-stable-toolchain")
 install="hooks.install-powerpc64-e6500-glibc-stable-toolchain"
-sha256sums=('ef93463f56824079cc4cc849892004d9d06316011c51063d6c88838369065717'
+sha256sums=('5f4f605b2f3e94652ec94cb2f9880e719e6e61451026dc51fcf9c913152b60e9'
             'c422f1d4a66c9c7de032ef0d5c7911d222b9b07302517547c3d08e3681c925d9')
 
 build() {
-	cd "powerpc64-e6500--glibc--stable-2023.11-1"
+	cd "powerpc64-e6500--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/powerpc64-e6500-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc64-e6500--glibc--stable-2023.11-1"
+	cd "powerpc64-e6500--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/powerpc64-e6500-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc64-e6500-glibc-stable/"

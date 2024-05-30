@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips64-n32-musl-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64-n32/tarballs/mips64-n32--musl--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64-n32/tarballs/mips64-n32--musl--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-mips64-n32-musl-bleeding-edge-toolchain")
 install="hooks.install-mips64-n32-musl-bleeding-edge-toolchain"
-sha256sums=('bf442bd32f0a7cb0fe0e2ea229f08bd65af6f471478599aa0b80ab484186a56f'
+sha256sums=('4e1bb50ff41b2e8f26c8c48217017abe16e251c3c9a453c1bbed3629939bb35a'
             '6028096797a3c13b05cabc6cdfb4ed5316d8b57303a01a2ca0b6d72ba8df151f')
 
 build() {
-	cd "mips64-n32--musl--bleeding-edge-2023.11-1"
+	cd "mips64-n32--musl--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/mips64-n32-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips64-n32--musl--bleeding-edge-2023.11-1"
+	cd "mips64-n32--musl--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/mips64-n32-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/mips64-n32-musl-bleeding-edge/"

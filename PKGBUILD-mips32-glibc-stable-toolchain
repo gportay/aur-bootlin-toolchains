@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips32-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32/tarballs/mips32--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32/tarballs/mips32--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-mips32-glibc-stable-toolchain")
 install="hooks.install-mips32-glibc-stable-toolchain"
-sha256sums=('062d5df972b7b628337fdecba84cbe2b33f9c863e59c9702556ef252e7b44750'
+sha256sums=('595cedbc0e70d5c939529ecc8d09c3a8eff63f77c3d0772b7ae306e1b3b5aef9'
             'c1c549830eaca0b50c9ebf2439d25057d7c6242f210210bb93c1e6f6834855e4')
 
 build() {
-	cd "mips32--glibc--stable-2023.11-1"
+	cd "mips32--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/mips32-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32--glibc--stable-2023.11-1"
+	cd "mips32--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/mips32-glibc-stable/"
 	cp -a * "$pkgdir/opt/mips32-glibc-stable/"

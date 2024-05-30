@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 #
 
-RELEASE ?= 2023.11-1
+RELEASE ?= 2024.02-1
 EXTRA_RELEASE ?=
 PREFIX ?= /srv/ftp
 
@@ -76,7 +76,6 @@ powerpc64-power8_uclibc = 0
 powerpc64le-power8_uclibc = 0
 powerpc64le-power8_uclibc = 0
 riscv32-ilp32d_glibc_stable = 0
-riscv32-ilp32d_musl = 0
 riscv32-ilp32d_uclibc = 0
 s390x-z13_musl = 0
 s390x-z13_uclibc = 0

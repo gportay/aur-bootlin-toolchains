@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=openrisc-musl-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--musl--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--musl--stable-2024.02-1.tar.bz2"
         "profile.sh-openrisc-musl-stable-toolchain")
 install="hooks.install-openrisc-musl-stable-toolchain"
-sha256sums=('2ece0d83ae58072d8ca22043b19f1121ecefadd456ca4d33737696c667307a47'
+sha256sums=('34dfd1fd3977792754eb03c5ef877045a476a52ffcecf18418bca81514ae0308'
             '5173f8bf8884396b4f0c49e4a531bf2db9642d6e6dc2be6d468dc352c12ccfbd')
 
 build() {
-	cd "openrisc--musl--stable-2023.11-1"
+	cd "openrisc--musl--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/openrisc-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--musl--stable-2023.11-1"
+	cd "openrisc--musl--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/openrisc-musl-stable/"
 	cp -a * "$pkgdir/opt/openrisc-musl-stable/"

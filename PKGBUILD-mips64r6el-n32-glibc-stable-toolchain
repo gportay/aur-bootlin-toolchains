@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips64r6el-n32-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64r6el-n32/tarballs/mips64r6el-n32--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64r6el-n32/tarballs/mips64r6el-n32--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-mips64r6el-n32-glibc-stable-toolchain")
 install="hooks.install-mips64r6el-n32-glibc-stable-toolchain"
-sha256sums=('30aa25c3bcbd085d8bd22a1055f083e9bf7d37dcf91847651dda802d1ee99295'
+sha256sums=('064bca63fa00ccf1c6982eb9b1d1d71f61096f2826b9134322e16a38b1317937'
             '149987ac3d7c49217b5e813a111b3a2c8c104b62a91ea426e23f11c7012d4d90')
 
 build() {
-	cd "mips64r6el-n32--glibc--stable-2023.11-1"
+	cd "mips64r6el-n32--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/mips64r6el-n32-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips64r6el-n32--glibc--stable-2023.11-1"
+	cd "mips64r6el-n32--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/mips64r6el-n32-glibc-stable/"
 	cp -a * "$pkgdir/opt/mips64r6el-n32-glibc-stable/"

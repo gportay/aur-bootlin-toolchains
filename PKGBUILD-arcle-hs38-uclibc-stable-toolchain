@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=arcle-hs38-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-arcle-hs38-uclibc-stable-toolchain")
 install="hooks.install-arcle-hs38-uclibc-stable-toolchain"
-sha256sums=('b6c98633c33fe0ce5d7ba03c0a9bb55ab9a0ded69f3ed3d3813a5c133aa4e3ca'
+sha256sums=('9d0ef6443c7192e5ae5301e9c1cc22437224e404ed3232dd17fc042dd2e6b5b5'
             'f312ab107482fb928ab9d270a248030f3a51ac66a113067bceddf6e1bf85bfb0')
 
 build() {
-	cd "arcle-hs38--uclibc--stable-2023.11-1"
+	cd "arcle-hs38--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/arcle-hs38-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-hs38--uclibc--stable-2023.11-1"
+	cd "arcle-hs38--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/arcle-hs38-uclibc-stable/"
 	cp -a * "$pkgdir/opt/arcle-hs38-uclibc-stable/"

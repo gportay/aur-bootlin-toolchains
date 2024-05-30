@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-v3-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v3/tarballs/x86-64-v3--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v3/tarballs/x86-64-v3--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-x86-64-v3-glibc-stable-toolchain")
 install="hooks.install-x86-64-v3-glibc-stable-toolchain"
-sha256sums=('19376ffd5187f2c96d99a9f12d15ae51c8bf351d25a7186e379fae815feedd22'
+sha256sums=('5d515f6e4b311d7636a3cf600cd02fde7d0beb0a2f143df4921ff5a61cbaebcb'
             '6b732ecaff9cbf740d937d873ae0d884dd9e8d8b5b767b8604c9eeb56627ba80')
 
 build() {
-	cd "x86-64-v3--glibc--stable-2023.11-1"
+	cd "x86-64-v3--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-v3-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v3--glibc--stable-2023.11-1"
+	cd "x86-64-v3--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-v3-glibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-v3-glibc-stable/"

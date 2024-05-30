@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv7-eabihf-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-armv7-eabihf-uclibc-stable-toolchain")
 install="hooks.install-armv7-eabihf-uclibc-stable-toolchain"
-sha256sums=('39fcb1928454392112f0a5168b2e284d3564a24dff116efdcb71c67b672682ca'
+sha256sums=('bfbd81e15f771f4dbf0537677f4338731faaaa6fc250efd5027ccbe347b1f3f1'
             '7f3b96cf169874591a69981fcbf7428a4bd73510012679fa012a0bd35d3a313f')
 
 build() {
-	cd "armv7-eabihf--uclibc--stable-2023.11-1"
+	cd "armv7-eabihf--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/armv7-eabihf-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv7-eabihf--uclibc--stable-2023.11-1"
+	cd "armv7-eabihf--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/armv7-eabihf-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armv7-eabihf-uclibc-stable/"

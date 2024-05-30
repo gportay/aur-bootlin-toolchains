@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-e500mc-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-powerpc-e500mc-glibc-stable-toolchain")
 install="hooks.install-powerpc-e500mc-glibc-stable-toolchain"
-sha256sums=('e0b50deb4ffba15fcead9ecea75a6f4af6feca6012a60ddd76591874a47e5338'
+sha256sums=('f1d8d2518ec5401c0a5f489bdb4087f082bf97b6803af0dfc30b82b25d02d8cb'
             '5100bd7573eb635ba6b8045e07c3b57e8a46163cf41675caa482f30eedc40514')
 
 build() {
-	cd "powerpc-e500mc--glibc--stable-2023.11-1"
+	cd "powerpc-e500mc--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-e500mc-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e500mc--glibc--stable-2023.11-1"
+	cd "powerpc-e500mc--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-e500mc-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-e500mc-glibc-stable/"

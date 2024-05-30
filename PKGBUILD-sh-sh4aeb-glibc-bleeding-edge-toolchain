@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sh-sh4aeb-glibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--glibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--glibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-sh-sh4aeb-glibc-bleeding-edge-toolchain")
 install="hooks.install-sh-sh4aeb-glibc-bleeding-edge-toolchain"
-sha256sums=('760b5970d4c9b82bd6d469a142713bc70564a83d86123b1c5ae1fb0ccf9711d7'
+sha256sums=('182333d197803146d36df9186cb583ff482efbcf4d5ca1db4791ef7cbe17fa8c'
             'd4b2f50308860e1cd79bb124ed2262583412fb4d177ae867a0a0db2118ff908a')
 
 build() {
-	cd "sh-sh4aeb--glibc--bleeding-edge-2023.11-1"
+	cd "sh-sh4aeb--glibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/sh-sh4aeb-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4aeb--glibc--bleeding-edge-2023.11-1"
+	cd "sh-sh4aeb--glibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/sh-sh4aeb-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/sh-sh4aeb-glibc-bleeding-edge/"

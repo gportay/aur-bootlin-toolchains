@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-core2-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-core2/tarballs/x86-core2--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-core2/tarballs/x86-core2--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-x86-core2-uclibc-stable-toolchain")
 install="hooks.install-x86-core2-uclibc-stable-toolchain"
-sha256sums=('825c95bf3f28a950f90f9f8827c3ee4536729285603ff53611ae260c4beb2ce8'
+sha256sums=('453e8fb81e07093f6c37aa00e8f54768f9ab4ce1bdd38f3d4269c7b7c509fb1a'
             '18b43f733e1bc9b868d88f82b8de2f3b2dda763e314f6d5e1fcf072afc902b19')
 
 build() {
-	cd "x86-core2--uclibc--stable-2023.11-1"
+	cd "x86-core2--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-core2-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-core2--uclibc--stable-2023.11-1"
+	cd "x86-core2--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-core2-uclibc-stable/"
 	cp -a * "$pkgdir/opt/x86-core2-uclibc-stable/"

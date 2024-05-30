@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=microblazeel-musl-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--musl--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--musl--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-microblazeel-musl-bleeding-edge-toolchain")
 install="hooks.install-microblazeel-musl-bleeding-edge-toolchain"
-sha256sums=('bf539dda6f5793c8d5b64add457f72bac4aa41c27369e67c79079ef683c653d3'
+sha256sums=('c35b0cd70231e307dc2573d876fd0d0efc3c9f32cc32e21e577228cefdbe1c9a'
             '83160a8942e640661d642fcd79fcd307e81fee6e823098bf927376c53f0b8716')
 
 build() {
-	cd "microblazeel--musl--bleeding-edge-2023.11-1"
+	cd "microblazeel--musl--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/microblazeel-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--musl--bleeding-edge-2023.11-1"
+	cd "microblazeel--musl--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/microblazeel-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/microblazeel-musl-bleeding-edge/"

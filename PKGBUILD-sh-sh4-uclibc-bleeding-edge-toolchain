@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sh-sh4-uclibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4/tarballs/sh-sh4--uclibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4/tarballs/sh-sh4--uclibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-sh-sh4-uclibc-bleeding-edge-toolchain")
 install="hooks.install-sh-sh4-uclibc-bleeding-edge-toolchain"
-sha256sums=('ee15660db075af19c7e768da73c6f57336b4201bd397e20fdd0357630fdf4e40'
+sha256sums=('07a3e55f36b7d7718d369408022bd4795c98e79adacad56839ce3805a560f73d'
             '9abf04aadc167b97c9e9257296c43468c26c0b08d563901a3838149e4356ffd0')
 
 build() {
-	cd "sh-sh4--uclibc--bleeding-edge-2023.11-1"
+	cd "sh-sh4--uclibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/sh-sh4-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4--uclibc--bleeding-edge-2023.11-1"
+	cd "sh-sh4--uclibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/sh-sh4-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/sh-sh4-uclibc-bleeding-edge/"

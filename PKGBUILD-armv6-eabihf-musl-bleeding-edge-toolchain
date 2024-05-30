@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv6-eabihf-musl-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--musl--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--musl--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-armv6-eabihf-musl-bleeding-edge-toolchain")
 install="hooks.install-armv6-eabihf-musl-bleeding-edge-toolchain"
-sha256sums=('48cd51a76e8068c78312ed022d31d12831d9ae8da4d0f23f76429c8f9760663f'
+sha256sums=('04e7b5803f4f9984cab333570d537ce185d8a9892b95f2db7ba2e50c22e6b7bc'
             '8bbbf01fe93740b8aed4e07426e0216132c20aae2f820d547698514f1ce7ffb5')
 
 build() {
-	cd "armv6-eabihf--musl--bleeding-edge-2023.11-1"
+	cd "armv6-eabihf--musl--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/armv6-eabihf-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv6-eabihf--musl--bleeding-edge-2023.11-1"
+	cd "armv6-eabihf--musl--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/armv6-eabihf-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/armv6-eabihf-musl-bleeding-edge/"

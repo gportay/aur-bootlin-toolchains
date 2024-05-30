@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-e300c3-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-powerpc-e300c3-glibc-stable-toolchain")
 install="hooks.install-powerpc-e300c3-glibc-stable-toolchain"
-sha256sums=('cafdd55bd0f82aaef09203eeee1a7294f6cf8cf6b4cc669f8a5cdd01e897d4e7'
+sha256sums=('f780144616fa6e04f9f237df5ae08b1871f087204e7cd41ad2df06ee4fc3ed2f'
             '2fd7103b3fd3a3a4669edcb5d77ee0e53d6495b78648e824f497e5d709f94455')
 
 build() {
-	cd "powerpc-e300c3--glibc--stable-2023.11-1"
+	cd "powerpc-e300c3--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-e300c3-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e300c3--glibc--stable-2023.11-1"
+	cd "powerpc-e300c3--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-e300c3-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-e300c3-glibc-stable/"

@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc64-e5500-glibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e5500/tarballs/powerpc64-e5500--glibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64-e5500/tarballs/powerpc64-e5500--glibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-powerpc64-e5500-glibc-bleeding-edge-toolchain")
 install="hooks.install-powerpc64-e5500-glibc-bleeding-edge-toolchain"
-sha256sums=('814de1a235c805ec6a0035cf8633e5a31fdcec93a3aaaabf44cb0ca23eaa1d93'
+sha256sums=('762eda55a9eac9b079b1b2ad676f74b3ca74bd90382b08763ce2926be29b5898'
             'eb8813f3583952bd2c7a7569794fb05b8340bfd70a502837820f568ac97bbcd1')
 
 build() {
-	cd "powerpc64-e5500--glibc--bleeding-edge-2023.11-1"
+	cd "powerpc64-e5500--glibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/powerpc64-e5500-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc64-e5500--glibc--bleeding-edge-2023.11-1"
+	cd "powerpc64-e5500--glibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/powerpc64-e5500-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc64-e5500-glibc-bleeding-edge/"

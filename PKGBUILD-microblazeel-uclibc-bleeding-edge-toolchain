@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=microblazeel-uclibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--uclibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--uclibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-microblazeel-uclibc-bleeding-edge-toolchain")
 install="hooks.install-microblazeel-uclibc-bleeding-edge-toolchain"
-sha256sums=('24c1687ae24ad115129261ba34be831d65e5aae4f0f1536fd5df7ed9c1e53da6'
+sha256sums=('fbeabfc16b10e61a37c2924d60290fcaab40ddfcb8314e20ea1461a4fb588eb4'
             '47ee5dfc6873e9e0aa56350ed4767e2644f8f7351111c858e3827b071528f182')
 
 build() {
-	cd "microblazeel--uclibc--bleeding-edge-2023.11-1"
+	cd "microblazeel--uclibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/microblazeel-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--uclibc--bleeding-edge-2023.11-1"
+	cd "microblazeel--uclibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/microblazeel-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/microblazeel-uclibc-bleeding-edge/"

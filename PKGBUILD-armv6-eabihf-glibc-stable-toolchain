@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv6-eabihf-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-armv6-eabihf-glibc-stable-toolchain")
 install="hooks.install-armv6-eabihf-glibc-stable-toolchain"
-sha256sums=('dc71ac978e3e9ec25832decf8490472b3a0998c8d2214468f20bf546ab833ee2'
+sha256sums=('e3d873f4be92438632da140c087bbd0025e406d138e7f5832d9481af1c9146ef'
             'bb89290d24039bee695c9f246c568921b7ce8a0ee710681e3840dddcb4fc8e11')
 
 build() {
-	cd "armv6-eabihf--glibc--stable-2023.11-1"
+	cd "armv6-eabihf--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/armv6-eabihf-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv6-eabihf--glibc--stable-2023.11-1"
+	cd "armv6-eabihf--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/armv6-eabihf-glibc-stable/"
 	cp -a * "$pkgdir/opt/armv6-eabihf-glibc-stable/"

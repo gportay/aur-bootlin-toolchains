@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-e500mc-uclibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e500mc/tarballs/powerpc-e500mc--uclibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-powerpc-e500mc-uclibc-bleeding-edge-toolchain")
 install="hooks.install-powerpc-e500mc-uclibc-bleeding-edge-toolchain"
-sha256sums=('5f9db756eeb6d8c76574a578f823368a78e437204534d071fed63fe967156dd6'
+sha256sums=('a34b562df36f65841a594864260001f203ad2dbb4e910d2dc7427153d465b208'
             'fc6ceeee1a6b2b21c54f947394f871984d97677bc61910dcb6a5d96567004d26')
 
 build() {
-	cd "powerpc-e500mc--uclibc--bleeding-edge-2023.11-1"
+	cd "powerpc-e500mc--uclibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-e500mc-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e500mc--uclibc--bleeding-edge-2023.11-1"
+	cd "powerpc-e500mc--uclibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc-e500mc-uclibc-bleeding-edge/"

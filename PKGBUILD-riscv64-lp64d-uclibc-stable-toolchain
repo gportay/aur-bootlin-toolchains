@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=riscv64-lp64d-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64-lp64d/tarballs/riscv64-lp64d--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64-lp64d/tarballs/riscv64-lp64d--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-riscv64-lp64d-uclibc-stable-toolchain")
 install="hooks.install-riscv64-lp64d-uclibc-stable-toolchain"
-sha256sums=('aebb6034d3512e3c29337c368dcf4a1e58756c725032d814047a3635178cb5ad'
+sha256sums=('fef3c40af643c9e52e88d3e8e93ec6f0fc921d7edf6e6edb7ed413abc590d3e7'
             '5fb7a91ddec9607e2ff06037c60077ad5bd0870ad07c174b214e2549fdd88b58')
 
 build() {
-	cd "riscv64-lp64d--uclibc--stable-2023.11-1"
+	cd "riscv64-lp64d--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/riscv64-lp64d-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv64-lp64d--uclibc--stable-2023.11-1"
+	cd "riscv64-lp64d--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/riscv64-lp64d-uclibc-stable/"
 	cp -a * "$pkgdir/opt/riscv64-lp64d-uclibc-stable/"

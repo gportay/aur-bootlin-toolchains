@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=microblazebe-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazebe/tarballs/microblazebe--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazebe/tarballs/microblazebe--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-microblazebe-glibc-stable-toolchain")
 install="hooks.install-microblazebe-glibc-stable-toolchain"
-sha256sums=('cdb5de2bd88c0ec95f24d56550b47eb256e74f10f7e579da4bcb486d0198d138'
+sha256sums=('826cdbb09adca7544cd8d09a38958423f52655a8ce17ea95e4880348ea5ec594'
             'fc000fa70fc2d886e1add7b4f287871e4f97650db0b6027a7fe1baf17eab79d6')
 
 build() {
-	cd "microblazebe--glibc--stable-2023.11-1"
+	cd "microblazebe--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/microblazebe-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazebe--glibc--stable-2023.11-1"
+	cd "microblazebe--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/microblazebe-glibc-stable/"
 	cp -a * "$pkgdir/opt/microblazebe-glibc-stable/"

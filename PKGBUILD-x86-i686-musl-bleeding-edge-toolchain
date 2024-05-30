@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-i686-musl-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--musl--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--musl--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-x86-i686-musl-bleeding-edge-toolchain")
 install="hooks.install-x86-i686-musl-bleeding-edge-toolchain"
-sha256sums=('02c465b5612607931c9f0f7eec0239b0ecebab2af3cef79c28993c7ce7f5b079'
+sha256sums=('ace16afe9d7728a5210cc9cadc4bf80754f0dc449855e10501d9669f203fc932'
             '64bfe273db4adc9d02fc4e206fe63dd1ab670e8193f3117888acd694e3ade5cc')
 
 build() {
-	cd "x86-i686--musl--bleeding-edge-2023.11-1"
+	cd "x86-i686--musl--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-i686-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-i686--musl--bleeding-edge-2023.11-1"
+	cd "x86-i686--musl--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-i686-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-i686-musl-bleeding-edge/"

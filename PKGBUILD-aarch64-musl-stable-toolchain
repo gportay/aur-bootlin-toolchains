@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=aarch64-musl-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--musl--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--musl--stable-2024.02-1.tar.bz2"
         "profile.sh-aarch64-musl-stable-toolchain")
 install="hooks.install-aarch64-musl-stable-toolchain"
-sha256sums=('3554391a9ae82cc1fe35a6ab0c9efa34a5bac5474b6d527474997256e148c297'
+sha256sums=('aaa1a5c9212067de3618afbb8f3de4047d99fa1d23e5bc1452bab7fd3744df2e'
             '971909357499a20ee7ebddb313959c680d41bd2f1deabf32ec0ffd7888011cc5')
 
 build() {
-	cd "aarch64--musl--stable-2023.11-1"
+	cd "aarch64--musl--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/aarch64-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "aarch64--musl--stable-2023.11-1"
+	cd "aarch64--musl--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/aarch64-musl-stable/"
 	cp -a * "$pkgdir/opt/aarch64-musl-stable/"

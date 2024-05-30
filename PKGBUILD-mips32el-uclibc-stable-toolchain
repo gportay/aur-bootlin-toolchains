@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips32el-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32el/tarballs/mips32el--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32el/tarballs/mips32el--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-mips32el-uclibc-stable-toolchain")
 install="hooks.install-mips32el-uclibc-stable-toolchain"
-sha256sums=('9aa9b2d99778ae8848ba629690cda55a9fee4175016b551c7726995a57b80478'
+sha256sums=('1e5cfcfe9f9cc7ab7abd843b8ae22fe959aa9c929dc3d4f353653899bb9771a1'
             '7b4b7db09947cc23aa58b7f627ebfea926711c071001f6953fdeb4764cb7c105')
 
 build() {
-	cd "mips32el--uclibc--stable-2023.11-1"
+	cd "mips32el--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/mips32el-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32el--uclibc--stable-2023.11-1"
+	cd "mips32el--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/mips32el-uclibc-stable/"
 	cp -a * "$pkgdir/opt/mips32el-uclibc-stable/"

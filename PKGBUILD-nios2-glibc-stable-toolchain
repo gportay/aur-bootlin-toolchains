@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=nios2-glibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/nios2/tarballs/nios2--glibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/nios2/tarballs/nios2--glibc--stable-2024.02-1.tar.bz2"
         "profile.sh-nios2-glibc-stable-toolchain")
 install="hooks.install-nios2-glibc-stable-toolchain"
-sha256sums=('d9d6137443055c1e7ae086ab746ab1246d0772aec85db61b04e0fcc0acdf655e'
+sha256sums=('0fb3b7204a80466e56da5a63683437ed0934617e7d6979ab0d140e3ca5440144'
             'd286e15fd8117813109c81fe1d4eb4df745f7fd2cc3b32080fd86f0788788083')
 
 build() {
-	cd "nios2--glibc--stable-2023.11-1"
+	cd "nios2--glibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/nios2-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "nios2--glibc--stable-2023.11-1"
+	cd "nios2--glibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/nios2-glibc-stable/"
 	cp -a * "$pkgdir/opt/nios2-glibc-stable/"

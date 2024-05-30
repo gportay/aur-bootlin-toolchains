@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-v3-musl-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v3/tarballs/x86-64-v3--musl--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v3/tarballs/x86-64-v3--musl--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-x86-64-v3-musl-bleeding-edge-toolchain")
 install="hooks.install-x86-64-v3-musl-bleeding-edge-toolchain"
-sha256sums=('6817017e68cb3d8e09eb048ccd70ee66e5cd72e49fb77806825614802a62077e'
+sha256sums=('5b5d89737faf3998fbd1590a26dc9bd6a56e400b7fd7c2c2065ba4b98bf839eb'
             'be46ca4aacecbc79e04cd529df876bdcf58acf2dbc5f63032e0865c600c233f2')
 
 build() {
-	cd "x86-64-v3--musl--bleeding-edge-2023.11-1"
+	cd "x86-64-v3--musl--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-v3-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v3--musl--bleeding-edge-2023.11-1"
+	cd "x86-64-v3--musl--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-v3-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-v3-musl-bleeding-edge/"

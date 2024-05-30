@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-core-i7-glibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--glibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--glibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-x86-64-core-i7-glibc-bleeding-edge-toolchain")
 install="hooks.install-x86-64-core-i7-glibc-bleeding-edge-toolchain"
-sha256sums=('00e1992817c73d2df99f188240e244442f3d50a2a9a994d95ade453916c16ac3'
+sha256sums=('45cb05f2d1ff7f62131d172f90fae321753396ef477b549ca79a50fba48edba7'
             '276a124cdbec797c1f02137c341831368dadb8498a9be22cbd7443f4c0e3f013')
 
 build() {
-	cd "x86-64-core-i7--glibc--bleeding-edge-2023.11-1"
+	cd "x86-64-core-i7--glibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-core-i7-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-core-i7--glibc--bleeding-edge-2023.11-1"
+	cd "x86-64-core-i7--glibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-core-i7-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-core-i7-glibc-bleeding-edge/"

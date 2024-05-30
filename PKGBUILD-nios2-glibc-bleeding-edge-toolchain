@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=nios2-glibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/nios2/tarballs/nios2--glibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/nios2/tarballs/nios2--glibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-nios2-glibc-bleeding-edge-toolchain")
 install="hooks.install-nios2-glibc-bleeding-edge-toolchain"
-sha256sums=('aef966d00fde3297115ac0ae52226b61f8d8f89efc46c15ebf796d8d9a64b951'
+sha256sums=('72ef91ac2c7f00a41449b7e87845bcb6a944ce9ed94b62e19652830ecab42a03'
             '3b72f89762495f6abc1f0c87f717b64f65f2c1f7d8836c68c57a02e4a14eddeb')
 
 build() {
-	cd "nios2--glibc--bleeding-edge-2023.11-1"
+	cd "nios2--glibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/nios2-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "nios2--glibc--bleeding-edge-2023.11-1"
+	cd "nios2--glibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/nios2-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/nios2-glibc-bleeding-edge/"

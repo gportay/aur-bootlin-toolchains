@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-440fp-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-powerpc-440fp-uclibc-stable-toolchain")
 install="hooks.install-powerpc-440fp-uclibc-stable-toolchain"
-sha256sums=('e60268e6826db3574cf2bc74c53daa92db2dd48de2884f3c25be41656bd4e5ef'
+sha256sums=('2d47170edf21a2377261cd6fd0fe0fe552aefc5f5204b6299bdbc2af4f96317b'
             '05fd22741079161cb1a6967185564a335576a127c19366768835db28bbedc37f')
 
 build() {
-	cd "powerpc-440fp--uclibc--stable-2023.11-1"
+	cd "powerpc-440fp--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-440fp-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-440fp--uclibc--stable-2023.11-1"
+	cd "powerpc-440fp--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-440fp-uclibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-440fp-uclibc-stable/"

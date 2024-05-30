@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-v4-glibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--glibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v4/tarballs/x86-64-v4--glibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-x86-64-v4-glibc-bleeding-edge-toolchain")
 install="hooks.install-x86-64-v4-glibc-bleeding-edge-toolchain"
-sha256sums=('d57fc66d8ae7e7aedf543bf4993fa36be68aeb1020c30d32d26d0fad8952db63'
+sha256sums=('dd645f770d95dc0becc6216f3f32f87f6ffcc713ba3b6c53e96e8a3fcfc24e08'
             '2efbc2095734335a3c233a1551977190ce24e97e730ed2c397a92f015b2b44a6')
 
 build() {
-	cd "x86-64-v4--glibc--bleeding-edge-2023.11-1"
+	cd "x86-64-v4--glibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-v4-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v4--glibc--bleeding-edge-2023.11-1"
+	cd "x86-64-v4--glibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-v4-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-v4-glibc-bleeding-edge/"

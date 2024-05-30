@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=m68k-68xxx-musl-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--musl--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--musl--stable-2024.02-1.tar.bz2"
         "profile.sh-m68k-68xxx-musl-stable-toolchain")
 install="hooks.install-m68k-68xxx-musl-stable-toolchain"
-sha256sums=('83ce067a39a6c6e5b1771b6ccfc2e7028bb479b8bcb28694ad96b5595767ac4d'
+sha256sums=('a4701199b74e5d242c5b61b3d23a03b4958b8d2c438c9744f7b6198ad78d8b5c'
             '7cf93f869ea8f5a07d47f737a19ee376fce6da63508ad0f0a0266cd648784435')
 
 build() {
-	cd "m68k-68xxx--musl--stable-2023.11-1"
+	cd "m68k-68xxx--musl--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/m68k-68xxx-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-68xxx--musl--stable-2023.11-1"
+	cd "m68k-68xxx--musl--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/m68k-68xxx-musl-stable/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-musl-stable/"

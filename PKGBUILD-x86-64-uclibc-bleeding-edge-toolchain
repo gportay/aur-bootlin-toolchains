@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-uclibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64/tarballs/x86-64--uclibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64/tarballs/x86-64--uclibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-x86-64-uclibc-bleeding-edge-toolchain")
 install="hooks.install-x86-64-uclibc-bleeding-edge-toolchain"
-sha256sums=('e32b885a41257dd5809f99d6d165994da3d1ce9efe2051f5c223a8243aaa37d9'
+sha256sums=('0ebf73f28a369120b0d33ee6800b9b10cf36851cbed3bcad7828c61a7da69588'
             '4d72a4c9e8f4139520c48ed8f665b9871efc31b39bc040bfab2dcd85890f5493')
 
 build() {
-	cd "x86-64--uclibc--bleeding-edge-2023.11-1"
+	cd "x86-64--uclibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64--uclibc--bleeding-edge-2023.11-1"
+	cd "x86-64--uclibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-uclibc-bleeding-edge/"

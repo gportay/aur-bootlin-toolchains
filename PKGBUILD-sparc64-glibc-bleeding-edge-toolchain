@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sparc64-glibc-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sparc64/tarballs/sparc64--glibc--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sparc64/tarballs/sparc64--glibc--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-sparc64-glibc-bleeding-edge-toolchain")
 install="hooks.install-sparc64-glibc-bleeding-edge-toolchain"
-sha256sums=('8ee180782f8094d90e28e4977ea018094363d0678c1d149838098bedcab4aa71'
+sha256sums=('7371c311b20412732451f445f1e28c8b4c8bdc8e164630b23065ba4bf8d483cd'
             '772305f7886f7f56114391d6b95d802b51e9bb5340d78b3e6028e11d4256e05d')
 
 build() {
-	cd "sparc64--glibc--bleeding-edge-2023.11-1"
+	cd "sparc64--glibc--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/sparc64-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sparc64--glibc--bleeding-edge-2023.11-1"
+	cd "sparc64--glibc--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/sparc64-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/sparc64-glibc-bleeding-edge/"

@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv5-eabi-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv5-eabi/tarballs/armv5-eabi--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv5-eabi/tarballs/armv5-eabi--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-armv5-eabi-uclibc-stable-toolchain")
 install="hooks.install-armv5-eabi-uclibc-stable-toolchain"
-sha256sums=('4ec295deb930584a3da8baab7b23438180195d8bddf03fe9a93ca08ce4bd4a22'
+sha256sums=('68fba0cfb5af4136fe88fb451db9005ed2a8576509a9b1daf140eca5575460d5'
             'ca71730da92d25c4b49a730f33b7daa2ecea00629b69d04b095ec67216327388')
 
 build() {
-	cd "armv5-eabi--uclibc--stable-2023.11-1"
+	cd "armv5-eabi--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/armv5-eabi-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv5-eabi--uclibc--stable-2023.11-1"
+	cd "armv5-eabi--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/armv5-eabi-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armv5-eabi-uclibc-stable/"

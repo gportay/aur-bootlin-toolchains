@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-e300c3-uclibc-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--uclibc--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-e300c3/tarballs/powerpc-e300c3--uclibc--stable-2024.02-1.tar.bz2"
         "profile.sh-powerpc-e300c3-uclibc-stable-toolchain")
 install="hooks.install-powerpc-e300c3-uclibc-stable-toolchain"
-sha256sums=('e27984bbee08d4f1a794ce90e1b78e68ee8750403666452525e7360655d99f32'
+sha256sums=('03a688e3f3fffae1c441abc540dc8be9cf8e524e36efc52aa5bcbe9deeb356b9'
             '47eff082cceba386b1358724880f7746f196af25473e7498f905b78062594f52')
 
 build() {
-	cd "powerpc-e300c3--uclibc--stable-2023.11-1"
+	cd "powerpc-e300c3--uclibc--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-e300c3-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e300c3--uclibc--stable-2023.11-1"
+	cd "powerpc-e300c3--uclibc--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-e300c3-uclibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-e300c3-uclibc-stable/"

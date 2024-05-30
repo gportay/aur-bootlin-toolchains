@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-v2-musl-stable-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v2/tarballs/x86-64-v2--musl--stable-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v2/tarballs/x86-64-v2--musl--stable-2024.02-1.tar.bz2"
         "profile.sh-x86-64-v2-musl-stable-toolchain")
 install="hooks.install-x86-64-v2-musl-stable-toolchain"
-sha256sums=('ae070e245dfc0bf882b6dcc4ad6c080b11f0b8d2f235f65c0cc1069a06f5e4a0'
+sha256sums=('b5ec30e722386ea98f0e3ca3d6b3e082e6996fefedcc1b607811eb8451c22de0'
             'd62476bc98b21ab4c12ec78c63fa69b2710e05936c02117965f357ee747d5ea1')
 
 build() {
-	cd "x86-64-v2--musl--stable-2023.11-1"
+	cd "x86-64-v2--musl--stable-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-v2-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v2--musl--stable-2023.11-1"
+	cd "x86-64-v2--musl--stable-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-v2-musl-stable/"
 	cp -a * "$pkgdir/opt/x86-64-v2-musl-stable/"

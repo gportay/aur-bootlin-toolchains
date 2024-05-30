@@ -1,0 +1,33 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=riscv32-ilp32d-musl-bleeding-edge-toolchain
+pkgver=2024.02
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv32-ilp32d/tarballs/riscv32-ilp32d--musl--bleeding-edge-2024.02-1.tar.bz2"
+        "profile.sh-riscv32-ilp32d-musl-bleeding-edge-toolchain")
+install="hooks.install-riscv32-ilp32d-musl-bleeding-edge-toolchain"
+sha256sums=('828e3409f995cc15e7038ede150d6fa8bc50a3d69ef2b98b79db7c935bab336c'
+            '711551bfdc57a3fe9a05e2a31e561655d1f79aea42603b54757219f52f430efb')
+
+build() {
+	cd "riscv32-ilp32d--musl--bleeding-edge-2024.02-1"
+
+	sh relocate-sdk.sh "/opt/riscv32-ilp32d-musl-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "riscv32-ilp32d--musl--bleeding-edge-2024.02-1"
+
+	mkdir -p "$pkgdir/opt/riscv32-ilp32d-musl-bleeding-edge/"
+	cp -a * "$pkgdir/opt/riscv32-ilp32d-musl-bleeding-edge/"
+	rm -f "$pkgdir/opt/riscv32-ilp32d-musl-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-riscv32-ilp32d-musl-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/riscv32-ilp32d-musl-bleeding-edge-toolchain.sh"
+}

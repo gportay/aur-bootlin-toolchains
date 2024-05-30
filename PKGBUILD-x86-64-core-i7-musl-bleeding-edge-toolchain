@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-core-i7-musl-bleeding-edge-toolchain
-pkgver=2023.11
+pkgver=2024.02
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--musl--bleeding-edge-2023.11-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--musl--bleeding-edge-2024.02-1.tar.bz2"
         "profile.sh-x86-64-core-i7-musl-bleeding-edge-toolchain")
 install="hooks.install-x86-64-core-i7-musl-bleeding-edge-toolchain"
-sha256sums=('cf084bdf1f62c35996dc922d9c794a08d53ff0d71e888a0bbc4717431aa7c2c6'
+sha256sums=('b6eb510561931a7d1c66afabfc1206731473a64fde41093474d6819e085e9d15'
             '92d945946e642bebcf056964a2b1664ea481aa1c049321d55d3785361b5454dd')
 
 build() {
-	cd "x86-64-core-i7--musl--bleeding-edge-2023.11-1"
+	cd "x86-64-core-i7--musl--bleeding-edge-2024.02-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-core-i7-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-core-i7--musl--bleeding-edge-2023.11-1"
+	cd "x86-64-core-i7--musl--bleeding-edge-2024.02-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-core-i7-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-core-i7-musl-bleeding-edge/"
