@@ -241,11 +241,13 @@ clean-$(1)-$(2)-$(3):
 	rm -f PKGBUILD-$(1)-$(2)-$(3)-toolchain
 	rm -f hooks.install-$(1)-$(2)-$(3)-toolchain
 	rm -f profile.sh-$(1)-$(2)-$(3)-toolchain
+	rm -f $(1)--$(2)--$(3)-$$(RELEASE).tar.bz2
 
 cleanall: cleanall-$(1)-$(2)-$(3)
 
 .PHONY: cleanall-$(1)-$(2)-$(3)
 cleanall-$(1)-$(2)-$(3):
+	rm -f $(1)-$(2)-$(3)-toolchain/$(1)--$(2)--$(3)-$$(RELEASE).tar.bz2
 	rm -f $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 
 copy-source: copy-source-$(1)-$(2)-$(3)
