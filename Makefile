@@ -105,6 +105,9 @@ install:
 .PHONY: makepkg
 makepkg:
 
+.PHONY: tig
+tig:
+
 .PHONY: log
 log:
 
@@ -143,6 +146,12 @@ $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x
 $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain
 $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/PKGBUILD
 	( cd $(1)-$(2)-$(3)-toolchain && makepkg --force --clean --cleanbuild )
+
+tig: tig-$(1)-$(2)-$(3)
+
+.PHONY: tig-$(1)-$(2)-$(3)
+tig-$(1)-$(2)-$(3):
+	( cd $(1)-$(2)-$(3)-toolchain && tig )
 
 log: log-$(1)-$(2)-$(3)
 
