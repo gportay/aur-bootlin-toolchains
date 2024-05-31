@@ -104,7 +104,8 @@ Run the compiler:
 
 ## BUMP
 
-First, update `RELEASE` to the new release and reset `EXTRA_RELEASE` to empty.
+First, update `RELEASE` to the new release, reset `EXTRA_RELEASE` to empty, and
+`touch *.in` files.
 
 Then, update `ARCH` list of architecture to add (or remove) new toolchains, and
 eventually set `<arch>_<libc>` or `<arch>_<libc>_<version>` to `0` to disable
