@@ -4,6 +4,12 @@
 [submodule "aarch64-musl-bleeding-edge-toolchain"]
 	path = aarch64-musl-bleeding-edge-toolchain
 	url = ssh://aur@aur.archlinux.org/aarch64-musl-bleeding-edge-toolchain.git
+[submodule "aarch64be-musl-bleeding-edge-toolchain"]
+	path = aarch64be-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/aarch64be-musl-bleeding-edge-toolchain.git
+[submodule "aarch64be-glibc-bleeding-edge-toolchain"]
+	path = aarch64be-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/aarch64be-glibc-bleeding-edge-toolchain.git
 [submodule "armv5-eabi-glibc-bleeding-edge-toolchain"]
 	path = armv5-eabi-glibc-bleeding-edge-toolchain
 	url = ssh://aur@aur.archlinux.org/armv5-eabi-glibc-bleeding-edge-toolchain.git
@@ -16,9 +22,24 @@
 [submodule "armv7-eabihf-musl-bleeding-edge-toolchain"]
 	path = armv7-eabihf-musl-bleeding-edge-toolchain
 	url = ssh://aur@aur.archlinux.org/armv7-eabihf-musl-bleeding-edge-toolchain.git
+[submodule "mips32el-musl-bleeding-edge-toolchain"]
+	path = mips32el-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/mips32el-musl-bleeding-edge-toolchain.git
+[submodule "mips32el-glibc-bleeding-edge-toolchain"]
+	path = mips32el-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/mips32el-glibc-bleeding-edge-toolchain.git
+[submodule "powerpc64le-power8-musl-bleeding-edge-toolchain"]
+	path = powerpc64le-power8-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/powerpc64le-power8-musl-bleeding-edge-toolchain.git
+[submodule "powerpc64le-power8-glibc-bleeding-edge-toolchain"]
+	path = powerpc64le-power8-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/powerpc64le-power8-glibc-bleeding-edge-toolchain.git
 [submodule "riscv64-lp64d-glibc-bleeding-edge-toolchain"]
 	path = riscv64-lp64d-glibc-bleeding-edge-toolchain
 	url = ssh://aur@aur.archlinux.org/riscv64-lp64d-glibc-bleeding-edge-toolchain.git
 [submodule "riscv64-lp64d-musl-bleeding-edge-toolchain"]
 	path = riscv64-lp64d-musl-bleeding-edge-toolchain
 	url = ssh://aur@aur.archlinux.org/riscv64-lp64d-musl-bleeding-edge-toolchain.git
+[submodule "s390x-z13-glibc-bleeding-edge-toolchain"]
+	path = s390x-z13-glibc-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/s390x-z13-glibc-bleeding-edge-toolchain.git
