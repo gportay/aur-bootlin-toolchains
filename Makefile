@@ -123,6 +123,9 @@ clean:
 .PHONY: cleanall
 cleanall:
 
+.PHONY: source
+source:
+
 .PHONY: copy-source
 copy-source:
 
@@ -249,6 +252,12 @@ cleanall: cleanall-$(1)-$(2)-$(3)
 cleanall-$(1)-$(2)-$(3):
 	rm -f $(1)-$(2)-$(3)-toolchain/$(1)--$(2)--$(3)-$$(RELEASE).tar.bz2
 	rm -f $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
+
+source: source-$(1)-$(2)-$(3)
+
+.PHONY: source-$(1)-$(2)-$(3)
+source-$(1)-$(2)-$(3):
+	curl -O https://toolchains.bootlin.com/downloads/releases/toolchains/$(1)/tarballs/$(1)--$(2)--$(3)-$$(RELEASE).tar.xz
 
 copy-source: copy-source-$(1)-$(2)-$(3)
 
