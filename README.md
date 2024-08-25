@@ -66,7 +66,7 @@ example):
 
 Finally, install the toolchain:
 
-	$ sudo pacman -U aarch64-glibc-stable-toolchain-2023.08-1-x86_64.pkg.tar.zst 
+	$ sudo pacman -U aarch64-glibc-stable-toolchain-2023.08-1-x86_64.pkg.tar.zst
 	[sudo] password for gportay: 
 	loading packages...
 	resolving dependencies...
@@ -92,7 +92,7 @@ Finally, install the toolchain:
 _Important_: Re-login to your user session, or source the profile script in
 every terminal to run the toolchain binaries without its absolute path:
 
-	$ source /etc/profile.d/aarch64-glibc-stable-toolchain.sh 
+	$ source /etc/profile.d/aarch64-glibc-stable-toolchain.sh
 
 Run the compiler:
 
