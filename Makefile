@@ -253,7 +253,7 @@ cleanall-$(1)-$(2)-$(3):
 copy-source: copy-source-$(1)-$(2)-$(3)
 
 .PHONY: copy-source-$(1)-$(2)-$(3)
-copy-source-$(1)-$(2)-$(3):
+copy-source-$(1)-$(2)-$(3): | $(1)-$(2)-$(3)-toolchain
 	cp -al $(1)--$(2)--$(3)-$$(RELEASE).tar.bz2 $(1)-$(2)-$(3)-toolchain/
 
 rm-work: rm-work-$(1)-$(2)-$(3)
