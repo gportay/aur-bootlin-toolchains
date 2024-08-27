@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc64le-power8-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64le-power8/tarballs/powerpc64le-power8--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc64le-power8/tarballs/powerpc64le-power8--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-powerpc64le-power8-glibc-stable-toolchain")
 install="hooks.install-powerpc64le-power8-glibc-stable-toolchain"
-sha256sums=('1224e21a64d551fa0e50aa4e1a2b684c2a3e2a395244c3771e82e7d92201359b'
+sha256sums=('8133b74614f880eb8b76730efee77b8fd281c982bfa2791b72c5f836a529530d'
             '93ac0eada47132bbb5d43def47d7f39f3dffe3d0ef3d7501c93aebafebc11302')
 
 build() {
-	cd "powerpc64le-power8--glibc--stable-2024.02-1"
+	cd "powerpc64le-power8--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/powerpc64le-power8-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc64le-power8--glibc--stable-2024.02-1"
+	cd "powerpc64le-power8--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/powerpc64le-power8-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc64le-power8-glibc-stable/"

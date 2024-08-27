@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=microblazeel-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/microblazeel/tarballs/microblazeel--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-microblazeel-uclibc-stable-toolchain")
 install="hooks.install-microblazeel-uclibc-stable-toolchain"
-sha256sums=('ce20fcbed964958860b1883a80a48829b3331d6a10abc7cff0522768707211b6'
+sha256sums=('49657597e55aa7d771cb4546c1d37d7ab9408b426d8c45f1bf61d90a53322a65'
             'ddcaeb171b8c190cc57cf099c2e6bcff04755d753de4ac3dfbfff4909a54c8f9')
 
 build() {
-	cd "microblazeel--uclibc--stable-2024.02-1"
+	cd "microblazeel--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/microblazeel-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--uclibc--stable-2024.02-1"
+	cd "microblazeel--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/microblazeel-uclibc-stable/"
 	cp -a * "$pkgdir/opt/microblazeel-uclibc-stable/"

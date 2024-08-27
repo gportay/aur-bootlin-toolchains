@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sh-sh4aeb-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4aeb/tarballs/sh-sh4aeb--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-sh-sh4aeb-glibc-stable-toolchain")
 install="hooks.install-sh-sh4aeb-glibc-stable-toolchain"
-sha256sums=('821a749fe873457740204146b3f70b061ddb572fee6ad63ebbf5e1c5ca1bd608'
+sha256sums=('07c14c3c9bdee411bd1d5c04cd2a1ff50dd98231f1fb648f5746b0d2fab81767'
             '57cb767f1c979d549c054b0c96655bdf72890c1cdbf5f43b26effeda253d4d73')
 
 build() {
-	cd "sh-sh4aeb--glibc--stable-2024.02-1"
+	cd "sh-sh4aeb--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/sh-sh4aeb-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4aeb--glibc--stable-2024.02-1"
+	cd "sh-sh4aeb--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/sh-sh4aeb-glibc-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4aeb-glibc-stable/"

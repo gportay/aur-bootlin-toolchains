@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=xtensa-lx60-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/xtensa-lx60/tarballs/xtensa-lx60--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-xtensa-lx60-uclibc-stable-toolchain")
 install="hooks.install-xtensa-lx60-uclibc-stable-toolchain"
-sha256sums=('e871ce555353a025b86d905ea3f5131dfbf95340bcda706facad070d82b997c1'
+sha256sums=('99f275b884895049a2d47812a94953199368da99f4bc2bd39869711006610c0e'
             '56cdf3c16ed0ccdf7a7ce5fc4cfbd1521bcabfba6a9b585cd1851584357fc287')
 
 build() {
-	cd "xtensa-lx60--uclibc--stable-2024.02-1"
+	cd "xtensa-lx60--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/xtensa-lx60-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "xtensa-lx60--uclibc--stable-2024.02-1"
+	cd "xtensa-lx60--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/xtensa-lx60-uclibc-stable/"
 	cp -a * "$pkgdir/opt/xtensa-lx60-uclibc-stable/"

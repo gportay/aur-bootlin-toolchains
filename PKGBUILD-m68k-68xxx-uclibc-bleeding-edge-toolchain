@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=m68k-68xxx-uclibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--uclibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/m68k-68xxx/tarballs/m68k-68xxx--uclibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-m68k-68xxx-uclibc-bleeding-edge-toolchain")
 install="hooks.install-m68k-68xxx-uclibc-bleeding-edge-toolchain"
-sha256sums=('2e0727f0ba9549ccb8abd7f7bd3f1be13b516e20665e1da4a8106a247a7fd334'
+sha256sums=('9d7b25be2a49f2c059ede1bc87487e0d23251b0f7376e3db9b2c61f0841e9014'
             '9c2ef64d2965139974340d45de186466d818210bd01be5f8783ed7ebb5ab25cc')
 
 build() {
-	cd "m68k-68xxx--uclibc--bleeding-edge-2024.02-1"
+	cd "m68k-68xxx--uclibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/m68k-68xxx-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-68xxx--uclibc--bleeding-edge-2024.02-1"
+	cd "m68k-68xxx--uclibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/m68k-68xxx-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-uclibc-bleeding-edge/"

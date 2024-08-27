@@ -1,0 +1,33 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=sparcv8-uclibc-bleeding-edge-toolchain
+pkgver=2024.05
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sparcv8/tarballs/sparcv8--uclibc--bleeding-edge-2024.05-1.tar.xz"
+        "profile.sh-sparcv8-uclibc-bleeding-edge-toolchain")
+install="hooks.install-sparcv8-uclibc-bleeding-edge-toolchain"
+sha256sums=('c74944737263acbabdbf7b646aa41dd6c96336d2dbbefdeebbba9866e1374a0a'
+            '44e1536d977e9cef541c00fe592c8648f7d868d1e294b2093e6831b6fa6b50ca')
+
+build() {
+	cd "sparcv8--uclibc--bleeding-edge-2024.05-1"
+
+	sh relocate-sdk.sh "/opt/sparcv8-uclibc-bleeding-edge"
+}
+
+package() {
+	options=(!strip)
+
+	cd "sparcv8--uclibc--bleeding-edge-2024.05-1"
+
+	mkdir -p "$pkgdir/opt/sparcv8-uclibc-bleeding-edge/"
+	cp -a * "$pkgdir/opt/sparcv8-uclibc-bleeding-edge/"
+	rm -f "$pkgdir/opt/sparcv8-uclibc-bleeding-edge/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-sparcv8-uclibc-bleeding-edge-toolchain" "$pkgdir/etc/profile.d/sparcv8-uclibc-bleeding-edge-toolchain.sh"
+}

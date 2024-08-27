@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=riscv32-ilp32d-glibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv32-ilp32d/tarballs/riscv32-ilp32d--glibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv32-ilp32d/tarballs/riscv32-ilp32d--glibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-riscv32-ilp32d-glibc-bleeding-edge-toolchain")
 install="hooks.install-riscv32-ilp32d-glibc-bleeding-edge-toolchain"
-sha256sums=('ae046c9e6616f6b33d82c0d581efb41c4c6428fa1c1345417c82533cc27fb86e'
+sha256sums=('944fb2719d8657f1c5ee359046caca25a2080fe3535e99cc9dca78c20973c6c8'
             'd9ca0f786339eb9e18d490a311e63196d48cbf1e297b70fb33326d6e2d6ffc5a')
 
 build() {
-	cd "riscv32-ilp32d--glibc--bleeding-edge-2024.02-1"
+	cd "riscv32-ilp32d--glibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/riscv32-ilp32d-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv32-ilp32d--glibc--bleeding-edge-2024.02-1"
+	cd "riscv32-ilp32d--glibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/riscv32-ilp32d-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/riscv32-ilp32d-glibc-bleeding-edge/"

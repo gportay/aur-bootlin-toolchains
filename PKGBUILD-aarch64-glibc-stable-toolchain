@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=aarch64-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-aarch64-glibc-stable-toolchain")
 install="hooks.install-aarch64-glibc-stable-toolchain"
-sha256sums=('30a7a7e8f1c7165ca0c6ad6a11403e94ea65144a3c0181c2fa1f619ab972f26f'
+sha256sums=('b0fad860eb94b503a56d66ca8b9ba06d2d4826943e37ebd1d7217423f6ea5bb2'
             'af9951235d2d10934f9f4c5162c2b9255495912adb1ab227668a35ade5594fa4')
 
 build() {
-	cd "aarch64--glibc--stable-2024.02-1"
+	cd "aarch64--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/aarch64-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "aarch64--glibc--stable-2024.02-1"
+	cd "aarch64--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/aarch64-glibc-stable/"
 	cp -a * "$pkgdir/opt/aarch64-glibc-stable/"

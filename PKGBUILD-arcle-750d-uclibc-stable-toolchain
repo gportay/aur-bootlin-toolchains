@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=arcle-750d-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-750d/tarballs/arcle-750d--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-arcle-750d-uclibc-stable-toolchain")
 install="hooks.install-arcle-750d-uclibc-stable-toolchain"
-sha256sums=('315da85c124833e012565ec0c4cfdb8a334a302d21ab1f4b1289837035dcfa40'
+sha256sums=('74b2afe4f915708e81d9b595396ff82fbc841f698a0b78d778a52cf7be668081'
             'b6b65525b90d5d366bb341ba12a5309817f4eb77a02ce41c8d3366366b7209db')
 
 build() {
-	cd "arcle-750d--uclibc--stable-2024.02-1"
+	cd "arcle-750d--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/arcle-750d-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-750d--uclibc--stable-2024.02-1"
+	cd "arcle-750d--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/arcle-750d-uclibc-stable/"
 	cp -a * "$pkgdir/opt/arcle-750d-uclibc-stable/"

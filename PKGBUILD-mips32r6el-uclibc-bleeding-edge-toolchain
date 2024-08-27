@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips32r6el-uclibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--uclibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--uclibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-mips32r6el-uclibc-bleeding-edge-toolchain")
 install="hooks.install-mips32r6el-uclibc-bleeding-edge-toolchain"
-sha256sums=('2a4296e6517a8dc18cdcc304c20834987c29bf994819209a1f30abff29761394'
+sha256sums=('adf63f7412d82e59de5bd19ea30068d205d7013c312af475d8b45656d20221ec'
             '6923772bb3eb91acaa7a15966065a0f40fa4717764316520aea5648c0dca6b13')
 
 build() {
-	cd "mips32r6el--uclibc--bleeding-edge-2024.02-1"
+	cd "mips32r6el--uclibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/mips32r6el-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32r6el--uclibc--bleeding-edge-2024.02-1"
+	cd "mips32r6el--uclibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/mips32r6el-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/mips32r6el-uclibc-bleeding-edge/"

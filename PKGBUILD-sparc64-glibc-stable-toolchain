@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sparc64-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sparc64/tarballs/sparc64--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sparc64/tarballs/sparc64--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-sparc64-glibc-stable-toolchain")
 install="hooks.install-sparc64-glibc-stable-toolchain"
-sha256sums=('b5b8056b85cf24e548de8b66919b1ddf59f3ba77446d23abd86f18f094a06eee'
+sha256sums=('29d1e6c0d45ab95edf33ff2ee77b27869669f476a23d76fef96f56f8d3cc6234'
             'a420bed8b165754c3b70632200486dfa9ad0948fc8d23bfc289164629182e302')
 
 build() {
-	cd "sparc64--glibc--stable-2024.02-1"
+	cd "sparc64--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/sparc64-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sparc64--glibc--stable-2024.02-1"
+	cd "sparc64--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/sparc64-glibc-stable/"
 	cp -a * "$pkgdir/opt/sparc64-glibc-stable/"

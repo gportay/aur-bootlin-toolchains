@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv6-eabihf-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--musl--stable-2024.05-1.tar.xz"
         "profile.sh-armv6-eabihf-musl-stable-toolchain")
 install="hooks.install-armv6-eabihf-musl-stable-toolchain"
-sha256sums=('2d91a0a9fb4cff3046943307c70054507ec12c43eedbeb95eb597cfee2d3b58d'
+sha256sums=('cc7444189685f9405636568a582395e4e2b95347f8be0e6d63ed4e2791ab9267'
             '5fbadb618df94e77bbd52eb407330d8f250caf89b54d5d5ccce3c8b45bc25ab9')
 
 build() {
-	cd "armv6-eabihf--musl--stable-2024.02-1"
+	cd "armv6-eabihf--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/armv6-eabihf-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv6-eabihf--musl--stable-2024.02-1"
+	cd "armv6-eabihf--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/armv6-eabihf-musl-stable/"
 	cp -a * "$pkgdir/opt/armv6-eabihf-musl-stable/"

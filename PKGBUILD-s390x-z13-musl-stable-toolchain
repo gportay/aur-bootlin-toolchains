@@ -1,0 +1,33 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=s390x-z13-musl-stable-toolchain
+pkgver=2024.05
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/s390x-z13/tarballs/s390x-z13--musl--stable-2024.05-1.tar.xz"
+        "profile.sh-s390x-z13-musl-stable-toolchain")
+install="hooks.install-s390x-z13-musl-stable-toolchain"
+sha256sums=('9dc280763cb2b18ea9417ffaf7fee2e24c9833033e730108138179a9887ef299'
+            '9edec06f8a2350149c5147b0390f38ba345401358e879740a61a09c070e7d692')
+
+build() {
+	cd "s390x-z13--musl--stable-2024.05-1"
+
+	sh relocate-sdk.sh "/opt/s390x-z13-musl-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "s390x-z13--musl--stable-2024.05-1"
+
+	mkdir -p "$pkgdir/opt/s390x-z13-musl-stable/"
+	cp -a * "$pkgdir/opt/s390x-z13-musl-stable/"
+	rm -f "$pkgdir/opt/s390x-z13-musl-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-s390x-z13-musl-stable-toolchain" "$pkgdir/etc/profile.d/s390x-z13-musl-stable-toolchain.sh"
+}

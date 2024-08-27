@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sh-sh4-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4/tarballs/sh-sh4--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4/tarballs/sh-sh4--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-sh-sh4-glibc-stable-toolchain")
 install="hooks.install-sh-sh4-glibc-stable-toolchain"
-sha256sums=('1519bf392ca9d29494976f5904d6d683dd74e739eccc09b4e3c90ddd65adadfb'
+sha256sums=('6290f90417b194c467cf432d9c012d4321827160407c5b4664a443910a54c7d8'
             '51a2e0bf0bf6b5bd3f1685a9c26e6aeeac83f6017cbf5a468b3276163bd2bda3')
 
 build() {
-	cd "sh-sh4--glibc--stable-2024.02-1"
+	cd "sh-sh4--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/sh-sh4-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4--glibc--stable-2024.02-1"
+	cd "sh-sh4--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/sh-sh4-glibc-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4-glibc-stable/"

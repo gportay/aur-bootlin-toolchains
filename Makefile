@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 #
 
-RELEASE ?= 2024.02-1
+RELEASE ?= 2024.05-1
 EXTRA_RELEASE ?=
 PREFIX ?= /srv/ftp
 
@@ -76,13 +76,12 @@ powerpc64-power8_uclibc = 0
 powerpc64le-power8_uclibc = 0
 powerpc64le-power8_uclibc = 0
 riscv32-ilp32d_glibc_stable = 0
-riscv32-ilp32d_uclibc = 0
-s390x-z13_musl = 0
 s390x-z13_uclibc = 0
 sh-sh4aeb_uclibc = 0
 sparc64_musl = 0
 sparc64_uclibc = 0
-sparcv8 = 0
+sparcv8_glibc = 0
+sparcv8_musl = 0
 xtensa-lx60_glibc = 0
 xtensa-lx60_musl = 0
 
@@ -244,13 +243,13 @@ clean-$(1)-$(2)-$(3):
 	rm -f PKGBUILD-$(1)-$(2)-$(3)-toolchain
 	rm -f hooks.install-$(1)-$(2)-$(3)-toolchain
 	rm -f profile.sh-$(1)-$(2)-$(3)-toolchain
-	rm -f $(1)--$(2)--$(3)-$$(RELEASE).tar.bz2
+	rm -f $(1)--$(2)--$(3)-$$(RELEASE).tar.xz
 
 cleanall: cleanall-$(1)-$(2)-$(3)
 
 .PHONY: cleanall-$(1)-$(2)-$(3)
 cleanall-$(1)-$(2)-$(3):
-	rm -f $(1)-$(2)-$(3)-toolchain/$(1)--$(2)--$(3)-$$(RELEASE).tar.bz2
+	rm -f $(1)-$(2)-$(3)-toolchain/$(1)--$(2)--$(3)-$$(RELEASE).tar.xz
 	rm -f $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 
 source: source-$(1)-$(2)-$(3)
@@ -263,7 +262,7 @@ copy-source: copy-source-$(1)-$(2)-$(3)
 
 .PHONY: copy-source-$(1)-$(2)-$(3)
 copy-source-$(1)-$(2)-$(3): | $(1)-$(2)-$(3)-toolchain
-	cp -al $(1)--$(2)--$(3)-$$(RELEASE).tar.bz2 $(1)-$(2)-$(3)-toolchain/
+	cp -al $(1)--$(2)--$(3)-$$(RELEASE).tar.xz $(1)-$(2)-$(3)-toolchain/
 
 rm-work: rm-work-$(1)-$(2)-$(3)
 

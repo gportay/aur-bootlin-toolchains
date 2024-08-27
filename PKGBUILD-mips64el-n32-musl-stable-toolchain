@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips64el-n32-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64el-n32/tarballs/mips64el-n32--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips64el-n32/tarballs/mips64el-n32--musl--stable-2024.05-1.tar.xz"
         "profile.sh-mips64el-n32-musl-stable-toolchain")
 install="hooks.install-mips64el-n32-musl-stable-toolchain"
-sha256sums=('70c2a720c018bba0384e9aae147cfa706141b6918da11b09fbee16178473e769'
+sha256sums=('d620b75ec5a05c0d76b132200e69c75c308c582696d616036d7b29dae21b730f'
             '33e05e73ec61df6794ac407c35b6ab9bd0b85e730d4c55cdee86d0744095e5d1')
 
 build() {
-	cd "mips64el-n32--musl--stable-2024.02-1"
+	cd "mips64el-n32--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/mips64el-n32-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips64el-n32--musl--stable-2024.02-1"
+	cd "mips64el-n32--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/mips64el-n32-musl-stable/"
 	cp -a * "$pkgdir/opt/mips64el-n32-musl-stable/"

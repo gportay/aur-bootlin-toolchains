@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-i686-glibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--glibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--glibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-x86-i686-glibc-bleeding-edge-toolchain")
 install="hooks.install-x86-i686-glibc-bleeding-edge-toolchain"
-sha256sums=('52df822a10c09469ab6231753f306b668163bfdfe492db209b3a06e3a4e7aa05'
+sha256sums=('81115a9b098b86c5ff37f3adac265d55c572fef1936378991995c285d9a65847'
             'ca0b6ed25a2a96d511616647c4b3eb626c62be1efd42026384371f95c3075bbf')
 
 build() {
-	cd "x86-i686--glibc--bleeding-edge-2024.02-1"
+	cd "x86-i686--glibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/x86-i686-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-i686--glibc--bleeding-edge-2024.02-1"
+	cd "x86-i686--glibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/x86-i686-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-i686-glibc-bleeding-edge/"

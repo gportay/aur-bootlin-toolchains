@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-i686-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--musl--stable-2024.05-1.tar.xz"
         "profile.sh-x86-i686-musl-stable-toolchain")
 install="hooks.install-x86-i686-musl-stable-toolchain"
-sha256sums=('e9cfe8d65170dde92759e0e425c425c15439190711fdd66999cdb6f5551653a3'
+sha256sums=('f16c0f2cff527bdf9753135d5e22dfe81390f3646c34d05d951d23f76fbe06e9'
             '500b228c50385d13e218e115cb093cbe9ed40e0610470cfe2107ee3f33fbd36b')
 
 build() {
-	cd "x86-i686--musl--stable-2024.02-1"
+	cd "x86-i686--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/x86-i686-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-i686--musl--stable-2024.02-1"
+	cd "x86-i686--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/x86-i686-musl-stable/"
 	cp -a * "$pkgdir/opt/x86-i686-musl-stable/"

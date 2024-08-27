@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv7m-uclibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7m/tarballs/armv7m--uclibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv7m/tarballs/armv7m--uclibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-armv7m-uclibc-bleeding-edge-toolchain")
 install="hooks.install-armv7m-uclibc-bleeding-edge-toolchain"
-sha256sums=('eebbdae08ba9ae84f0eccf2154b7c295fa60c787f6767015ac2b2df113809cec'
+sha256sums=('fbab243d632e5dcaa56a9468e0a7f6afa52ebc15edb33f70a7060194cff66401'
             '161e0987f4850237a08ae435aae76bdd80ebee34a2587eccfb988113e5d6a5d7')
 
 build() {
-	cd "armv7m--uclibc--bleeding-edge-2024.02-1"
+	cd "armv7m--uclibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/armv7m-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv7m--uclibc--bleeding-edge-2024.02-1"
+	cd "armv7m--uclibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/armv7m-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/armv7m-uclibc-bleeding-edge/"

@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=openrisc-glibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--glibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--glibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-openrisc-glibc-bleeding-edge-toolchain")
 install="hooks.install-openrisc-glibc-bleeding-edge-toolchain"
-sha256sums=('7af2336389d5d64c48722d257fa7ad10e83ce1c25ac49aaa5fdcc70bd09220bf'
+sha256sums=('0de17cd13642f71f112d086c1df4b34670440ceb459478a0f3d55007945633ca'
             '7da05041b48f9e58edcd48d6f55a6fa6375d72c6801d4268cbb5d41d49eaccce')
 
 build() {
-	cd "openrisc--glibc--bleeding-edge-2024.02-1"
+	cd "openrisc--glibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/openrisc-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--glibc--bleeding-edge-2024.02-1"
+	cd "openrisc--glibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/openrisc-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/openrisc-glibc-bleeding-edge/"

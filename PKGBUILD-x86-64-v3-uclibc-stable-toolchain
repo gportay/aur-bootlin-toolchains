@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-v3-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v3/tarballs/x86-64-v3--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-v3/tarballs/x86-64-v3--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-x86-64-v3-uclibc-stable-toolchain")
 install="hooks.install-x86-64-v3-uclibc-stable-toolchain"
-sha256sums=('830b80a76fee9d1c4eac1b5d0351c3543bf2ebcc8f47de2163cbe85dec83143d'
+sha256sums=('6bd8b7ad75da84eb0f4f9da277584e79906c0a24dfa30e908cc20847f37a23fd'
             '8662f4a8800ff8be427f7895e8ecd2ed8b9cb552867559d508527210846ab4b5')
 
 build() {
-	cd "x86-64-v3--uclibc--stable-2024.02-1"
+	cd "x86-64-v3--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-v3-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v3--uclibc--stable-2024.02-1"
+	cd "x86-64-v3--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-v3-uclibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-v3-uclibc-stable/"

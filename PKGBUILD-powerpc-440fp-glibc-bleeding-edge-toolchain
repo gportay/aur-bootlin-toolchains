@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-440fp-glibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--glibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--glibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-powerpc-440fp-glibc-bleeding-edge-toolchain")
 install="hooks.install-powerpc-440fp-glibc-bleeding-edge-toolchain"
-sha256sums=('9e5601beacf2b4d96f7ed12851c722b8f83beaa9da8f7ae7734816fca2d4da1e'
+sha256sums=('58efcbb6133dcc070332b570ee491840c8cf386a75180e7bf56c403549d61699'
             '2bde8863f1740108e851676867eeab92b5c3014f76591b8d21b59760f0a9f7e0')
 
 build() {
-	cd "powerpc-440fp--glibc--bleeding-edge-2024.02-1"
+	cd "powerpc-440fp--glibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-440fp-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-440fp--glibc--bleeding-edge-2024.02-1"
+	cd "powerpc-440fp--glibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-440fp-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc-440fp-glibc-bleeding-edge/"

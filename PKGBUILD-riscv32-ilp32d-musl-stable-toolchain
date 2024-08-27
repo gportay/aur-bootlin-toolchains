@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=riscv32-ilp32d-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv32-ilp32d/tarballs/riscv32-ilp32d--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv32-ilp32d/tarballs/riscv32-ilp32d--musl--stable-2024.05-1.tar.xz"
         "profile.sh-riscv32-ilp32d-musl-stable-toolchain")
 install="hooks.install-riscv32-ilp32d-musl-stable-toolchain"
-sha256sums=('b758a7576b5ffb62a6453264df53a0b28d417d66fb17add5f8858987f28c0eb3'
+sha256sums=('bbf26ec29272814da1eb5eb97339ed36d2dda66655c4c3612951e3cfb2b842ec'
             '62163e40cbeecd74c94e5a8d941d1be6b94f68a6ffc129c5b27797538990c750')
 
 build() {
-	cd "riscv32-ilp32d--musl--stable-2024.02-1"
+	cd "riscv32-ilp32d--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/riscv32-ilp32d-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv32-ilp32d--musl--stable-2024.02-1"
+	cd "riscv32-ilp32d--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/riscv32-ilp32d-musl-stable/"
 	cp -a * "$pkgdir/opt/riscv32-ilp32d-musl-stable/"

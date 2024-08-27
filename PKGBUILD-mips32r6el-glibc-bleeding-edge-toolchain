@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips32r6el-glibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--glibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--glibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-mips32r6el-glibc-bleeding-edge-toolchain")
 install="hooks.install-mips32r6el-glibc-bleeding-edge-toolchain"
-sha256sums=('c345005e9fedc78ace9c5478882f094769d056979f85f432ee763837407bdd09'
+sha256sums=('0b374f870964ec8158beddf478beeec48a4ce09fa25a4a9c51c20a82839b3429'
             '8dca9e1243d69bc70ce37ae804a24417f5b82802e2ad44f7609e5648f85b8c93')
 
 build() {
-	cd "mips32r6el--glibc--bleeding-edge-2024.02-1"
+	cd "mips32r6el--glibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/mips32r6el-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32r6el--glibc--bleeding-edge-2024.02-1"
+	cd "mips32r6el--glibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/mips32r6el-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/mips32r6el-glibc-bleeding-edge/"

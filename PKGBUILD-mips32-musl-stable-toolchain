@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips32-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32/tarballs/mips32--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32/tarballs/mips32--musl--stable-2024.05-1.tar.xz"
         "profile.sh-mips32-musl-stable-toolchain")
 install="hooks.install-mips32-musl-stable-toolchain"
-sha256sums=('a0fde56bf905b9057aed8688b8e60a93fcdca1097bcc4748f24b23e26c12f462'
+sha256sums=('f553aec760bfc9f452f1ab071b25b84fd36ed56ab4c75149b351144561b4e0b5'
             '08fd4af20feaaa4124bbebe5cc8716fe0f77f236c4e5de1143d7ef2c14949c72')
 
 build() {
-	cd "mips32--musl--stable-2024.02-1"
+	cd "mips32--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/mips32-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32--musl--stable-2024.02-1"
+	cd "mips32--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/mips32-musl-stable/"
 	cp -a * "$pkgdir/opt/mips32-musl-stable/"

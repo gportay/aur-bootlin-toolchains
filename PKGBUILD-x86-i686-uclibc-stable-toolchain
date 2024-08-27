@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-i686-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-x86-i686-uclibc-stable-toolchain")
 install="hooks.install-x86-i686-uclibc-stable-toolchain"
-sha256sums=('6ffa7ea5d610bfd25d16769130559be1fc1c00dd5b81ebc4ec25d05e5dcd26c2'
+sha256sums=('e240d983717e03a8ea7c5ffba71077b555f05f40694f177e23756d2a47656599'
             'ea7519c4a297ae2cf1e0b5af98f572ab1d2560ac8037bfdbe70ac4c8512fb20b')
 
 build() {
-	cd "x86-i686--uclibc--stable-2024.02-1"
+	cd "x86-i686--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/x86-i686-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-i686--uclibc--stable-2024.02-1"
+	cd "x86-i686--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/x86-i686-uclibc-stable/"
 	cp -a * "$pkgdir/opt/x86-i686-uclibc-stable/"

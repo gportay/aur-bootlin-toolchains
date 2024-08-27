@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-i686-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-i686/tarballs/x86-i686--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-x86-i686-glibc-stable-toolchain")
 install="hooks.install-x86-i686-glibc-stable-toolchain"
-sha256sums=('3341c76890fa04873e0cf56b921a54e046d63d8ea8ecf16e82fb66a1b81a9695'
+sha256sums=('023e4f03cd212b5545c4c184238693b61b40fa36d257b84546100a92ea2c1d8b'
             'fd1af5138b1dce70a09d5ada62323bc588692ad36a46e8c77ae2e5901820d862')
 
 build() {
-	cd "x86-i686--glibc--stable-2024.02-1"
+	cd "x86-i686--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/x86-i686-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-i686--glibc--stable-2024.02-1"
+	cd "x86-i686--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/x86-i686-glibc-stable/"
 	cp -a * "$pkgdir/opt/x86-i686-glibc-stable/"

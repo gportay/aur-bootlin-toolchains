@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armebv7-eabihf-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armebv7-eabihf/tarballs/armebv7-eabihf--musl--stable-2024.05-1.tar.xz"
         "profile.sh-armebv7-eabihf-musl-stable-toolchain")
 install="hooks.install-armebv7-eabihf-musl-stable-toolchain"
-sha256sums=('6ee263a880819cf629f3ace5c2da9174ab19d1bdf4be59d9ffc6cc52b7693bc8'
+sha256sums=('c804e2e963fc21db22a9d4611089e3b207937c63f95a87de62c4e789eff79a56'
             'ef31139a86bf682d0730e4172c7f53fb454e99ccbf967be10f155e65dfa4e06d')
 
 build() {
-	cd "armebv7-eabihf--musl--stable-2024.02-1"
+	cd "armebv7-eabihf--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/armebv7-eabihf-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armebv7-eabihf--musl--stable-2024.02-1"
+	cd "armebv7-eabihf--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/armebv7-eabihf-musl-stable/"
 	cp -a * "$pkgdir/opt/armebv7-eabihf-musl-stable/"

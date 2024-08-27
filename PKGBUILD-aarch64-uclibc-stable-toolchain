@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=aarch64-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/aarch64/tarballs/aarch64--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-aarch64-uclibc-stable-toolchain")
 install="hooks.install-aarch64-uclibc-stable-toolchain"
-sha256sums=('de74a7fd974a5601418a60da645b433df6fd7773dda124a10d860c7f586e5a9d'
+sha256sums=('748de907a7b601490cbc6bdc816d31127fab6937c831b5c5d21d7f70decf15fe'
             '2d4eb9bc5446f3d9d73c2e7b4f98db7ee8c450e71cdc1213005fadf3dbdec694')
 
 build() {
-	cd "aarch64--uclibc--stable-2024.02-1"
+	cd "aarch64--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/aarch64-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "aarch64--uclibc--stable-2024.02-1"
+	cd "aarch64--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/aarch64-uclibc-stable/"
 	cp -a * "$pkgdir/opt/aarch64-uclibc-stable/"

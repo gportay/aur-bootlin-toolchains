@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=openrisc-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-openrisc-uclibc-stable-toolchain")
 install="hooks.install-openrisc-uclibc-stable-toolchain"
-sha256sums=('e885e4bdcc73eeda5a18689abecadbf6686518c049e9c785c7485d80ea74d3dd'
+sha256sums=('51527b6a9e2063db756d836e250866783bcdfb40ab0f122d6d65c7401806cc44'
             '874b196f5bc421f72e53fea5d765ff4375b3f22f6cee55dc2bc7047b5bf9490d')
 
 build() {
-	cd "openrisc--uclibc--stable-2024.02-1"
+	cd "openrisc--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/openrisc-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--uclibc--stable-2024.02-1"
+	cd "openrisc--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/openrisc-uclibc-stable/"
 	cp -a * "$pkgdir/opt/openrisc-uclibc-stable/"

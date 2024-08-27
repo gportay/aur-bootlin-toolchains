@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=openrisc-uclibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--uclibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--uclibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-openrisc-uclibc-bleeding-edge-toolchain")
 install="hooks.install-openrisc-uclibc-bleeding-edge-toolchain"
-sha256sums=('2d9c293c1123c30e813414610a4d060bcdef6461c82e258d405011be38fda6f6'
+sha256sums=('e79e8c669368cc2dfbccb4f6080491b06e6d2d8851f73e0c849e066821ccbb06'
             '3048af5022f9186ab4a85977f6373c1bc7050f20574d0276c8e8cc4fd990aa40')
 
 build() {
-	cd "openrisc--uclibc--bleeding-edge-2024.02-1"
+	cd "openrisc--uclibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/openrisc-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--uclibc--bleeding-edge-2024.02-1"
+	cd "openrisc--uclibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/openrisc-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/openrisc-uclibc-bleeding-edge/"

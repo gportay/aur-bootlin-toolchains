@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=mips32r6el-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/mips32r6el/tarballs/mips32r6el--musl--stable-2024.05-1.tar.xz"
         "profile.sh-mips32r6el-musl-stable-toolchain")
 install="hooks.install-mips32r6el-musl-stable-toolchain"
-sha256sums=('d25a9efb1bf06a845995de0bc5d24e8417ad538b8b68f12c02bc1b9aadabc9d7'
+sha256sums=('fd5b48ebbdd220b517f179f609bbd98895c65f3d152eadacc4137e51a9bbcd6f'
             'cc777f7e633915f728eea5a68fb3fa0681d3c6945c6a86d8473e3eaf886a2e11')
 
 build() {
-	cd "mips32r6el--musl--stable-2024.02-1"
+	cd "mips32r6el--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/mips32r6el-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32r6el--musl--stable-2024.02-1"
+	cd "mips32r6el--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/mips32r6el-musl-stable/"
 	cp -a * "$pkgdir/opt/mips32r6el-musl-stable/"

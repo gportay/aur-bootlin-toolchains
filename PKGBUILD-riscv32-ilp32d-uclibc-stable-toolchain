@@ -1,0 +1,33 @@
+# Maintainer: Gaël PORTAY <gael.portay@gmail.com>
+
+pkgname=riscv32-ilp32d-uclibc-stable-toolchain
+pkgver=2024.05
+pkgrel=1
+pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
+arch=("x86_64")
+url="https://toolchains.bootlin.com/"
+license=("GPL")
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/riscv32-ilp32d/tarballs/riscv32-ilp32d--uclibc--stable-2024.05-1.tar.xz"
+        "profile.sh-riscv32-ilp32d-uclibc-stable-toolchain")
+install="hooks.install-riscv32-ilp32d-uclibc-stable-toolchain"
+sha256sums=('4c74eb1062805f1e28ccc2aee7c006e55823a780eae84c81d5b58433361b4f11'
+            'dc82cab3200a561a4c77dc0141618ac7b4f1808ed83f9a208f88afdd0cbe2f78')
+
+build() {
+	cd "riscv32-ilp32d--uclibc--stable-2024.05-1"
+
+	sh relocate-sdk.sh "/opt/riscv32-ilp32d-uclibc-stable"
+}
+
+package() {
+	options=(!strip)
+
+	cd "riscv32-ilp32d--uclibc--stable-2024.05-1"
+
+	mkdir -p "$pkgdir/opt/riscv32-ilp32d-uclibc-stable/"
+	cp -a * "$pkgdir/opt/riscv32-ilp32d-uclibc-stable/"
+	rm -f "$pkgdir/opt/riscv32-ilp32d-uclibc-stable/{buildroot.config,relocate-sdk.sh,summary.csv,share/buildroot/sdk-location}"
+
+	mkdir -p "$pkgdir/etc/profile.d/"
+	install -m0644 "$srcdir/profile.sh-riscv32-ilp32d-uclibc-stable-toolchain" "$pkgdir/etc/profile.d/riscv32-ilp32d-uclibc-stable-toolchain.sh"
+}

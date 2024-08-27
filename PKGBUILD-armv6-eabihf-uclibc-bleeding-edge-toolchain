@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv6-eabihf-uclibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--uclibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv6-eabihf/tarballs/armv6-eabihf--uclibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-armv6-eabihf-uclibc-bleeding-edge-toolchain")
 install="hooks.install-armv6-eabihf-uclibc-bleeding-edge-toolchain"
-sha256sums=('3fcc8fdf8eaa94ac48f3d8a51484904829c665a018d8a8ef8ae9491382f944f9'
+sha256sums=('ba481ea8b2631871cdddc9ff9600cca3e7f4bdd558602ba936563ddd58039f8f'
             '160f11eb6b6123b8b2cd6e608bf6102cbecaa37bf564fe5dc8d050b5ce323d17')
 
 build() {
-	cd "armv6-eabihf--uclibc--bleeding-edge-2024.02-1"
+	cd "armv6-eabihf--uclibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/armv6-eabihf-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv6-eabihf--uclibc--bleeding-edge-2024.02-1"
+	cd "armv6-eabihf--uclibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/armv6-eabihf-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/armv6-eabihf-uclibc-bleeding-edge/"

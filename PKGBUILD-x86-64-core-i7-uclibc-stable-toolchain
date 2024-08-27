@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=x86-64-core-i7-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/x86-64-core-i7/tarballs/x86-64-core-i7--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-x86-64-core-i7-uclibc-stable-toolchain")
 install="hooks.install-x86-64-core-i7-uclibc-stable-toolchain"
-sha256sums=('7af3cb11a74bd85878be6a0c7922ae4e71d843b49d3874ef2a0821f0f1c08681'
+sha256sums=('4c4a8ec05711f2e902b0cea50b29a6f536a0f184651ebe03fadcd8aa5febe11c'
             'f790f49b489bbb025fd1779bfc31b1f43bb33635f358902aeb4505a184ee8ff1')
 
 build() {
-	cd "x86-64-core-i7--uclibc--stable-2024.02-1"
+	cd "x86-64-core-i7--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/x86-64-core-i7-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-core-i7--uclibc--stable-2024.02-1"
+	cd "x86-64-core-i7--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/x86-64-core-i7-uclibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-core-i7-uclibc-stable/"

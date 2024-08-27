@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=s390x-z13-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/s390x-z13/tarballs/s390x-z13--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/s390x-z13/tarballs/s390x-z13--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-s390x-z13-glibc-stable-toolchain")
 install="hooks.install-s390x-z13-glibc-stable-toolchain"
-sha256sums=('485d6abeb924810228a6d7c6c503e5f724a049a6e14b150c888b33bb9970e14e'
+sha256sums=('b37ed02693a370f28434c34655c64bcb96dc0d428a92ddbc99feb5608bcf64a1'
             '00a1644dc735a6d7826fe66d3269e42aaa71d19d998c3797ccb7c855f0b5a1d8')
 
 build() {
-	cd "s390x-z13--glibc--stable-2024.02-1"
+	cd "s390x-z13--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/s390x-z13-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "s390x-z13--glibc--stable-2024.02-1"
+	cd "s390x-z13--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/s390x-z13-glibc-stable/"
 	cp -a * "$pkgdir/opt/s390x-z13-glibc-stable/"

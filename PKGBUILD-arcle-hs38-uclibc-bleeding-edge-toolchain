@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=arcle-hs38-uclibc-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--uclibc--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/arcle-hs38/tarballs/arcle-hs38--uclibc--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-arcle-hs38-uclibc-bleeding-edge-toolchain")
 install="hooks.install-arcle-hs38-uclibc-bleeding-edge-toolchain"
-sha256sums=('2729a47b36989dc95346d31934dcb358f240075dc838c35ccac075f67322ab64'
+sha256sums=('38578d0503f123d3eb94afda435a7fa170337810c290e433f119f609856098a8'
             '58b22b164db13e3905ab5c7a26cceede1c4b556445eeb74c685397a572949887')
 
 build() {
-	cd "arcle-hs38--uclibc--bleeding-edge-2024.02-1"
+	cd "arcle-hs38--uclibc--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/arcle-hs38-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-hs38--uclibc--bleeding-edge-2024.02-1"
+	cd "arcle-hs38--uclibc--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/arcle-hs38-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/arcle-hs38-uclibc-bleeding-edge/"

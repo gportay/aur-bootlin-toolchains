@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=openrisc-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-openrisc-glibc-stable-toolchain")
 install="hooks.install-openrisc-glibc-stable-toolchain"
-sha256sums=('139498b50ef4684c881be2e266c5de527735eca2e327d272e9ed5c34fd35c147'
+sha256sums=('a6e06a72285ca8dc9974f2060cb79aa85e0a1388553871a7c48785a077cbbe2f'
             '68f940b1bd41a6cd7c5df64f0373c77f9c66a37270059bd7dc49c54671235ca3')
 
 build() {
-	cd "openrisc--glibc--stable-2024.02-1"
+	cd "openrisc--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/openrisc-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--glibc--stable-2024.02-1"
+	cd "openrisc--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/openrisc-glibc-stable/"
 	cp -a * "$pkgdir/opt/openrisc-glibc-stable/"

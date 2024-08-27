@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=openrisc-musl-bleeding-edge-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--musl--bleeding-edge-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/openrisc/tarballs/openrisc--musl--bleeding-edge-2024.05-1.tar.xz"
         "profile.sh-openrisc-musl-bleeding-edge-toolchain")
 install="hooks.install-openrisc-musl-bleeding-edge-toolchain"
-sha256sums=('02abf22a8620893cc974038ac9401c2c74eb39f2a549a20939f460d694bf984c'
+sha256sums=('5765a9fd73d4b2fa8bb4fd0d94b8ee8b88307684182ed62e55e0775ecdcbf09c'
             '7f562af2946cb0dc7e2dc9326b0be0b5d9c4c48e68b1cb40def525f02f987141')
 
 build() {
-	cd "openrisc--musl--bleeding-edge-2024.02-1"
+	cd "openrisc--musl--bleeding-edge-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/openrisc-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--musl--bleeding-edge-2024.02-1"
+	cd "openrisc--musl--bleeding-edge-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/openrisc-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/openrisc-musl-bleeding-edge/"

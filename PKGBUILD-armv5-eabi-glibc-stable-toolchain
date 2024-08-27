@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=armv5-eabi-glibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv5-eabi/tarballs/armv5-eabi--glibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/armv5-eabi/tarballs/armv5-eabi--glibc--stable-2024.05-1.tar.xz"
         "profile.sh-armv5-eabi-glibc-stable-toolchain")
 install="hooks.install-armv5-eabi-glibc-stable-toolchain"
-sha256sums=('9c43357d0eb79ba3f1aab8f020bdc673d24af0a44e2825c19eee2917308bc47e'
+sha256sums=('13f2bea0b06fe560fe60d199cd9d3fb1f20e2335bcc79b90c5130c3916a3ed92'
             'ceb603e41e1640baee5953acbd82769428997fbc93438f6e756dc27ec3d6c0a5')
 
 build() {
-	cd "armv5-eabi--glibc--stable-2024.02-1"
+	cd "armv5-eabi--glibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/armv5-eabi-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv5-eabi--glibc--stable-2024.02-1"
+	cd "armv5-eabi--glibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/armv5-eabi-glibc-stable/"
 	cp -a * "$pkgdir/opt/armv5-eabi-glibc-stable/"

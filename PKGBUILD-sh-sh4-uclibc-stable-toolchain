@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=sh-sh4-uclibc-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4/tarballs/sh-sh4--uclibc--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/sh-sh4/tarballs/sh-sh4--uclibc--stable-2024.05-1.tar.xz"
         "profile.sh-sh-sh4-uclibc-stable-toolchain")
 install="hooks.install-sh-sh4-uclibc-stable-toolchain"
-sha256sums=('de811fc1f294fda4bec6c84131f9320277b87687e04a50200a02d9af3d743ebb'
+sha256sums=('3433820a3ca8296d5166fbe0d8bcc722536fa9d71b3631667bb5039a61fbc039'
             '2d664613108b32b066ed5c88b950c218d4b5773b8efa7afd2a142bcdb5de997d')
 
 build() {
-	cd "sh-sh4--uclibc--stable-2024.02-1"
+	cd "sh-sh4--uclibc--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/sh-sh4-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4--uclibc--stable-2024.02-1"
+	cd "sh-sh4--uclibc--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/sh-sh4-uclibc-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4-uclibc-stable/"

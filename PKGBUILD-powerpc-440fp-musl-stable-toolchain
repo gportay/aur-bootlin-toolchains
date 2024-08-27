@@ -1,20 +1,20 @@
 # Maintainer: Gaël PORTAY <gael.portay@gmail.com>
 
 pkgname=powerpc-440fp-musl-stable-toolchain
-pkgver=2024.02
+pkgver=2024.05
 pkgrel=1
 pkgdesc="Ready-to-use cross-compilation toolchain provided by bootlin.com"
 arch=("x86_64")
 url="https://toolchains.bootlin.com/"
 license=("GPL")
-source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--musl--stable-2024.02-1.tar.bz2"
+source=("https://toolchains.bootlin.com/downloads/releases/toolchains/powerpc-440fp/tarballs/powerpc-440fp--musl--stable-2024.05-1.tar.xz"
         "profile.sh-powerpc-440fp-musl-stable-toolchain")
 install="hooks.install-powerpc-440fp-musl-stable-toolchain"
-sha256sums=('20647de8d019a15a92126b0be5c24e16b61b92730c620b156e11989579dc3ea8'
+sha256sums=('54eb3b651655b426c81ea7453470510a62e97356418f4ca748a35a7c0d225b52'
             'df4f5d0b5e9585e623aa133aaa8d1cc326d06f248fa19fcdb0af2a705baf7eb2')
 
 build() {
-	cd "powerpc-440fp--musl--stable-2024.02-1"
+	cd "powerpc-440fp--musl--stable-2024.05-1"
 
 	sh relocate-sdk.sh "/opt/powerpc-440fp-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-440fp--musl--stable-2024.02-1"
+	cd "powerpc-440fp--musl--stable-2024.05-1"
 
 	mkdir -p "$pkgdir/opt/powerpc-440fp-musl-stable/"
 	cp -a * "$pkgdir/opt/powerpc-440fp-musl-stable/"
