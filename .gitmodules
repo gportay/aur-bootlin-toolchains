@@ -43,3 +43,6 @@
 [submodule "s390x-z13-glibc-bleeding-edge-toolchain"]
 	path = s390x-z13-glibc-bleeding-edge-toolchain
 	url = ssh://aur@aur.archlinux.org/s390x-z13-glibc-bleeding-edge-toolchain.git
+[submodule "s390x-z13-musl-bleeding-edge-toolchain"]
+	path = s390x-z13-musl-bleeding-edge-toolchain
+	url = ssh://aur@aur.archlinux.org/s390x-z13-musl-bleeding-edge-toolchain.git
