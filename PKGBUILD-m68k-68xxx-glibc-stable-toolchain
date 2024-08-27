@@ -14,7 +14,7 @@ sha256sums=('77f22dcafc78cde84e6441bd450aa3edb628b8f36ef6c1a160c942f38b38e5ea'
             'f9ea4aa1c3189105f9df52d24ae56e2076d26de22204bd4d61b94364c04de8b2')
 
 build() {
-	cd "m68k-68xxx--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/m68k-68xxx-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-68xxx--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/m68k-68xxx-glibc-stable/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-glibc-stable/"

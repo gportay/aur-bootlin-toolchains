@@ -14,7 +14,7 @@ sha256sums=('38578d0503f123d3eb94afda435a7fa170337810c290e433f119f609856098a8'
             '58b22b164db13e3905ab5c7a26cceede1c4b556445eeb74c685397a572949887')
 
 build() {
-	cd "arcle-hs38--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/arcle-hs38-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-hs38--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/arcle-hs38-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/arcle-hs38-uclibc-bleeding-edge/"

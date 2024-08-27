@@ -14,7 +14,7 @@ sha256sums=('b958ab84b59f2993afa5b2aba4b24b42c95826ae9ea01f04cf6b2dfbbb2e8a6d'
             '8676611243aaabb6ffbc4c39fdb15edcfdbe2627372c2cf20b2d3380d5e161a4')
 
 build() {
-	cd "x86-i686--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/x86-i686-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-i686--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/x86-i686-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-i686-uclibc-bleeding-edge/"

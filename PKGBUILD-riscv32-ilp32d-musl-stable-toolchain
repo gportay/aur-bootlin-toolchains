@@ -14,7 +14,7 @@ sha256sums=('bbf26ec29272814da1eb5eb97339ed36d2dda66655c4c3612951e3cfb2b842ec'
             '62163e40cbeecd74c94e5a8d941d1be6b94f68a6ffc129c5b27797538990c750')
 
 build() {
-	cd "riscv32-ilp32d--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/riscv32-ilp32d-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv32-ilp32d--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/riscv32-ilp32d-musl-stable/"
 	cp -a * "$pkgdir/opt/riscv32-ilp32d-musl-stable/"

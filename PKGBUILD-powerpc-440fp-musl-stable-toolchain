@@ -14,7 +14,7 @@ sha256sums=('54eb3b651655b426c81ea7453470510a62e97356418f4ca748a35a7c0d225b52'
             'df4f5d0b5e9585e623aa133aaa8d1cc326d06f248fa19fcdb0af2a705baf7eb2')
 
 build() {
-	cd "powerpc-440fp--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/powerpc-440fp-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-440fp--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/powerpc-440fp-musl-stable/"
 	cp -a * "$pkgdir/opt/powerpc-440fp-musl-stable/"

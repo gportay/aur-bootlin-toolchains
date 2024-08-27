@@ -14,7 +14,7 @@ sha256sums=('cdc2a9e3f69aa32df36580151d51d359e98147a604745f9927dc0314e5d7dd39'
             '5173f8bf8884396b4f0c49e4a531bf2db9642d6e6dc2be6d468dc352c12ccfbd')
 
 build() {
-	cd "openrisc--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/openrisc-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/openrisc-musl-stable/"
 	cp -a * "$pkgdir/opt/openrisc-musl-stable/"

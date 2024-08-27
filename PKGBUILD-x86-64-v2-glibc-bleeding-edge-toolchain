@@ -14,7 +14,7 @@ sha256sums=('809974fbfa1231e87ce40a81c6b2f78dad0cf4b0a61a6e9480a1c453f3983471'
             'd376e1522d5e987187358ea247a6451689ecb0c01d2d1d1f8e06948cab37d960')
 
 build() {
-	cd "x86-64-v2--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/x86-64-v2-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v2--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/x86-64-v2-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-v2-glibc-bleeding-edge/"

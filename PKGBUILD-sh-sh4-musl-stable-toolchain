@@ -14,7 +14,7 @@ sha256sums=('acec95cc0b26cc82de58bd5aee7472511563cb0145ed2f74a72344070216cc39'
             '43f47f8d5d460f0563574971b843ab60101d5f1270ef7685a83a4adcd16e8a9f')
 
 build() {
-	cd "sh-sh4--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/sh-sh4-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/sh-sh4-musl-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4-musl-stable/"

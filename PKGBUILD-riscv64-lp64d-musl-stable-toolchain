@@ -14,7 +14,7 @@ sha256sums=('481c9353467f42d02edf9080954b3c14a75ff7c19ed9e8fbf9cfa67d028587d3'
             '12db8b47446ef8efbdb633d2bfa0ed1a32b654249f4a0498b6061e2a77a8681f')
 
 build() {
-	cd "riscv64-lp64d--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/riscv64-lp64d-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv64-lp64d--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/riscv64-lp64d-musl-stable/"
 	cp -a * "$pkgdir/opt/riscv64-lp64d-musl-stable/"

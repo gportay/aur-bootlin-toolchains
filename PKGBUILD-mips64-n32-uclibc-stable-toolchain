@@ -14,7 +14,7 @@ sha256sums=('ac0aef32929d8521e8f7201b56d3e006d684e71f59b29b1d40d853d31b07f7f2'
             '7ca13764613012f2a93a55da46f2a2be9dbdffabf8c1df07530c300774c6c692')
 
 build() {
-	cd "mips64-n32--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/mips64-n32-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips64-n32--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/mips64-n32-uclibc-stable/"
 	cp -a * "$pkgdir/opt/mips64-n32-uclibc-stable/"

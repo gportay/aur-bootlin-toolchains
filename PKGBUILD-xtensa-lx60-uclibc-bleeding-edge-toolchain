@@ -14,7 +14,7 @@ sha256sums=('eec483e97164d82939034c28bf3443e1d3d92f1674b9060d4086b773ac4e6ea0'
             '442cf753adae6ad10cd9c871daf8c098c9450bd23e659a43f40aeb33666d512a')
 
 build() {
-	cd "xtensa-lx60--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/xtensa-lx60-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "xtensa-lx60--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/xtensa-lx60-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/xtensa-lx60-uclibc-bleeding-edge/"

@@ -14,7 +14,7 @@ sha256sums=('3b7382684dd77118498b5e502fd90af616c3f6006843d27f538881505cb4a4d7'
             'c2826338598bba25cd69b8224f37d39a3efe58b8553b166eea44b100d306aaf6')
 
 build() {
-	cd "powerpc64le-power8--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/powerpc64le-power8-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc64le-power8--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/powerpc64le-power8-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc64le-power8-glibc-bleeding-edge/"

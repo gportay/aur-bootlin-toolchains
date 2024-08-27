@@ -14,7 +14,7 @@ sha256sums=('f61aa3160dd75267a0b6018ca198f36ea99510f51d5a70eef8f2ac02d713abb3'
             'f7554cbead4e13491a0074f3db678454e2f09cf65a87eb33bdf6ff803670a079')
 
 build() {
-	cd "m68k-68xxx--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/m68k-68xxx-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-68xxx--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/m68k-68xxx-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-musl-bleeding-edge/"

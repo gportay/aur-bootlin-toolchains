@@ -14,7 +14,7 @@ sha256sums=('51527b6a9e2063db756d836e250866783bcdfb40ab0f122d6d65c7401806cc44'
             '874b196f5bc421f72e53fea5d765ff4375b3f22f6cee55dc2bc7047b5bf9490d')
 
 build() {
-	cd "openrisc--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/openrisc-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/openrisc-uclibc-stable/"
 	cp -a * "$pkgdir/opt/openrisc-uclibc-stable/"

@@ -14,7 +14,7 @@ sha256sums=('9825d9a4515a92d2251aab3228ddbb6258440b0f952b95fcaa94653a4b29c71a'
             '217972cebfc61260e6b18e2cc385f3152892f9ac2ea20b7884d139e6025d6c53')
 
 build() {
-	cd "armv5-eabi--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/armv5-eabi-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv5-eabi--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/armv5-eabi-musl-stable/"
 	cp -a * "$pkgdir/opt/armv5-eabi-musl-stable/"

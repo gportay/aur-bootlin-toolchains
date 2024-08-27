@@ -14,7 +14,7 @@ sha256sums=('17c6aa01b8421961b17eca4950cab8d292aa87d073f325525de1e77c5f7a5546'
             'bb07ff2e652c769447f57c84ca1e9c2eeb1c8712f8d8866ba84fdd38d9dcf2ab')
 
 build() {
-	cd "microblazebe--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/microblazebe-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazebe--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/microblazebe-uclibc-stable/"
 	cp -a * "$pkgdir/opt/microblazebe-uclibc-stable/"

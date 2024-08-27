@@ -14,7 +14,7 @@ sha256sums=('c74944737263acbabdbf7b646aa41dd6c96336d2dbbefdeebbba9866e1374a0a'
             '44e1536d977e9cef541c00fe592c8648f7d868d1e294b2093e6831b6fa6b50ca')
 
 build() {
-	cd "sparcv8--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/sparcv8-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sparcv8--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/sparcv8-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/sparcv8-uclibc-bleeding-edge/"

@@ -14,7 +14,7 @@ sha256sums=('5e51c0576acc7043d74644fed43b10e0aa75c4025741edcdd3e636d528270973'
             '15993b2ee23cdfc3c2263b19c188f5c58e88102431ed6a0cac00ba78d6349cf5')
 
 build() {
-	cd "microblazebe--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/microblazebe-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazebe--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/microblazebe-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/microblazebe-musl-bleeding-edge/"

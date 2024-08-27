@@ -14,7 +14,7 @@ sha256sums=('98dcb8efe8f4897c6e7e6088238789c4f42593d4b08739cb7cb8dcd157765887'
             '8eb52ff976fdcc504935473d51bed073f7fa83a25c33c1e2608c02d2cdc328e0')
 
 build() {
-	cd "mips32r5el--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/mips32r5el-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32r5el--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/mips32r5el-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/mips32r5el-uclibc-bleeding-edge/"

@@ -14,7 +14,7 @@ sha256sums=('a6e06a72285ca8dc9974f2060cb79aa85e0a1388553871a7c48785a077cbbe2f'
             '68f940b1bd41a6cd7c5df64f0373c77f9c66a37270059bd7dc49c54671235ca3')
 
 build() {
-	cd "openrisc--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/openrisc-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/openrisc-glibc-stable/"
 	cp -a * "$pkgdir/opt/openrisc-glibc-stable/"

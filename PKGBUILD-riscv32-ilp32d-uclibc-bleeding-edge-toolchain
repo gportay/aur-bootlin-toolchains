@@ -14,7 +14,7 @@ sha256sums=('7fb15b36e351bb1d749abec24eb62b106ada56b3483a910352e9a48e0e8138ee'
             '0bda5e56e503cb96936873ba87a09a8887f7944278da0e102f1eedf48052d6cc')
 
 build() {
-	cd "riscv32-ilp32d--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/riscv32-ilp32d-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv32-ilp32d--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/riscv32-ilp32d-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/riscv32-ilp32d-uclibc-bleeding-edge/"

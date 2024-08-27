@@ -14,7 +14,7 @@ sha256sums=('0b374f870964ec8158beddf478beeec48a4ce09fa25a4a9c51c20a82839b3429'
             '8dca9e1243d69bc70ce37ae804a24417f5b82802e2ad44f7609e5648f85b8c93')
 
 build() {
-	cd "mips32r6el--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/mips32r6el-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32r6el--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/mips32r6el-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/mips32r6el-glibc-bleeding-edge/"

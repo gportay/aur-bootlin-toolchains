@@ -14,7 +14,7 @@ sha256sums=('9bbb6fc607a76c32964208ba2e2e0d09af4cd7f1d0b9511e524363e86147992d'
             '901b4dfdeb499338f9440a2e7e4379cce48de8feff5f0960b06d5b522876f17d')
 
 build() {
-	cd "s390x-z13--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/s390x-z13-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "s390x-z13--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/s390x-z13-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/s390x-z13-musl-bleeding-edge/"

@@ -14,7 +14,7 @@ sha256sums=('247f590dede487c76579aa6c5233f634c6525cf31430496ae6dcbd0e07e8dc5b'
             'eced5b44564de98799078b77f59b08ee084ecb3588f8114d7f4a9322293ae037')
 
 build() {
-	cd "arcle-hs38--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/arcle-hs38-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-hs38--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/arcle-hs38-glibc-stable/"
 	cp -a * "$pkgdir/opt/arcle-hs38-glibc-stable/"

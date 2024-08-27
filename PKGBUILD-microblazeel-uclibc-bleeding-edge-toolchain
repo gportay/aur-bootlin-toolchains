@@ -14,7 +14,7 @@ sha256sums=('bdf72671801ff48b232f12f13de5f3aaf3180a8e93c680ab59a1023aac3ddfd7'
             '47ee5dfc6873e9e0aa56350ed4767e2644f8f7351111c858e3827b071528f182')
 
 build() {
-	cd "microblazeel--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/microblazeel-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/microblazeel-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/microblazeel-uclibc-bleeding-edge/"

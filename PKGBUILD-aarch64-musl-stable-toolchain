@@ -14,7 +14,7 @@ sha256sums=('f847da1195325525f3f07eef045ef40c6b48464a37e0f7fea77360dfe0bc1aa1'
             '971909357499a20ee7ebddb313959c680d41bd2f1deabf32ec0ffd7888011cc5')
 
 build() {
-	cd "aarch64--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/aarch64-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "aarch64--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/aarch64-musl-stable/"
 	cp -a * "$pkgdir/opt/aarch64-musl-stable/"

@@ -14,7 +14,7 @@ sha256sums=('9891f5a43d1002a652353064e6543a1371c795938ecb595dd2f47a2d0ecc1e62'
             '9137998e52e8851529ed6a8f96e8bf576919b3cb8d57b0665e30fda65234ba12')
 
 build() {
-	cd "armv7m--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/armv7m-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv7m--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/armv7m-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armv7m-uclibc-stable/"

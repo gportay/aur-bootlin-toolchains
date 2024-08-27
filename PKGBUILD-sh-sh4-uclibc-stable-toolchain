@@ -14,7 +14,7 @@ sha256sums=('3433820a3ca8296d5166fbe0d8bcc722536fa9d71b3631667bb5039a61fbc039'
             '2d664613108b32b066ed5c88b950c218d4b5773b8efa7afd2a142bcdb5de997d')
 
 build() {
-	cd "sh-sh4--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/sh-sh4-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/sh-sh4-uclibc-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4-uclibc-stable/"

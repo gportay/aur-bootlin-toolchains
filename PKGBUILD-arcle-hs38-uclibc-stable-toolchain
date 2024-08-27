@@ -14,7 +14,7 @@ sha256sums=('982f6c2d3b161e8e07982f6fe846c18245d17b0ed602cddd64ad45c568c06b01'
             'f312ab107482fb928ab9d270a248030f3a51ac66a113067bceddf6e1bf85bfb0')
 
 build() {
-	cd "arcle-hs38--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/arcle-hs38-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-hs38--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/arcle-hs38-uclibc-stable/"
 	cp -a * "$pkgdir/opt/arcle-hs38-uclibc-stable/"

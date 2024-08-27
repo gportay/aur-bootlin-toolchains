@@ -14,7 +14,7 @@ sha256sums=('0de17cd13642f71f112d086c1df4b34670440ceb459478a0f3d55007945633ca'
             '7da05041b48f9e58edcd48d6f55a6fa6375d72c6801d4268cbb5d41d49eaccce')
 
 build() {
-	cd "openrisc--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/openrisc-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "openrisc--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/openrisc-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/openrisc-glibc-bleeding-edge/"

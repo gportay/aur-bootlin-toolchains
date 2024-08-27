@@ -14,7 +14,7 @@ sha256sums=('07c14c3c9bdee411bd1d5c04cd2a1ff50dd98231f1fb648f5746b0d2fab81767'
             '57cb767f1c979d549c054b0c96655bdf72890c1cdbf5f43b26effeda253d4d73')
 
 build() {
-	cd "sh-sh4aeb--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/sh-sh4aeb-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4aeb--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/sh-sh4aeb-glibc-stable/"
 	cp -a * "$pkgdir/opt/sh-sh4aeb-glibc-stable/"

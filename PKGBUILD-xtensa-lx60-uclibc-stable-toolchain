@@ -14,7 +14,7 @@ sha256sums=('99f275b884895049a2d47812a94953199368da99f4bc2bd39869711006610c0e'
             '56cdf3c16ed0ccdf7a7ce5fc4cfbd1521bcabfba6a9b585cd1851584357fc287')
 
 build() {
-	cd "xtensa-lx60--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/xtensa-lx60-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "xtensa-lx60--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/xtensa-lx60-uclibc-stable/"
 	cp -a * "$pkgdir/opt/xtensa-lx60-uclibc-stable/"

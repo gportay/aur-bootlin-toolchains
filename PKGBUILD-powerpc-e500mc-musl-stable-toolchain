@@ -14,7 +14,7 @@ sha256sums=('3456bca0016d0c3855a644845aa627c25cd61ce763529a6bae712f8d6d9ddd8d'
             'c73b64e00d93155dbbbc81d6b902dc24f15675ce5009f1849fa999a0a8de3e9f')
 
 build() {
-	cd "powerpc-e500mc--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/powerpc-e500mc-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e500mc--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/powerpc-e500mc-musl-stable/"
 	cp -a * "$pkgdir/opt/powerpc-e500mc-musl-stable/"

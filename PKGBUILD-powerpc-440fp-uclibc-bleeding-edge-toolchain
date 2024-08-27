@@ -14,7 +14,7 @@ sha256sums=('f98de4013224c65ecf36b9733236a0beed62782e67e9c4a5259a188e73d8dead'
             'c22bd88754fb951ffbdd7537f5f5293a09c01e25972b8f0e26e1322079649718')
 
 build() {
-	cd "powerpc-440fp--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/powerpc-440fp-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-440fp--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/powerpc-440fp-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc-440fp-uclibc-bleeding-edge/"

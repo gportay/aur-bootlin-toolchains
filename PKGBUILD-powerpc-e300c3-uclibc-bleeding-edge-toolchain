@@ -14,7 +14,7 @@ sha256sums=('40ed47b662384ddc480c1cdaf3615d44956f51fc9c389688fe6054f3ebcb1f11'
             '2fbb1beceef9f52507d1468fe43bca398a99d7e43534be93f4fc40a5b88141e8')
 
 build() {
-	cd "powerpc-e300c3--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/powerpc-e300c3-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e300c3--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/powerpc-e300c3-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/powerpc-e300c3-uclibc-bleeding-edge/"

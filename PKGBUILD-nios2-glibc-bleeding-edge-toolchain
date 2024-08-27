@@ -14,7 +14,7 @@ sha256sums=('5d034a538a8613ef324ae96f097c122ed99574ec8707e3274743e4d79efd374c'
             '3b72f89762495f6abc1f0c87f717b64f65f2c1f7d8836c68c57a02e4a14eddeb')
 
 build() {
-	cd "nios2--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/nios2-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "nios2--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/nios2-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/nios2-glibc-bleeding-edge/"

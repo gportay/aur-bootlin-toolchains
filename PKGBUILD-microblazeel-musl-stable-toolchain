@@ -14,7 +14,7 @@ sha256sums=('72611e45e0a77eac21b04bfae70395b8bcfaf2c969fe51638db48a94ca9030f4'
             'cd487b6a745bb003d1c835c28dbc4e7465f59c840650f4b6f54f4fb76e333ece')
 
 build() {
-	cd "microblazeel--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/microblazeel-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/microblazeel-musl-stable/"
 	cp -a * "$pkgdir/opt/microblazeel-musl-stable/"

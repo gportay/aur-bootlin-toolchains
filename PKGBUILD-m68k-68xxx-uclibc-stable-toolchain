@@ -14,7 +14,7 @@ sha256sums=('92b41ec8da2da233c65ce96ad9db5e849d0d687378c799f774df6efe7c8f0e28'
             '277d49a9e3795534f5ecaf7a3c9cb70768242a733311913046987c4ac9ea4145')
 
 build() {
-	cd "m68k-68xxx--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/m68k-68xxx-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-68xxx--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/m68k-68xxx-uclibc-stable/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-uclibc-stable/"

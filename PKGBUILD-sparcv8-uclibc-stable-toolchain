@@ -14,7 +14,7 @@ sha256sums=('8ec2c84b84a13b854a13802537f0b04848056ebc65f6212202f6d8c8a78d4bc3'
             '20ab896e31f5fe67a77f3953b2773d58c70f5f3f0f1d88c937a66c7fd3ad85ed')
 
 build() {
-	cd "sparcv8--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/sparcv8-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sparcv8--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/sparcv8-uclibc-stable/"
 	cp -a * "$pkgdir/opt/sparcv8-uclibc-stable/"

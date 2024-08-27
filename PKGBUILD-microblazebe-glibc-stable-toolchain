@@ -14,7 +14,7 @@ sha256sums=('7a24a6cd76175d77134a0d02852204c548c9d2722e08ecc02ccf49f4c477792d'
             'fc000fa70fc2d886e1add7b4f287871e4f97650db0b6027a7fe1baf17eab79d6')
 
 build() {
-	cd "microblazebe--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/microblazebe-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazebe--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/microblazebe-glibc-stable/"
 	cp -a * "$pkgdir/opt/microblazebe-glibc-stable/"

@@ -14,7 +14,7 @@ sha256sums=('aeba34ea164503511233566148ccfddba3932ffe13f9d22bfa1a3bf2a31c63f7'
             '8bbbf01fe93740b8aed4e07426e0216132c20aae2f820d547698514f1ce7ffb5')
 
 build() {
-	cd "armv6-eabihf--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/armv6-eabihf-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv6-eabihf--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/armv6-eabihf-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/armv6-eabihf-musl-bleeding-edge/"

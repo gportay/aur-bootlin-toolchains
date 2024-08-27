@@ -14,7 +14,7 @@ sha256sums=('c80884040a81a33fdd6a4d3f54d63650dbeea280ee6324664faba094ad93bd74'
             '18e605b119799b029078923ea8e36b0cc5c9319b6cbdda74cded57eb995b5959')
 
 build() {
-	cd "x86-64-core-i7--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/x86-64-core-i7-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-core-i7--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/x86-64-core-i7-glibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-core-i7-glibc-stable/"

@@ -14,7 +14,7 @@ sha256sums=('69fb29808de400fe59dc8c47b60c0e0cb5b65f48cbef09432edfc8cecb25a6b3'
             '18b43f733e1bc9b868d88f82b8de2f3b2dda763e314f6d5e1fcf072afc902b19')
 
 build() {
-	cd "x86-core2--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/x86-core2-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-core2--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/x86-core2-uclibc-stable/"
 	cp -a * "$pkgdir/opt/x86-core2-uclibc-stable/"

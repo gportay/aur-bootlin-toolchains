@@ -14,7 +14,7 @@ sha256sums=('4456ec5b09fba57222ec8c3b9cf4d19a118a5dc876a58939e7fd77033af80652'
             '7cf93f869ea8f5a07d47f737a19ee376fce6da63508ad0f0a0266cd648784435')
 
 build() {
-	cd "m68k-68xxx--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/m68k-68xxx-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-68xxx--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/m68k-68xxx-musl-stable/"
 	cp -a * "$pkgdir/opt/m68k-68xxx-musl-stable/"

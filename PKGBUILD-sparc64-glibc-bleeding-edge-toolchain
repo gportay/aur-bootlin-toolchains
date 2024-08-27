@@ -14,7 +14,7 @@ sha256sums=('5bcbc1fb43b8f0240b2f2503c8dfa9a2efa38ea23d2a2f44df4acc5a1288ef9b'
             '772305f7886f7f56114391d6b95d802b51e9bb5340d78b3e6028e11d4256e05d')
 
 build() {
-	cd "sparc64--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/sparc64-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sparc64--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/sparc64-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/sparc64-glibc-bleeding-edge/"

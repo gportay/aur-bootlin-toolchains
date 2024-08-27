@@ -14,7 +14,7 @@ sha256sums=('10703f0184162ea6ebabb84696903154a8eb7b53175e76ccf5ca0a2294fc68ec'
             'eda70b43164ec141b46e1b4863652047136be9f12cb7a2690ccb0fc7b73ceb63')
 
 build() {
-	cd "armv7-eabihf--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/armv7-eabihf-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv7-eabihf--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/armv7-eabihf-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/armv7-eabihf-glibc-bleeding-edge/"

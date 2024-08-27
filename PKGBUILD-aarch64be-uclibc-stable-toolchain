@@ -14,7 +14,7 @@ sha256sums=('ef200bd2d5d4762a3f5844703d3c7ef683f15189a1a0fe3857c2eaa117fd45c7'
             '8feddf4aaffa6e0b99f4ec187d92ee502de5a3af56b78960a7a880ce7c8fd4b2')
 
 build() {
-	cd "aarch64be--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/aarch64be-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "aarch64be--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/aarch64be-uclibc-stable/"
 	cp -a * "$pkgdir/opt/aarch64be-uclibc-stable/"

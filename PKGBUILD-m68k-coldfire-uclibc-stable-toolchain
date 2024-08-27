@@ -14,7 +14,7 @@ sha256sums=('370953f7c1e3bcf8b4e6849906991019f742fbde8532850aabd4eb3978e4a933'
             'fa5abe3fe44a93318d98208004ef5f34dde01d23f12a5ae44ee0aa990b9e6068')
 
 build() {
-	cd "m68k-coldfire--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/m68k-coldfire-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-coldfire--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/m68k-coldfire-uclibc-stable/"
 	cp -a * "$pkgdir/opt/m68k-coldfire-uclibc-stable/"

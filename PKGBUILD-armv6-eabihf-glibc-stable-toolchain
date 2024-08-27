@@ -14,7 +14,7 @@ sha256sums=('2924afaa0d47e046339fe70bf526db5a19edaa58d87c6758a861ef41e2781368'
             'bb89290d24039bee695c9f246c568921b7ce8a0ee710681e3840dddcb4fc8e11')
 
 build() {
-	cd "armv6-eabihf--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/armv6-eabihf-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv6-eabihf--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/armv6-eabihf-glibc-stable/"
 	cp -a * "$pkgdir/opt/armv6-eabihf-glibc-stable/"

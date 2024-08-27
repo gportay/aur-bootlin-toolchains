@@ -14,7 +14,7 @@ sha256sums=('482cb60a8d0445b961fe1c5282826da9071f17ab37729b9c1c4ce7aabd014c7d'
             '697b56e0ec452b72604d1129d88cbbbb229073d8903cd56812f862d6996ab510')
 
 build() {
-	cd "mips32r6el--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/mips32r6el-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips32r6el--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/mips32r6el-glibc-stable/"
 	cp -a * "$pkgdir/opt/mips32r6el-glibc-stable/"

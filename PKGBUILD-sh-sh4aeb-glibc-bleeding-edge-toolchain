@@ -14,7 +14,7 @@ sha256sums=('cb4d6abb85e3e86d6d0b285d2b4d7ad6ece6483835f8950742e17ff5a2967ee3'
             'd4b2f50308860e1cd79bb124ed2262583412fb4d177ae867a0a0db2118ff908a')
 
 build() {
-	cd "sh-sh4aeb--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/sh-sh4aeb-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "sh-sh4aeb--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/sh-sh4aeb-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/sh-sh4aeb-glibc-bleeding-edge/"

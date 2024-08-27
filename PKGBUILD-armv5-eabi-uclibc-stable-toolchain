@@ -14,7 +14,7 @@ sha256sums=('c0c616d4f7d6702b8991f83a5a3777137f734e1eb610d4a20297eaef299ec59d'
             'ca71730da92d25c4b49a730f33b7daa2ecea00629b69d04b095ec67216327388')
 
 build() {
-	cd "armv5-eabi--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/armv5-eabi-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv5-eabi--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/armv5-eabi-uclibc-stable/"
 	cp -a * "$pkgdir/opt/armv5-eabi-uclibc-stable/"

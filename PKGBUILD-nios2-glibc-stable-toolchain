@@ -14,7 +14,7 @@ sha256sums=('db7a12e0b22037f3aad01cd126b5f1bfe7dc514e37f8c484eb587b861f20fbcd'
             'd286e15fd8117813109c81fe1d4eb4df745f7fd2cc3b32080fd86f0788788083')
 
 build() {
-	cd "nios2--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/nios2-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "nios2--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/nios2-glibc-stable/"
 	cp -a * "$pkgdir/opt/nios2-glibc-stable/"

@@ -14,7 +14,7 @@ sha256sums=('a44e4b4cc016aded66f00109c1c5f64f881a8b7effc60bae2e84a5936fd3b0e4'
             '485c632a6591fadcbcfa7e444058eb4519481dbb40f3086a4a8bfd195c63fa2d')
 
 build() {
-	cd "aarch64be--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/aarch64be-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "aarch64be--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/aarch64be-glibc-stable/"
 	cp -a * "$pkgdir/opt/aarch64be-glibc-stable/"

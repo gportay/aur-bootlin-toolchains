@@ -14,7 +14,7 @@ sha256sums=('1466a2c312a340d5314583c4ef3fbf955eaa0c16627712374e1f1d74d9a38505'
             '0393a397690b72ed670dcd34aa3fd2b5f85f2edac4dd08b7837377b7ff8110ef')
 
 build() {
-	cd "armv5-eabi--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/armv5-eabi-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "armv5-eabi--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/armv5-eabi-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/armv5-eabi-glibc-bleeding-edge/"

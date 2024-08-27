@@ -14,7 +14,7 @@ sha256sums=('2468c298089873e4d86026b84ca68e46b4802413639a55f2db1c6aba181d66d6'
             '836b35549bf6da45f981528cfcb64d3aae556d925d68f0a4531bb9c6e815113e')
 
 build() {
-	cd "microblazeel--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/microblazeel-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/microblazeel-glibc-stable/"
 	cp -a * "$pkgdir/opt/microblazeel-glibc-stable/"

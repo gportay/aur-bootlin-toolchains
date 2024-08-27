@@ -14,7 +14,7 @@ sha256sums=('a9e41a646d6757e47ab0539171bef54a6c0bf68f191210500875b386ea15444c'
             '67718a41eee75fe794f42ab58e9eb9f239a9278e2276577c650b2e474c7834ee')
 
 build() {
-	cd "riscv64-lp64d--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/riscv64-lp64d-glibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "riscv64-lp64d--glibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/riscv64-lp64d-glibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/riscv64-lp64d-glibc-bleeding-edge/"

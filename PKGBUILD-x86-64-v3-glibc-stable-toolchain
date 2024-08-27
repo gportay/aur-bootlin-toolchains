@@ -14,7 +14,7 @@ sha256sums=('21e08661a702695bfb1fbcbdb4c671e4c8146db2daf92e23e38e501f227584af'
             '6b732ecaff9cbf740d937d873ae0d884dd9e8d8b5b767b8604c9eeb56627ba80')
 
 build() {
-	cd "x86-64-v3--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/x86-64-v3-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64-v3--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/x86-64-v3-glibc-stable/"
 	cp -a * "$pkgdir/opt/x86-64-v3-glibc-stable/"

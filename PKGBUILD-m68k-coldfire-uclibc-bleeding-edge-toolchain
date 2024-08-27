@@ -14,7 +14,7 @@ sha256sums=('6ef31adc06bb53b0b9252bbf7cdc93c22f0d6838dc9f51a4dc6e0fe2016eceff'
             '2ae76031eaa615c6adf339a0bd1c881dc188e81b20d470f89f06f473f7a0c935')
 
 build() {
-	cd "m68k-coldfire--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/m68k-coldfire-uclibc-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "m68k-coldfire--uclibc--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/m68k-coldfire-uclibc-bleeding-edge/"
 	cp -a * "$pkgdir/opt/m68k-coldfire-uclibc-bleeding-edge/"

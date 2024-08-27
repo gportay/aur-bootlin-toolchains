@@ -14,7 +14,7 @@ sha256sums=('2721cb2421ba1f9740a739247da9c12fbebbffeb131998719bc810d7319eb9b9'
             '366ed42107000675fc9909ba72c103b0b727a33b1f9f897bca148a8cdd3175c1')
 
 build() {
-	cd "x86-64--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/x86-64-musl-bleeding-edge"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "x86-64--musl--bleeding-edge-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/x86-64-musl-bleeding-edge/"
 	cp -a * "$pkgdir/opt/x86-64-musl-bleeding-edge/"

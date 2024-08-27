@@ -14,7 +14,7 @@ sha256sums=('365e30fda99630e5bcf04c4913f905640025b90cc9d1a4b17cccfc729827d335'
             '5100bd7573eb635ba6b8045e07c3b57e8a46163cf41675caa482f30eedc40514')
 
 build() {
-	cd "powerpc-e500mc--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/powerpc-e500mc-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc-e500mc--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/powerpc-e500mc-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc-e500mc-glibc-stable/"

@@ -14,7 +14,7 @@ sha256sums=('d620b75ec5a05c0d76b132200e69c75c308c582696d616036d7b29dae21b730f'
             '33e05e73ec61df6794ac407c35b6ab9bd0b85e730d4c55cdee86d0744095e5d1')
 
 build() {
-	cd "mips64el-n32--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/mips64el-n32-musl-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "mips64el-n32--musl--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/mips64el-n32-musl-stable/"
 	cp -a * "$pkgdir/opt/mips64el-n32-musl-stable/"

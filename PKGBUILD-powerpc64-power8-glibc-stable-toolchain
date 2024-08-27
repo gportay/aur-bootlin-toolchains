@@ -14,7 +14,7 @@ sha256sums=('8dfeb7f1ec38e623c98c125539df6ccc7fad1c057b7ab36d65c2b6426c03b332'
             'e9ee3545c905067dee80e6f0f78fa824b10a1797042c540b1802333aa3bb4cbb')
 
 build() {
-	cd "powerpc64-power8--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/powerpc64-power8-glibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "powerpc64-power8--glibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/powerpc64-power8-glibc-stable/"
 	cp -a * "$pkgdir/opt/powerpc64-power8-glibc-stable/"

@@ -14,7 +14,7 @@ sha256sums=('49657597e55aa7d771cb4546c1d37d7ab9408b426d8c45f1bf61d90a53322a65'
             'ddcaeb171b8c190cc57cf099c2e6bcff04755d753de4ac3dfbfff4909a54c8f9')
 
 build() {
-	cd "microblazeel--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/microblazeel-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "microblazeel--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/microblazeel-uclibc-stable/"
 	cp -a * "$pkgdir/opt/microblazeel-uclibc-stable/"

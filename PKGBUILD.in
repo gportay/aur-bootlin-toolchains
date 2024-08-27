@@ -13,7 +13,7 @@ install="hooks.install-@@ARCH@@-@@LIBC@@-@@VERSION@@-toolchain"
 sha256sums=("SHA256SUM")
 
 build() {
-	cd "@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@"
 }
@@ -21,7 +21,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "@@ARCH@@--@@LIBC@@--@@VERSION@@-@@RELEASE@@"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@/"
 	cp -a * "$pkgdir/opt/@@ARCH@@-@@LIBC@@-@@VERSION@@/"

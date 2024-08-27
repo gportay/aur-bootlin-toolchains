@@ -14,7 +14,7 @@ sha256sums=('74b2afe4f915708e81d9b595396ff82fbc841f698a0b78d778a52cf7be668081'
             'b6b65525b90d5d366bb341ba12a5309817f4eb77a02ce41c8d3366366b7209db')
 
 build() {
-	cd "arcle-750d--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	sh relocate-sdk.sh "/opt/arcle-750d-uclibc-stable"
 }
@@ -22,7 +22,7 @@ build() {
 package() {
 	options=(!strip)
 
-	cd "arcle-750d--uclibc--stable-2024.05-1"
+	cd "${pkgname%-toolchain}--$pkgver-${pkgrel%%.*}"
 
 	mkdir -p "$pkgdir/opt/arcle-750d-uclibc-stable/"
 	cp -a * "$pkgdir/opt/arcle-750d-uclibc-stable/"
