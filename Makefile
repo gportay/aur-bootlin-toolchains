@@ -86,7 +86,16 @@ xtensa-lx60_glibc = 0
 xtensa-lx60_musl = 0
 
 .PHONY: all
-all:
+all: PKGBUILD hooks.install profile.sh
+
+.PHONY: PKGBUILD
+PKGBUILD:
+
+.PHONY: hooks.install
+hooks.install:
+
+.PHONY: profile.sh
+profile.sh:
 
 .PHONY: repo
 repo: bootlin-toolchains.db.tar.gz
@@ -199,7 +208,7 @@ $(1)-$(2)-$(3)-toolchain/profile.sh-$(1)-$(2)-$(3)-toolchain: profile.sh-$(1)-$(
 $(1)-$(2)-$(3)-toolchain:
 	git init $$@
 
-all: PKGBUILD-$(1)-$(2)-$(3)-toolchain
+PKGBUILD: PKGBUILD-$(1)-$(2)-$(3)-toolchain
 
 PKGBUILD-$(1)-$(2)-$(3)-toolchain: hooks.install-$(1)-$(2)-$(3)-toolchain
 PKGBUILD-$(1)-$(2)-$(3)-toolchain: profile.sh-$(1)-$(2)-$(3)-toolchain
@@ -214,7 +223,7 @@ PKGBUILD-$(1)-$(2)-$(3)-toolchain: PKGBUILD.in
 	updpkgsums $$@.tmp
 	mv $$@.tmp $$@
 
-all: hooks.install-$(1)-$(2)-$(3)-toolchain
+hooks.install: hooks.install-$(1)-$(2)-$(3)-toolchain
 
 hooks.install-$(1)-$(2)-$(3)-toolchain: hooks.install.in
 	sed -e 's,@@ARCH@@,$(1),g' \
@@ -225,7 +234,7 @@ hooks.install-$(1)-$(2)-$(3)-toolchain: hooks.install.in
 	    -e 's,@@PACKAGE_RELEASE@@,$$(word 2,$$(subst -, ,$$(RELEASE)))$$(EXTRA_RELEASE),g' \
 	       $$< >$$@
 
-all: profile.sh-$(1)-$(2)-$(3)-toolchain
+profile.sh: profile.sh-$(1)-$(2)-$(3)-toolchain
 
 profile.sh-$(1)-$(2)-$(3)-toolchain: profile.sh.in
 	sed -e 's,@@ARCH@@,$(1),g' \
