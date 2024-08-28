@@ -150,7 +150,10 @@ bootlin-toolchains.db.tar.gz: $(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEA
 $(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 	cp -al $$< $$@
 
-makepkg: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
+makepkg: makepkg-$(1)-$(2)-$(3)
+
+.PHONY: makepkg-$(1)-$(2)-$(3)
+makepkg-$(1)-$(2)-$(3): $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 
 .PRECIOUS: $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst
 $(1)-$(2)-$(3)-toolchain/$(1)-$(2)-$(3)-toolchain-$$(RELEASE)$$(EXTRA_RELEASE)-x86_64.pkg.tar.zst: $(1)-$(2)-$(3)-toolchain/hooks.install-$(1)-$(2)-$(3)-toolchain
